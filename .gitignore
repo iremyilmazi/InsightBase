@@ -1,0 +1,21 @@
+# Track only the active project and root handoff files.
+/*
+!/.gitignore
+!/AGENTS.md
+!/README.md
+!/InsightBase-V2/
+
+# Private workbook data and temporary files never belong in Git.
+*.xlsx
+*.xls
+*.csv
+*.tsv
+*.DS_Store
+__pycache__/
+*.pyc
+.openai/
+*preview.jpg
+no-currency-heading.jpg
+.env
+.env.*
+demo-data.json
