@@ -41,4 +41,4 @@ Added root README and Git allowlist/ignore rules for active V2 only. GitHub Desk
 
 ## GitHub connection and transfer — 2026-10-09
 
-Verified connected identity iremyilmazi and existing private InsightBase repository with write/admin access. Transferring tracked V2 source, documents and three-file Windows package through the GitHub plugin. Workbook data and preview artifacts remain excluded.
+Verified connected identity iremyilmazi and existing private InsightBase repository with write/admin access. Transferred 32 tracked V2 files (source, documentation and three-file Windows package) to private https://github.com/iremyilmazi/InsightBase through the GitHub plugin; main import commit e2ea6e496521aac4d3e0b78c5da8a57f5827d34d. Workbook data and preview artifacts remain excluded.
