@@ -19,3 +19,7 @@ no-currency-heading.jpg
 .env
 .env.*
 demo-data.json
+
+# Email demo deliverables contain a synthetic workbook and stay local.
+InsightBase-V2/InsightBase-Mail-Windows/
+InsightBase-V2/InsightBase-Windows-Demo.zip

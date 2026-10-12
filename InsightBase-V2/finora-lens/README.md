@@ -15,3 +15,9 @@ python3 finora-lens/preview_demo.py
 ```
 
 See the development document for Windows startup, loopback preview, verification and known limitations. Legacy builders/migration helpers are not the active delivery workflow.
+
+The presentation editor and native editable PowerPoint export are documented in [PPTX_EXPORT.md](../docs/PPTX_EXPORT.md). PptxGenJS 4.0.1 is vendored offline. Run engine and presentation tests together. Current presentation-phase changes must not be uploaded to GitHub until user instruction.
+
+PDF indir is also available beside PowerPoint indir; it produces fixed 16:9 visual pages using offline jsPDF 3.0.3. The Windows application still has exactly three files.
+
+Publication update (2026-10-11): the user explicitly authorized uploading this complete current version to iremyilmazi/InsightBase; earlier publication-hold statements are historical and superseded for this release. Private workbook and preview exclusions remain.

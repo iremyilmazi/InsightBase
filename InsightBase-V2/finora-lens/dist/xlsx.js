@@ -35,7 +35,7 @@ async function read(file,template){
   const xml=parse(raw),cells=new Map();
   for(const c of nodes(xml,'c')){
    const t=c.getAttribute('t'),raw=nodes(c,'v')[0]?.textContent;let value=null;
-   if(t==='s')value=strings[Number(raw)];else if(t==='inlineStr')value=nodes(c,'t').map(x=>x.textContent).join('');else if(t==='e'){warnings.push(name+'!'+c.getAttribute('r')+': Excel hata hücresi');}else if(raw!==undefined&&raw!==''&&t!=='str'&&t!=='b')value=Number(raw);
+   if(t==='s')value=strings[Number(raw)];else if(t==='str')value=raw??null;else if(t==='inlineStr')value=nodes(c,'t').map(x=>x.textContent).join('');else if(t==='e'){warnings.push(name+'!'+c.getAttribute('r')+': Excel hata hücresi');}else if(raw!==undefined&&raw!==''&&t!=='str'&&t!=='b')value=Number(raw);
    const formatId=Number(xfs?.[Number(c.getAttribute('s')||0)]?.getAttribute('numFmtId')||0),percent=formatId===9||formatId===10||/%/.test(formats.get(formatId)||'');
    cells.set(c.getAttribute('r'),{value,percent});
   }
@@ -50,7 +50,7 @@ async function read(file,template){
   }
   output.push({type,group,name,dates:order.map(i=>dates[i]),rows});
  }
- if(!output.length)throw Error('BS_Sektör / BS_Ozel / BS_Kamu veya P&L sheetleri bulunamadı.');return {sheets:output,warnings};
+ if(!output.length)throw Error('BS_Sektör / BS_Ozel / BS_Kamu veya P&L sheetleri bulunamadı.');return {sheets:output,warnings,demo:nodes(workbook,'sheet').some(s=>s.getAttribute('name')==='INSIGHTBASE_DEMO')};
 }
 root.LocalXLSX={read};
 })(window);

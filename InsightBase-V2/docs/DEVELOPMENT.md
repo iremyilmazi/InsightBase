@@ -79,3 +79,21 @@ Before closing a structural task:
 Workspace root is the Git repository; only InsightBase-V2 and root AGENTS/README/.gitignore are eligible for tracking. Workbook files, demo JSON, environment files, old top-level copies, preview screenshots and obsolete .openai hosting metadata are excluded. Intended destination: iremyilmazi/InsightBase, private. The private repository iremyilmazi/InsightBase was confirmed through the connected GitHub plugin on 2026-10-09. Transfer uses GitHub connector contents/Git-object APIs because GitHub Desktop control and local CLI authentication were unavailable. Remote and local initial commit IDs can differ; fetch/synchronize before later Git pushes.
 
 An empty legacy nested finora-lens/.git directory inherited during V2 copying was moved to /private/tmp/insightbase-v2-legacy-git-metadata to allow normal root repository tracking. Runtime/source contents were unchanged.
+
+## PowerPoint phase verification and publication
+
+Run `node --test finora-lens/tests/engine.test.cjs finora-lens/tests/presentation.test.cjs` from V2. The vendored browser generator is bundled into InsightBase.js; no runtime npm dependencies or CDN. Verify graph-specific date/group/table selections, all four chart kinds, gaps and native PPTX structures. See PPTX_EXPORT.md. Do not push/upload this phase to GitHub until user instruction.
+
+PDF export is generated locally with vendored jsPDF 3.0.3 and 1920×1080 canvas pages. Check multiple pages, Turkish glyphs, tables, circular pies and independent ranges with synthetic data. Render PDF with Poppler before claiming layout validation. Three-file assertion remains mandatory.
+
+Publication update (2026-10-11): the user explicitly authorized uploading this complete current version to iremyilmazi/InsightBase; earlier publication-hold statements are historical and superseded for this release. Private workbook and preview exclusions remain.
+
+
+## Windows e-posta demo paketi — 2026-10-11
+
+`InsightBase-Mail-Windows` ve `InsightBase-Windows-Demo.zip` yerel teslim çıktılarıdır. Paket tam beş dosya içerir: üç uygulama dosyası, sentetik `dataa.xlsx` ve `BASLANGIC.md`. Üç dosyalı üretim paketi korunur. Demo çalışma kitabı `package_mail_demo.mjs` ile, `preview_demo.py` tarafından üretilen sentetik JSON üzerinden artifact-tool kullanılarak hazırlanır. Önce `package_three_files.py`, sonra `preview_demo.py` çalıştırılır; builder bundled Node/artifact-tool ortamında çalıştırılır. Rehber kaynağı `finora-lens/WINDOWS_DEMO_README.md` dosyasıdır. Demo Excel’deki `INSIGHTBASE_DEMO` sheet adı uygulamada ve sunumlarda DEMO işaretini etkinleştirir. XLSX okuyucu shared/inline string yanında `t=str` metin hücrelerini de destekler. Gerçek veriler ve yerel demo teslim çıktıları GitHub’a eklenmez. Yeni yapısal değişikliklerde ilgili Markdown belgeleri aynı değişiklik kapsamında güncellenmelidir.
+
+
+### CMD teslim güncellemesi
+
+Kullanıcının Windows bilgisayarında PowerShell bulunmadığından e-posta paketi altı dosyadır: HTML, CSS, JS, sentetik Excel, `Baslat.cmd` ve rehber. CMD dosyası Edge’i ayrı `%TEMP%\InsightBase-Local` profili ve `--allow-file-access-from-files` ile açar. Sunucu gerekmez. Yerel dosya erişimi paketlenmiş uygulamada desteklenir; normal tarayıcı profili değiştirilmez. Kurum politikaları geçerlidir. Gerçek XLSX okuyucu altı sheet’i uyarısız okudu; yerel file:// akışı Chrome’da aynı bayrakla doğrulandı. Fiziksel Windows doğrulaması yapılmadı. Önceki PowerShell / beş dosya açıklamaları bu teslim için geçersizdir.

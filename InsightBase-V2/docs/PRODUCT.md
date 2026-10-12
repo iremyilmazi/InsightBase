@@ -25,14 +25,20 @@ InsightBase is an internal banking-sector finance and strategy analysis dashboar
 - One display-unit selector: million/billion/trillion TL. Both source types use million TL.
 - Maximum two decimal digits, Turkish number formatting. Do not force trailing zeros.
 - Main charts show changes, one line at a time; 12 calendar months and point labels in detail dialogs.
-- Overview contains highlights first, two composition pies side by side next, then balance-sheet credit/deposit card groups, then P&L cards.
+- Overview contains highlights first, three composition pies in two cards (credit, and a shared TL/FX deposit card) next, then balance-sheet credit/deposit card groups, then P&L cards.
 - No 'Growth rhythm' overview chart, no 'Main indicators' overview table, no sidebar 'Sector research' heading or phase explanatory block.
 - Credit and deposit cards have the same dimensions, padding and typography.
 
 ## In scope now
 
-Local XLSX import, sector/private/public switching, overview, BS details, P&L monthly/cumulative views, bank-group comparisons, data/method information, refresh, source warnings and synthetic development preview.
+Session-only slide editor, editable PowerPoint output and fixed PDF output (see [PPTX_EXPORT.md](PPTX_EXPORT.md)), local XLSX import, sector/private/public switching, overview, BS details, P&L monthly/cumulative views, bank-group comparisons, data/method information, refresh, source warnings and synthetic development preview.
 
 ## Future phase / explicitly not implemented
 
-PowerPoint output will be specified by the user later. Do not invent/export slides now. Financial-importance scoring, causal AI comments, FX-neutral/reel growth, attribution bridges and historical anomaly scoring are not implemented. Do not describe highlights as any of these.
+Corporate PowerPoint templates will be supplied later. The initial InsightBase slide editor and export are implemented. Financial-importance scoring, causal AI comments, FX-neutral/reel growth, attribution bridges and historical anomaly scoring are not implemented. Do not describe highlights as any of these.
+
+## Publication hold
+
+User explicitly requested no GitHub upload/push for this new phase until they review and ask. Local development and Windows builds are authorized.
+
+Publication update (2026-10-11): the user explicitly authorized uploading this complete current version to iremyilmazi/InsightBase; earlier publication-hold statements are historical and superseded for this release. Private workbook and preview exclusions remain.

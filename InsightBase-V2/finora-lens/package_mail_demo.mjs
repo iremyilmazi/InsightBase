@@ -1,0 +1,16 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {Workbook,SpreadsheetFile} from '@oai/artifact-tool';
+const root=process.argv[2]||path.resolve(import.meta.dirname,'..'),out=root+'/InsightBase-Mail-Windows';
+await fs.mkdir(out,{recursive:true});
+const data=JSON.parse(await fs.readFile('/private/tmp/insightbase-v2-preview/demo-data.json','utf8'));
+const wb=Workbook.create(),intro=wb.worksheets.add('INSIGHTBASE_DEMO');
+intro.getRange('A1:B6').values=[['InsightBase DEMO','Sentetik örnek veri'],['Veri','Gerçek banka/sektör verisi değildir.'],['Kaynak birimi','Milyon TL; oranlar yüzde puan ölçeğinde.'],['BS','Haftalık, 27.12.2024–02.10.2026'],['P&L','Aylık, Aralık 2024–Eylül 2026'],['Kullanım','Deneme içindir. Gerçek kullanımda kendi dataa.xlsx dosyanızla değiştirin.']];intro.getRange('A1:B6').format.columnWidth=65;intro.getRange('A1:B6').format.rowHeight=28;intro.getRange('A1:B1').format.fill='#245DE8';intro.getRange('A1:B1').format.font={bold:true,color:'#FFFFFF'};intro.showGridLines=false;
+for(const source of data.sheets){const name=(source.type==='BS'?'BS':'P&L')+'_'+source.group,s=wb.worksheets.add(name),header=source.type==='BS'?1:2,max=Math.max(...source.rows.map(r=>r.row)),n=source.dates.length,matrix=Array.from({length:max},()=>Array(n+1).fill(null));matrix[header-1][0]='Kalem · DEMO';for(let i=0;i<n;i++)matrix[header-1][i+1]=Math.round(Date.parse(source.dates[i]+'T00:00:00Z')/86400000)+25569;for(const row of source.rows){matrix[row.row-1][0]=row.label;row.values.forEach((v,i)=>matrix[row.row-1][i+1]=v);}if(header===2)matrix[0][0]='DEMO · Sentetik veriler · Milyon TL';s.getRangeByIndexes(0,0,max,n+1).values=matrix;s.getRangeByIndexes(0,0,max,n+1).format.font={name:'Arial',size:10};s.getRangeByIndexes(0,0,max,1).format.columnWidth=43;s.getRangeByIndexes(0,1,max,n).format.columnWidth=16;s.getRangeByIndexes(header,1,max-header,n).setNumberFormat('#,##0.##');s.getRangeByIndexes(header-1,1,1,n).setNumberFormat('dd.mm.yyyy');s.getRangeByIndexes(header-1,0,1,n+1).format.fill='#245DE8';s.getRangeByIndexes(header-1,0,1,n+1).format.font={bold:true,color:'#FFFFFF'};s.freezePanes.freezeRows(header);s.freezePanes.freezeColumns(1);s.showGridLines=false;}
+wb.recalculate();const xlsx=await SpreadsheetFile.exportXlsx(wb);await xlsx.save(out+'/dataa.xlsx');
+const preview=await wb.render({sheetName:'BS_Sektör',range:'A1:E8',scale:1,format:'png'});await fs.writeFile('/private/tmp/insight-mail-workbook.png',new Uint8Array(await preview.arrayBuffer()));
+for(const f of ['InsightBase.html','InsightBase.css','InsightBase.js'])await fs.copyFile(root+'/InsightBase-Windows/'+f,out+'/'+f);
+await fs.copyFile(root+'/finora-lens/WINDOWS_DEMO_README.md',out+'/BASLANGIC.md');
+await fs.rm(out+'/dataa.xlsx.inspect.ndjson',{force:true});
+await fs.writeFile(out+'/Baslat.cmd',"@echo off\r\nsetlocal\r\nset \"IB_EDGE=%ProgramFiles(x86)%\\Microsoft\\Edge\\Application\\msedge.exe\"\r\nif not exist \"%IB_EDGE%\" set \"IB_EDGE=%ProgramFiles%\\Microsoft\\Edge\\Application\\msedge.exe\"\r\nif not exist \"%IB_EDGE%\" (echo Microsoft Edge bulunamadi. & pause & exit /b 1)\r\nstart \"\" \"%IB_EDGE%\" --allow-file-access-from-files --user-data-dir=\"%TEMP%\\InsightBase-Local\" \"%~dp0InsightBase.html\"\r\nendlocal\r\n");
+console.log('Six-file CMD demo folder ready; ZIP this folder for delivery.');

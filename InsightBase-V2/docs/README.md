@@ -2,7 +2,7 @@
 
 > Maintenance rule: every new structural change must update the affected Markdown documents in this documentation set in the same task. Changes to architecture, files, data contracts, row mappings, formulas, UI structure, packaging, scope or operational rules are incomplete until the matching documentation is updated. Update the index/status date and change log as appropriate. V1 was deleted with user authorization on 2026-10-09; V2 is the only maintained version.
 
-Verified against active V2 source on 2026-10-09. Documentation language is English for agent portability; product UI and user communication are Turkish.
+Verified against active V2 source on 2026-10-11. Documentation language is English for agent portability; product UI and user communication are Turkish.
 
 Read these documents before making changes:
 
@@ -12,7 +12,8 @@ Read these documents before making changes:
 4. [Financial calculations and chart rules](CALCULATIONS.md)
 5. [UI structure and interaction contract](UI.md)
 6. [Build, run, validation and maintenance workflow](DEVELOPMENT.md)
-7. [Decision/change log](CHANGELOG.md)
+7. [Presentation editor and PowerPoint export](PPTX_EXPORT.md)
+8. [Decision/change log](CHANGELOG.md)
 
 The binding instruction entry points are the workspace `AGENTS.md` and `InsightBase-V2/AGENTS.md`. This set records current implementation, explicit user constraints and known limitations; do not assume proposed improvements are implemented.
 
@@ -26,4 +27,4 @@ The binding instruction entry points are the workspace `AGENTS.md` and `InsightB
 
 ## Current state
 
-V2 has a card-based banking dashboard, local Excel reading, monthly changes from weekly BS data, monthly P&L, 12-month change charts, two composition pies, deterministic highlights and only the latest populated periods. No date picker, no source-unit selector, no AI dependency, no PowerPoint export. The distributable has exactly three application files.
+V2 has a card-based banking dashboard, local Excel reading, monthly changes from weekly BS data, monthly P&L, 12-month change charts, three composition pies (credit, TL deposits and FX deposits), deterministic highlights and only the latest populated periods. The dashboard has no historical date picker, source-unit selector or AI dependency. The presentation editor supports independent chart month ranges and native editable PowerPoint export and PDF download; see PPTX_EXPORT.md. The distributable has exactly three application files.

@@ -14,10 +14,12 @@ InsightBase-V2/
       index.html            shell, navigation, dialogs, single display-unit selector
       styles.css            UI styling, responsive layouts, SVG label styling
       app.js                state, view rendering, chart/pie/highlight selection, load lifecycle
+      presentation.js       slide session state, SVG preview, editable PPTX export
       engine.js             pure financial functions, Node-compatible tests
       xlsx.js               browser-native ZIP/XML workbook reader
       structure.json        exact template row labels and structure metadata
       structure.js          browser TEMPLATE representation
+    vendor/                 offline PptxGenJS 4.0.1 / jsPDF 3.0.3 bundles and MIT licenses
     package_three_files.py  active production builder
     package_local.py        legacy builder; supplies PowerShell string via AST to active builder
     extract_structure.py    extracts template labels/dates (not real financial data)
@@ -26,6 +28,7 @@ InsightBase-V2/
     update_local.py         legacy migration script; do not rerun casually
     tests/
       engine.test.cjs
+      presentation.test.cjs
       local_server_test.py  tests legacy local_server helper, not Windows PowerShell
   InsightBase-Windows/
     InsightBase.html
@@ -37,12 +40,14 @@ InsightBase-V2/
 
 ## Browser execution flow
 
-HTML shell → bundled `TEMPLATE` → `FinoraEngine` → `LocalXLSX` → Windows setup helper → app entry point → `loadWorkbook()` → fetch local Excel with `cache: no-store` → parser → dataset → render current view.
+HTML shell → bundled `TEMPLATE` → `FinoraEngine` → `LocalXLSX` → vendored PptxGenJS + jsPDF + InsightDeck → Windows setup helper → app entry point → `loadWorkbook()` → fetch local Excel with `cache: no-store` → parser → dataset → render current view.
 
-No framework, npm build or remote chart/XLSX library. Charts are generated SVG. Native APIs include `DOMParser`, `TextDecoder`, `Blob`, `Response`, `DecompressionStream('deflate-raw')`, `AbortController`, and `<dialog>`.
+No framework, npm build or remote chart/XLSX library. Browser charts are SVG; a vendored offline PptxGenJS library builds native editable PowerPoint charts. Native APIs include `DOMParser`, `TextDecoder`, `Blob`, `Response`, `DecompressionStream('deflate-raw')`, `AbortController`, and `<dialog>`.
 
 ## Global interfaces
 
+- `InsightDeck`: presentation session/editor/export API; see PPTX_EXPORT.md.
+- `PptxGenJS` / `window.pptxgen`: native PPTX generation (vendored).
 - `TEMPLATE`: workbook row schema from structure.js.
 - `FinoraEngine`: `DAY`, `iso`, `shift`, `monthEnd`, `monthAgo`, `finite`, `pct`, `at`, `compare`, `series`, `metricSeries`, `cumulativeYoY`, `monthlyChanges`.
 - `LocalXLSX.read(file, template)`: Promise of sheets/warnings.
@@ -52,6 +57,18 @@ No framework, npm build or remote chart/XLSX library. Charts are generated SVG. 
 
 ## Important functions
 
-`metric()` uses `latestDate(type,group)`; `getSeries()` preserves source-million values. `render()` produces the current screen, `overview()` produces overview sections, `loanPie(deposits)` renders either composition, `insights()` ranks six MoM candidates, `showDetail()` opens a drilldown, `chartPoints()` gets monthly changes and `chart()` renders one SVG line.
+`metric()` uses `latestDate(type,group)`; `getSeries()` preserves source-million values. `render()` produces the current screen, `overview()` produces overview sections, `loanPie(currency)` renders credit (null), TL deposit or FX deposit composition, `insights()` ranks six MoM candidates, `showDetail()` opens a drilldown, `chartPoints()` gets monthly changes and `chart()` renders one SVG line.
 
 Refresh clears the current dataset while loading; errors show an error state instead of retaining old values as current. A token prevents stale concurrent responses overwriting newer loads. There is no background refresh timer or persisted data cache.
+
+PDF export uses high-resolution local canvas pages and vendored jsPDF; see PPTX_EXPORT.md for visual-output limitations. No delivery file or runtime endpoint is added.
+
+
+## Windows e-posta demo paketi — 2026-10-11
+
+`InsightBase-Mail-Windows` ve `InsightBase-Windows-Demo.zip` yerel teslim çıktılarıdır. Paket tam beş dosya içerir: üç uygulama dosyası, sentetik `dataa.xlsx` ve `BASLANGIC.md`. Üç dosyalı üretim paketi korunur. Demo çalışma kitabı `package_mail_demo.mjs` ile, `preview_demo.py` tarafından üretilen sentetik JSON üzerinden artifact-tool kullanılarak hazırlanır. Önce `package_three_files.py`, sonra `preview_demo.py` çalıştırılır; builder bundled Node/artifact-tool ortamında çalıştırılır. Rehber kaynağı `finora-lens/WINDOWS_DEMO_README.md` dosyasıdır. Demo Excel’deki `INSIGHTBASE_DEMO` sheet adı uygulamada ve sunumlarda DEMO işaretini etkinleştirir. XLSX okuyucu shared/inline string yanında `t=str` metin hücrelerini de destekler. Gerçek veriler ve yerel demo teslim çıktıları GitHub’a eklenmez. Yeni yapısal değişikliklerde ilgili Markdown belgeleri aynı değişiklik kapsamında güncellenmelidir.
+
+
+### CMD teslim güncellemesi
+
+Kullanıcının Windows bilgisayarında PowerShell bulunmadığından e-posta paketi altı dosyadır: HTML, CSS, JS, sentetik Excel, `Baslat.cmd` ve rehber. CMD dosyası Edge’i ayrı `%TEMP%\InsightBase-Local` profili ve `--allow-file-access-from-files` ile açar. Sunucu gerekmez. Yerel dosya erişimi paketlenmiş uygulamada desteklenir; normal tarayıcı profili değiştirilmez. Kurum politikaları geçerlidir. Gerçek XLSX okuyucu altı sheet’i uyarısız okudu; yerel file:// akışı Chrome’da aynı bayrakla doğrulandı. Fiziksel Windows doğrulaması yapılmadı. Önceki PowerShell / beş dosya açıklamaları bu teslim için geçersizdir.

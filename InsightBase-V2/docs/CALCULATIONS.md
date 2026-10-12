@@ -53,6 +53,15 @@ No materiality threshold, amount-based weighting, historical anomaly score, caus
 | Pie | Total | Exclusive components in display order |
 |---|---|---|
 | Credits | BS3 | BS12 retail, BS21 commercial, BS31 credit cards |
-| Deposits | BS37 | BS42 TL term, BS50 TL demand, BS43 FX term, BS51 FX demand |
+| TL deposits | BS38 | BS42 TL term, BS50 TL demand |
+| FX deposits | BS39 | BS43 FX term, BS51 FX demand |
 
 Use components on exactly the total's current date (tolerance 0). Need positive total, nonnegative components and positive component sum. Reject rendering and show a source warning if missing or if `abs(sum-total)/total > 0.005` (0.5%). Shares are component / component sum *100; minor accepted rounding discrepancies are normalized to the component sum. Display ratio labels on slices, titles/amounts in clickable legend. Do not invent 'other', force reconciliation or sum nested subcategories.
+
+## Presentation series
+
+The presentation editor has independent month ranges and month-end BS baselines, including MoM versus prior month end rather than latest-week rolling baseline. PL YTD means cumulative YoY and requires the current cumulative source month. See [PPTX_EXPORT.md](PPTX_EXPORT.md) for all rules and constraints. This does not change dashboard/detail calculation defaults.
+
+## 2026-10-11 deposit composition update
+
+Overview now has two separate deposit pies. TL total BS38 reconciles against BS42 (TL term) + BS50 (TL demand); FX total BS39 reconciles against BS43 (FX term) + BS51 (FX demand). Each percentage is relative to its own currency total, not overall deposits. Existing same-date, nonnegative-value and 0.5% reconciliation checks apply independently. Credit composition is unchanged.
