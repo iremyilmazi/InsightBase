@@ -23,3 +23,12 @@ demo-data.json
 # Email demo deliverables contain a synthetic workbook and stay local.
 InsightBase-V2/InsightBase-Mail-Windows/
 InsightBase-V2/InsightBase-Windows-Demo.zip
+
+# Local transfer variants; application source is maintained in V2.
+InsightBase-V2/InsightBase-Mail-TXT/
+InsightBase-V2/InsightBase-Windows-TXT.zip
+InsightBase-V2/InsightBase-Windows-Live*/
+InsightBase-V2/InsightBase-Windows-Live*.zip
+
+InsightBase-V2/InsightBase-Windows-Demo/
+InsightBase-V2/InsightBase-Windows-TXT/

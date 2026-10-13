@@ -28,3 +28,11 @@ The binding instruction entry points are the workspace `AGENTS.md` and `InsightB
 ## Current state
 
 V2 has a card-based banking dashboard, local Excel reading, monthly changes from weekly BS data, monthly P&L, 12-month change charts, three composition pies (credit, TL deposits and FX deposits), deterministic highlights and only the latest populated periods. The dashboard has no historical date picker, source-unit selector or AI dependency. The presentation editor supports independent chart month ranges and native editable PowerPoint export and PDF download; see PPTX_EXPORT.md. The distributable has exactly three application files.
+
+
+Current reference is `şablon (1).xlsx` (2026-10-11); see DATA_CONTRACT.md for the new source row catalog and TL/USD/ratio semantics. Latest delivery is Windows-Live (no demo workbook), with a TXT transfer variant. Local preview remains synthetic.
+
+
+## Release authorization — 2026-10-12
+
+User authorized publishing the current source to GitHub and rebuilding Windows deliverables. The temporary Windows build hold is lifted for this release. Canonical Windows output has exactly HTML/CSS/JS, with no workbook. Live operational ZIP adds CMD launcher and guide, with no demo or real Excel. Latest schema, TL/USD units, Excel ordering, title hierarchy, subtitle alignment and InsightBase branding are included. Local preview remains synthetic. Workbook and local transfer/demo variants remain excluded from GitHub.

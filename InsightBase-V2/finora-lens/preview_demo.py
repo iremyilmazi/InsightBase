@@ -1,14 +1,25 @@
 """Synthetic finance demo for this computer's preview only. No real files changed."""
 from pathlib import Path
 from datetime import date, timedelta
-import calendar, json, math, shutil
+import calendar, json, math, shutil, sys
 
 root=Path(__file__).parent
 template=json.loads((root/'dist/structure.json').read_text())
 preview=Path('/private/tmp/insightbase-v2-preview')
 preview.mkdir(exist_ok=True)
-for p in (root.parent/'InsightBase-Windows').iterdir():
-    if p.is_file():shutil.copy2(p,preview/p.name)
+if '--source' in sys.argv:
+    source=root/'dist'
+    html=(source/'index.html').read_text().replace('href="styles.css"','href="InsightBase.css"')
+    start=html.index('<script src="structure.js">');html=html[:start]+'<script src="InsightBase.js"></script></body></html>'
+    html=html.replace('Sektovista','InsightBase')
+    bundle='\n'.join((source/f).read_text() for f in ['structure.js','engine.js','xlsx.js'])
+    bundle+='\n'+(root/'vendor/pptxgen.bundle.js').read_text().split('//# sourceMappingURL=')[0]+'\nwindow.pptxgen=PptxGenJS;\n'+(root/'vendor/jspdf.umd.min.js').read_text().split('//# sourceMappingURL=')[0]+'\n'+(source/'presentation.js').read_text()+'\n'+(source/'app.js').read_text()
+    (preview/'InsightBase.html').write_text(html)
+    (preview/'InsightBase.css').write_text((source/'styles.css').read_text())
+    (preview/'InsightBase.js').write_text(bundle)
+else:
+    for p in (root.parent/'InsightBase-Windows').iterdir():
+        if p.is_file():shutil.copy2(p,preview/p.name)
 
 dates=[]
 d=date(2024,12,27)
@@ -66,6 +77,13 @@ bs_values={g:[balance(g,i) for i in range(len(dates))] for g in ['Ozel','Kamu']}
 bs_values['Sektör']=[{r:a[r]+b[r] for r in a if r!=57} for a,b in zip(bs_values['Ozel'],bs_values['Kamu'])]
 for v in bs_values['Sektör']:v[57]=v[3]/v[37]*100
 
+# Updated schema stores FX stocks in million USD and NPL rows as percentages.
+for group,observations in bs_values.items():
+    for v in observations:
+        v.update({104:(v[5]+v[7])/v[3]*100,114:v[18]*.028/v[18]*100,116:2.7,153:v[4]/v[38]*100,154:v[6]/v[39]*100,155:2.6,156:2.9})
+        for r,base in [(14,13),(29,28),(33,32),(35,34)]:v[r]=v[r]/v[base]*100
+        for r in [6,10,25,39,43,46,47,51,54,55]:v[r]/=40
+
 def month_values(group,d):
     y,m=map(int,d[:7].split('-'))
     parts=[flows(g,y,m) for g in ['Ozel','Kamu']] if group=='Sektör' else [flows(group,y,m)]
@@ -91,8 +109,8 @@ for g in ['Sektör','Ozel','Kamu']:
 # Independent checks: totals and annual resets, including the highlighted September scenario.
 for g in ['Sektör','Ozel','Kamu']:
     for v in bs_values[g]:
-        assert abs(v[3]-v[4]-v[6])<.01
-        assert abs(v[37]-v[38]-v[39])<.01
+        assert abs(v[3]-v[4]-v[6]*40)<.01
+        assert abs(v[37]-v[38]-v[39]*40)<.01
         assert abs(v[37]-v[41]-v[49])<.01
     for y in [2025,2026]:
         jan=month_values(g,f'{y}-01-31');assert abs(jan[27]-jan[65])<.01

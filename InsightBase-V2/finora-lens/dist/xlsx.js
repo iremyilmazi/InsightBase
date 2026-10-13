@@ -39,14 +39,15 @@ async function read(file,template){
    const formatId=Number(xfs?.[Number(c.getAttribute('s')||0)]?.getAttribute('numFmtId')||0),percent=formatId===9||formatId===10||/%/.test(formats.get(formatId)||'');
    cells.set(c.getAttribute('r'),{value,percent});
   }
-  const header=type==='BS'?1:2,dates=[],columns=[];
-  for(const [ref,c]of cells){if(Number(ref.match(/\d+/)?.[0])===header&&!ref.startsWith('A'+header)&&typeof c.value==='number'&&c.value>=30000&&c.value<=80000){dates.push(new Date((c.value-25569)*86400000).toISOString().slice(0,10));columns.push(ref.replace(/\d+/g,''));}}
+  const header=template[type].headerRow||(type==='BS'?1:2),dates=[],columns=[];
+  for(const [ref,c]of cells){if(Number(ref.match(/\d+/)?.[0])===header&&!/^[AB]\d+$/.test(ref)&&typeof c.value==='number'&&c.value>=30000&&c.value<=80000){dates.push(new Date((c.value-25569)*86400000).toISOString().slice(0,10));columns.push(ref.replace(/\d+/g,''));}}
   if(!dates.length)throw Error(name+': beklenen tarih satırı bulunamadı.');if(new Set(dates).size!==dates.length)throw Error(name+': yinelenen tarihler var.');
   const order=dates.map((_,i)=>i).sort((a,b)=>dates[a].localeCompare(dates[b]));const rows=[];
   for(const spec of template[type].rows){
-   const label=cells.get('A'+spec.row)?.value;if(typeof label!=='string'||normalize(label)!==normalize(spec.label)){warnings.push(name+'!A'+spec.row+': kalem başlığı şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
-   const ratio=type==='BS'?spec.row===57:[29,30,31,32,45,67,68,69,70,83].includes(spec.row);
-   rows.push({...spec,values:order.map(i=>{const c=cells.get(columns[i]+spec.row);return typeof c?.value==='number'&&Number.isFinite(c.value)?c.value*(ratio&&c.percent?100:1):null;})});
+   if(spec.derived)continue;const sourceRow=spec.sourceRow??spec.row;const label=cells.get('A'+sourceRow)?.value;if(typeof label!=='string'||normalize(label)!==normalize(spec.label)){warnings.push(name+'!A'+sourceRow+': kalem başlığı şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
+   const declared=cells.get('B'+sourceRow)?.value;if(spec.format&&declared&&normalize(String(declared))!==normalize(spec.format)){warnings.push(name+'!B'+sourceRow+': Format bilgisi şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
+   const ratio=spec.ratio??(type==='BS'?spec.row===57:[29,30,31,32,45,67,68,69,70,83].includes(spec.row));
+   rows.push({...spec,values:order.map(i=>{const c=cells.get(columns[i]+sourceRow);return typeof c?.value==='number'&&Number.isFinite(c.value)?c.value*(ratio&&c.percent?100:1):null;})});
   }
   output.push({type,group,name,dates:order.map(i=>dates[i]),rows});
  }

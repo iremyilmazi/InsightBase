@@ -1,183 +1,150 @@
-# Excel data contract and exact template catalog
+# Excel data contract — current schema (2026-10-11)
 
-> Maintenance rule: every new structural change must update the affected Markdown documents in this documentation set in the same task. Changes to architecture, files, data contracts, row mappings, formulas, UI structure, packaging, scope or operational rules are incomplete until the matching documentation is updated. Update the index/status date and change log as appropriate. V1 was deleted with user authorization on 2026-10-09; V2 is the only maintained version.
+Every structural change must update the relevant Markdown documents in the same task.
 
-## Workbook and sheets
+Reference: user-provided `şablon (1).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.
 
-Production filename `dataa.xlsx`, beside the three application files. Expected BS sheets: BS_Sektör, BS_Ozel, BS_Kamu. Expected monthly sheets: P&L_Sektör, P&L_Ozel, P&L_Kamu. Parser trims/case-normalizes Turkish strings, replaces ö with o for sheet matching. Internal groups are Sektör / Ozel / Kamu; internal types BS / PL.
+## Input layout
 
-BS date header is row 1; PL date header row 2. Labels are in column A; dates are numeric Excel serials (1900 date system), accepted serial range 30000..80000. Columns are discovered from numeric headers and sorted chronologically. Duplicate dates reject a sheet. Extend by adding dated columns; preserve past periods and row positions/labels.
+Adjacent file: `dataa.xlsx`. Six worksheets: BS_Sektör, BS_Ozel, BS_Kamu, P&L_Sektör, P&L_Ozel, P&L_Kamu. BS dates are Excel 1900 serials in row 1; P&L dates in row 2. Data starts at column C. Column A contains labels, B contains Format. New date columns are read automatically and sorted; duplicates are rejected. Empty future values do not select a latest period.
 
-Every template row is matched by BOTH original row index and normalized exact label. Normalization trims, lowercases Turkish and collapses whitespace; it is not fuzzy matching. Unmatched rows are skipped with warnings. Repeated PL labels in cumulative/monthly sections must stay in their original positions.
+## Units and validation
 
-## Parsed dataset
+The user confirmed TL = million TL, USD = million USD, % = ratio. Blank Format on aggregate volume rows defaults to TL, as in the reference. Ratios formatted as Excel percent are scaled by 100; otherwise stored values are percentage points. Source Format, if supplied, must match schema metadata. Labels are validated at sourceRow; unmatched rows produce warnings and are skipped. Duplicate P&L labels are resolved by physical row, never first-label matching.
 
-```js
-{
-  sheets: [{
-    type: 'BS' | 'PL', group: 'Sektör' | 'Ozel' | 'Kamu', name: 'source sheet name',
-    dates: ['YYYY-MM-DD'], // sorted, unique
-    rows: [{row: 3, label: 'exact template label', values: [number, null]}]
-  }],
-  warnings: ['sheet!cell: reason'],
-  demo: false, // app adds; true only in staged synthetic preview
-  hasValues: true // app derives
-}
-```
+Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is the physical Excel row. Existing IDs preserve dashboard and monthly-to-cumulative pairing. New BS IDs: 104 total NPL, 114 vehicle NPL, 116 GPL+KMH NPL, 153 TL LDR, 154 FX LDR, 155 business NPL, 156 retail NPL. Removed source metrics are removed from selectable catalogs, not redirected to unrelated rows. No aggregate term/demand TL+USD sums are manufactured.
 
-Values align one-to-one with sheet dates. Raw monetary units are million TL for BS and PL. Nulls must survive extraction. Shared strings, inline strings and numeric cached cells are read. Excel error cells warn; boolean/string-valued formula results are not monetary values. Percent-formatted ratio cells multiply source fraction by 100; ordinary numeric ratio cells are already percentage points.
+## Complete catalog
 
-Ratio rows: BS57; PL29,30,31,32,45,67,68,69,70,83. Monthly PL49+ maps to cumulative row `monthlyRow - 38`; keep this positional dependency aligned across parser, engine, UI and docs when changing schema.
-
-## Unsupported / limits
-
-20 MiB workbook max; declared uncompressed ZIP total max 120,000,000 bytes; at most 10,000 entries. Encrypted ZIP, unsupported compression, unsupported archive metadata, 1904 dates, missing/duplicate date headers or no matching sheets reject loading. Native deflate-raw decompression support required. Formula recalculation is not supported. No interpolation, no implicit currency conversion or external lookup.
-
-## Source provenance
-
-Original blank structure workbook was `/Users/ozgur/Downloads/şablon.xlsx`. It supplied labels/date structure, not actual user financial values. Canonical schema is `../finora-lens/dist/structure.json`; structure.js is its browser counterpart. Any template regeneration must preserve the no-real-data-sharing constraint.
-
-## Complete row catalog
-
-The following labels are copied from the canonical template as verified on 2026-10-09. Display aliases can differ; parser validation uses these source labels.
 
 ### BS
 
-| Row / label cell | Exact source label |
-|---|---|
-| 3 / A3 | (Gross) Krediler |
-| 4 / A4 | TL Krediler |
-| 5 / A5 | TL Krediler NPL |
-| 6 / A6 | YP Krediler |
-| 7 / A7 | YP Krediler NPL |
-| 8 / A8 | Non Cash Loans |
-| 9 / A9 | TL Non Cash Loans |
-| 10 / A10 | FX Non Cash Loans |
-| 12 / A12 | Bireysel Krediler |
-| 13 / A13 | Tüketici Kredileri |
-| 14 / A14 | Tüketici Kredileri NPL |
-| 15 / A15 | GPL |
-| 16 / A16 | GPL NPL |
-| 17 / A17 | Konut |
-| 18 / A18 | Taşıt |
-| 19 / A19 | KMH |
-| 21 / A21 | Ticari Krediler |
-| 22 / A22 | Ticari Krediler NPL |
-| 23 / A23 | TL Ticari Krediler |
-| 24 / A24 | TL Ticari Krediler NPL |
-| 25 / A25 | FX Ticari Krediler |
-| 26 / A26 | FX Ticari Krediler NPL |
-| 27 / A27 | Gayrinakdi |
-| 28 / A28 | KOBİ Krediler |
-| 29 / A29 | KOBİ Krediler NPL |
-| 31 / A31 | Kredi Kartları |
-| 32 / A32 | Bireysel kk |
-| 33 / A33 | Bireysel kk NPL |
-| 34 / A34 | Ticari kk |
-| 35 / A35 | Ticari kk NPL |
-| 37 / A37 | Mevduatlar |
-| 38 / A38 | TL Mevduat |
-| 39 / A39 | YP Mevduat |
-| 41 / A41 | Vadeli |
-| 42 / A42 | Vadeli TL |
-| 43 / A43 | Vadeli FX |
-| 44 / A44 | Tasarruf Vadeli TL |
-| 45 / A45 | Ticari Vadeli TL |
-| 46 / A46 | Tasarruf Vadeli FX |
-| 47 / A47 | Ticari Vadeli FX |
-| 49 / A49 | Vadesiz |
-| 50 / A50 | Vadesiz TL |
-| 51 / A51 | Vadesiz FX |
-| 52 / A52 | Tasarruf Vadesiz TL |
-| 53 / A53 | Ticari Vadesiz TL |
-| 54 / A54 | Tasarruf Vadesiz FX |
-| 55 / A55 | Ticari Vadesiz FX |
-| 57 / A57 | LDR |
+| Metric ID | Excel row | Source label | Format |
+|---:|---:|---|---|
+| 3 | 3 | Total Loans | TL |
+| 4 | 5 | TL Krediler | TL |
+| 6 | 6 | YP Krediler | USD |
+| 8 | 24 | Non Cash Loans | TL |
+| 9 | 25 | TL Non Cash Loans | TL |
+| 10 | 26 | FX Non Cash Loans | USD |
+| 12 | 8 | Bireysel Krediler | TL |
+| 13 | 9 | Tüketici Kredileri | TL |
+| 14 | 10 | Tüketici Kredileri NPL | % |
+| 15 | 11 | GPL | TL |
+| 17 | 12 | Konut | TL |
+| 18 | 13 | Taşıt | TL |
+| 19 | 15 | KMH | TL |
+| 21 | 18 | Ticari Krediler cc hariç | TL |
+| 23 | 19 | TL Ticari Krediler | TL |
+| 25 | 20 | FX Ticari Krediler | USD |
+| 28 | 21 | KOBİ Krediler | TL |
+| 29 | 22 | KOBİ Krediler NPL | % |
+| 31 | 28 | Kredi Kartları | TL |
+| 32 | 29 | Bireysel kk | TL |
+| 33 | 30 | Bireysel kk NPL | % |
+| 34 | 31 | Ticari kk | TL |
+| 35 | 32 | Ticari kk NPL | % |
+| 37 | 34 | Mevduatlar | TL |
+| 38 | 35 | TL Mevduat | TL |
+| 39 | 43 | YP Mevduat | USD |
+| 42 | 39 | Vadeli TL | TL |
+| 43 | 47 | Vadeli FX | USD |
+| 44 | 40 | Tasarruf Vadeli TL | TL |
+| 45 | 41 | Ticari Vadeli TL | TL |
+| 46 | 48 | Tasarruf Vadeli FX | USD |
+| 47 | 49 | Ticari Vadeli FX | USD |
+| 50 | 36 | Vadesiz TL | TL |
+| 51 | 44 | Vadesiz FX | USD |
+| 52 | 37 | Tasarruf Vadesiz TL | TL |
+| 53 | 38 | Ticari Vadesiz TL | TL |
+| 54 | 45 | Tasarruf Vadesiz FX | USD |
+| 55 | 46 | Ticari Vadesiz FX | USD |
+| 57 | 52 | LDR | % |
+| 104 | 4 | Total Loans NPL | % |
+| 114 | 14 | Taşıt NPL | % |
+| 116 | 16 | GLP+KMH NPL | % |
+| 153 | 53 | TL LDR | % |
+| 154 | 54 | FX LDR | % |
+| 155 | 55 | Business NPL | % |
+| 156 | 56 | Retail NPL | % |
 
 ### PL
 
-| Row / label cell | Exact source label |
-|---|---|
-| 4 / A4 | Şube Sayısı |
-| 5 / A5 | Çalışan Sayısı |
-| 6 / A6 | FX Deposit |
-| 7 / A7 | Precious Metal Deposits |
-| 11 / A11 | Cumulative Net Interest Income |
-| 12 / A12 | Cumulative Interest Income |
-| 13 / A13 | Cumulative Interest Expense |
-| 14 / A14 | Cumulative Non-Funded Income |
-| 15 / A15 | Cumulative Net Fees&Commision |
-| 16 / A16 | Cumulative Trading & FX Gain Losses |
-| 17 / A17 | Cumulative Other Income |
-| 18 / A18 | Cumulative Total Income |
-| 19 / A19 | Cumulative Operating Expenses |
-| 20 / A20 | Cumulative HR |
-| 21 / A21 | Cumulative Non-HR |
-| 22 / A22 | Cumulative Pre Provision Profit |
-| 23 / A23 | Cumulative Expected Credit Loss |
-| 24 / A24 | Cumulative Other Provisions |
-| 25 / A25 | Cumulative Profit Before Tax |
-| 26 / A26 | Cumulative Tax |
-| 27 / A27 | Cumulative Net Profit |
-| 29 / A29 | Cumulative ROAA |
-| 30 / A30 | Cumulative ROAE |
-| 31 / A31 | Cumulative Cost/Income |
-| 32 / A32 | Cumulative Net Interest Margin |
-| 34 / A34 | Cumulative Operating Revenue |
-| 35 / A35 | Cumulative Net Interest Income |
-| 36 / A36 | Cumulative Net Fees&Commissions Income |
-| 37 / A37 | Cumulative Dividend Income |
-| 38 / A38 | Cumulative Net Trading Income |
-| 39 / A39 | Cumulative Other Income |
-| 40 / A40 | Cumulative Provisions |
-| 41 / A41 | Cumulative Total Non-Interest Expenses |
-| 42 / A42 | Cumulative Taxation |
-| 43 / A43 | Cumulative Net profit |
-| 45 / A45 | Cumulative Fee / OPEX |
-| 49 / A49 | Monthly Net Interest Income |
-| 50 / A50 | Monthly Interest Income |
-| 51 / A51 | Monthly Interest Expense |
-| 52 / A52 | Monthly Non-Funded Income |
-| 53 / A53 | Monthly Net Fees&Commision |
-| 54 / A54 | Monthly Trading & FX Gain Losses |
-| 55 / A55 | Monthly Other Income |
-| 56 / A56 | Monthly Total Income |
-| 57 / A57 | Monthly Operating Expenses |
-| 58 / A58 | Monthly HR |
-| 59 / A59 | Monthly Non-HR |
-| 60 / A60 | Monthly Pre Provision Profit |
-| 61 / A61 | Monthly Expected Credit Loss |
-| 62 / A62 | Monthly Other Provisions |
-| 63 / A63 | Monthly Profit Before Tax |
-| 64 / A64 | Monthly Tax |
-| 65 / A65 | Monthly Net Profit |
-| 67 / A67 | Monthly ROAA |
-| 68 / A68 | Monthly ROAE |
-| 69 / A69 | Monthly Cost/Income |
-| 70 / A70 | Monthly Net Interest Margin |
-| 72 / A72 | Monthly Operating Revenue |
-| 73 / A73 | Monthly Net Interest Income |
-| 74 / A74 | Monthly Net Fees&Commissions Income |
-| 75 / A75 | Monthly Dividend Income |
-| 76 / A76 | Monthly Net Trading Income |
-| 77 / A77 | Monthly Other Income |
-| 78 / A78 | Monthly Provisions |
-| 79 / A79 | Monthly Total Non-Interest Expenses |
-| 80 / A80 | Monthly Taxation |
-| 81 / A81 | Monthly Net profit |
-| 83 / A83 | Monthly Fee / OPEX |
+| Metric ID | Excel row | Source label | Format |
+|---:|---:|---|---|
+| 6 | 3 | FX Deposit | TL |
+| 7 | 4 | Precious Metal Deposits | TL |
+| 11 | 8 | Cumulative Net Interest Income | TL |
+| 12 | 9 | Cumulative Interest Income | TL |
+| 13 | 10 | Cumulative Interest Expense | TL |
+| 14 | 11 | Cumulative Non-Funded Income | TL |
+| 15 | 12 | Cumulative Net Fees&Commision | TL |
+| 16 | 13 | Cumulative Trading & FX Gain Losses | TL |
+| 17 | 14 | Cumulative Other Income | TL |
+| 18 | 15 | Cumulative Total Income | TL |
+| 19 | 16 | Cumulative Operating Expenses | TL |
+| 20 | 17 | Cumulative HR | TL |
+| 21 | 18 | Cumulative Non-HR | TL |
+| 22 | 19 | Cumulative Pre Provision Profit | TL |
+| 23 | 20 | Cumulative Expected Credit Loss | TL |
+| 24 | 21 | Cumulative Other Provisions | TL |
+| 25 | 22 | Cumulative Profit Before Tax | TL |
+| 26 | 23 | Cumulative Tax | TL |
+| 27 | 24 | Cumulative Net Profit | TL |
+| 29 | 26 | Cumulative ROAA | % |
+| 30 | 27 | Cumulative ROAE | % |
+| 31 | 28 | Cumulative Cost/Income | % |
+| 32 | 29 | Cumulative Net Interest Margin | % |
+| 34 | 31 | Cumulative Operating Revenue | TL |
+| 35 | 32 | Cumulative Net Interest Income | TL |
+| 36 | 33 | Cumulative Net Fees&Commissions Income | TL |
+| 37 | 34 | Cumulative Dividend Income | TL |
+| 38 | 35 | Cumulative Net Trading Income | TL |
+| 39 | 36 | Cumulative Other Income | TL |
+| 40 | 37 | Cumulative Provisions | TL |
+| 41 | 38 | Cumulative Total Non-Interest Expenses | TL |
+| 42 | 39 | Cumulative Taxation | TL |
+| 43 | 40 | Cumulative Net profit | TL |
+| 45 | 42 | Cumulative Fee / OPEX | % |
+| 49 | 46 | Monthly Net Interest Income | TL |
+| 50 | 47 | Monthly Interest Income | TL |
+| 51 | 48 | Monthly Interest Expense | TL |
+| 52 | 49 | Monthly Non-Funded Income | TL |
+| 53 | 50 | Monthly Net Fees&Commision | TL |
+| 54 | 51 | Monthly Trading & FX Gain Losses | TL |
+| 55 | 52 | Monthly Other Income | TL |
+| 56 | 53 | Monthly Total Income | TL |
+| 57 | 54 | Monthly Operating Expenses | TL |
+| 58 | 55 | Monthly HR | TL |
+| 59 | 56 | Monthly Non-HR | TL |
+| 60 | 57 | Monthly Pre Provision Profit | TL |
+| 61 | 58 | Monthly Expected Credit Loss | TL |
+| 62 | 59 | Monthly Other Provisions | TL |
+| 63 | 60 | Monthly Profit Before Tax | TL |
+| 64 | 61 | Monthly Tax | TL |
+| 65 | 62 | Monthly Net Profit | TL |
+| 67 | 64 | Monthly ROAA | % |
+| 68 | 65 | Monthly ROAE | % |
+| 69 | 66 | Monthly Cost/Income | % |
+| 70 | 67 | Monthly Net Interest Margin | % |
+| 72 | 69 | Monthly Operating Revenue | TL |
+| 73 | 70 | Monthly Net Interest Income | TL |
+| 74 | 71 | Monthly Net Fees&Commissions Income | TL |
+| 75 | 72 | Monthly Dividend Income | TL |
+| 76 | 73 | Monthly Net Trading Income | TL |
+| 77 | 74 | Monthly Other Income | TL |
+| 78 | 75 | Monthly Provisions | TL |
+| 79 | 76 | Monthly Total Non-Interest Expenses | TL |
+| 80 | 77 | Monthly Taxation | TL |
+| 81 | 78 | Monthly Net profit | TL |
+| 83 | 80 | Monthly Fee / OPEX | % |
 
 
-## Presentation consumer
+## Balance-sheet ordering — 2026-10-11
 
-The slide editor uses the existing dataset without additional workbook sheets or schema changes. It selects monthly PL rows (49+) and maps YTD to row-38. Chart workbooks embedded inside locally downloaded PPTX files contain only selected scaled series. No external transmission. See PPTX_EXPORT.md.
-
-
-## Windows e-posta demo paketi — 2026-10-11
-
-`InsightBase-Mail-Windows` ve `InsightBase-Windows-Demo.zip` yerel teslim çıktılarıdır. Paket tam beş dosya içerir: üç uygulama dosyası, sentetik `dataa.xlsx` ve `BASLANGIC.md`. Üç dosyalı üretim paketi korunur. Demo çalışma kitabı `package_mail_demo.mjs` ile, `preview_demo.py` tarafından üretilen sentetik JSON üzerinden artifact-tool kullanılarak hazırlanır. Önce `package_three_files.py`, sonra `preview_demo.py` çalıştırılır; builder bundled Node/artifact-tool ortamında çalıştırılır. Rehber kaynağı `finora-lens/WINDOWS_DEMO_README.md` dosyasıdır. Demo Excel’deki `INSIGHTBASE_DEMO` sheet adı uygulamada ve sunumlarda DEMO işaretini etkinleştirir. XLSX okuyucu shared/inline string yanında `t=str` metin hücrelerini de destekler. Gerçek veriler ve yerel demo teslim çıktıları GitHub’a eklenmez. Yeni yapısal değişikliklerde ilgili Markdown belgeleri aynı değişiklik kapsamında güncellenmelidir.
+BS catalog and displayed BS tables follow ascending physical Excel sourceRow, not stable internal metric ID. This also applies to detail subitem tables and presentation metric selection. The extractor preserves this order on schema regeneration. Summary cards in the BS tab follow their relative Excel order. Internal IDs and calculations remain unchanged.
 
 
-### CMD teslim güncellemesi
+## Excel title hierarchy — 2026-10-11
 
-Kullanıcının Windows bilgisayarında PowerShell bulunmadığından e-posta paketi altı dosyadır: HTML, CSS, JS, sentetik Excel, `Baslat.cmd` ve rehber. CMD dosyası Edge’i ayrı `%TEMP%\InsightBase-Local` profili ve `--allow-file-access-from-files` ile açar. Sunucu gerekmez. Yerel dosya erişimi paketlenmiş uygulamada desteklenir; normal tarayıcı profili değiştirilmez. Kurum politikaları geçerlidir. Gerçek XLSX okuyucu altı sheet’i uyarısız okudu; yerel file:// akışı Chrome’da aynı bayrakla doğrulandı. Fiziksel Windows doğrulaması yapılmadı. Önceki PowerShell / beş dosya açıklamaları bu teslim için geçersizdir.
+Column A formatting is extracted as `titleStyle` (indent, gray, bold) from Excel cellXfs/fonts/alignment. Tables apply it only to the metric title, with 18px per Excel indent level and gray #808080 for the reference gray font. Numeric cells and source captions retain their existing styles. Main and detail BS/P&L metric tables share this rendering. `preview_demo.py --source` builds only temporary preview assets directly from canonical sources; it does not regenerate Windows deliveries. Per user instruction, Windows packages remain frozen until explicitly requested.

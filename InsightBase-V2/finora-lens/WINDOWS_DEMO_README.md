@@ -7,7 +7,7 @@ Excel’deki tüm veriler sentetiktir. Gerçek banka/sektör verisi içermez.
 - InsightBase.html: Uygulama.
 - InsightBase.css: Tasarım.
 - InsightBase.js: Excel okuyucu, hesaplamalar, grafikler ve dışa aktarma.
-- dataa.xlsx: Sentetik demo veri; BS haftalık, P&L aylık; hacimler milyon TL.
+- dataa.xlsx: Sentetik demo veri; BS haftalık, P&L aylık; Format sütununa göre hacimler milyon TL veya milyon USD; % kalemler orandır.
 - Baslat.cmd: CMD ile Edge’i uygun yerel dosya erişimi ayarlarıyla açar. PowerShell gerektirmez.
 - BASLANGIC.md: Bu rehber.
 
