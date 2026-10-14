@@ -189,3 +189,58 @@ User supplied şablon (3).xlsx. Secondary cumulative/monthly reporting blocks re
 ## Release publication — 2026-10-13
 
 User authorized GitHub publication and Windows packages for current reference3 and expanded BS highlights. Prior deferred statements are superseded for this release. Three-file canonical build includes highlights module; live delivery adds CMD launcher/guide, no Excel. Both standard and TXT variants updated; local demo remains separate. 23 automated tests pass.
+
+
+## Ratio level chart option — 2026-10-13
+
+Ratio metric detail charts add Oran alongside MoM/YoY/YTD. Oran uses12 monthly source levels (percentage points stored as percent levels), with % point labels, not growth or percentage-point differences. Missing baseline does not suppress valid nominal levels. Level selection is detail-only and never changes the global dashboard horizon/cards; volume metrics have no level button. Existing independent presentation nominal option remains. Source preview updated; no Windows/GitHub publication.
+
+
+## Presentation value-axis labels — 2026-10-13
+
+Removed numeric value-axis tick labels from presentation SVG preview and therefore PDF rendering, and set native PPTX valAxisLabelPos=none. Applies to line, column and horizontal bar value axes. Point/bar data labels, category dates, grids and pie labels remain. Dashboard detail charts unchanged. Local preview updated; no Windows/GitHub release.
+
+
+## Twelve-month composition detail — 2026-10-13
+
+Overview credit/TL deposit/FX deposit pie graphics are keyboard-accessible buttons opening a12-calendar-month modal grid. Uses current bank group and same source rows as entry pies. Each historical month selects last weekly total within7days of month-end; current partial month uses latest dataset cutoff. Parts require exact matching source date, nonnegative values and 0.5% total reconciliation. Percent shares use component sum, consistent with entry pie. Share change is current share minus preceding calendar-month share in percentage points; missing/invalid prior month produces no delta (never skip gap). Requires13 slots internally to compute oldest displayed change. Each monthly card shows source date, source-currency total and category shares/deltas; unavailable months remain visible. Metric legend links still open metric detail. Responsive3/2/1-column layout. No Windows/GitHub rebuild.
+
+
+## Compare arbitrary composition months — 2026-10-13
+
+12-month pie modal includes start/end selectors over valid monthly compositions. End must follow start. Shows each component start/end volume, absolute change, percentage growth, start/end share and percentage-point difference, plus total change and actual source dates. Same source currency/display unit preserved; zero base gives unavailable growth, while share delta remains valid. Invalid months disabled, reverse/same dates rejected. Default is last two valid months, with exact selected dates clearly shown; not labeled MoM. Pure engine compareComposition tested. Local preview updated; no Windows/GitHub rebuild.
+
+
+### Composition comparison footnote — 2026-10-13
+
+Removed the user-specified unit/non-MoM explanatory footnote under the arbitrary-month comparison. Selected dates and total-change unit remain visible above the table. Calculation unchanged.
+
+
+### Pie hover values — 2026-10-13
+
+Overview and12-month composition SVG slice groups expose native title tooltips with metric name, nominal volume in current display/source currency and percent share. Existing on-slice percent labels retained. Tooltip values refresh with unit/group selection; calculations unchanged.
+
+
+### Explicit pie tooltip — 2026-10-13
+
+Native SVG title fallback supplemented with an immediate pointer-following tooltip. Mounted inside active dialog for top-layer visibility, otherwise body; clipped to viewport, pointer-events:none. Hides when leaving slices, scrolling or closing modal. Shows nominal volume, correct TL/USD display unit and share.
+
+
+### Pie tooltip rollback — 2026-10-13
+
+User requested reverting the explicit floating tooltip. Removed pointer handlers, data attributes and custom tooltip CSS. Native SVG title tooltips (name, volume, currency and share) remain.
+
+
+## Numeric separator convention — 2026-10-13
+
+User requires123,323.21-style numbers. Dashboard and presentation/PDF formatted values use Intl.NumberFormat(en-US), with grouping and maximum2 decimals. Source numeric values/calculations unchanged; Turkish date labels remain. Native PPTX language en-US and chart numeric formats [$-409]#,##0.## (pie percent [$-409]0.##%) request the same convention. Windows/GitHub not rebuilt.
+
+
+## Real local workbook — 2026-10-13
+
+User supplied populated şablon (4).xlsx and requested replacing synthetic preview. Private working copy is InsightBase-V2/local-data/dataa.xlsx (directory ignored by Git). preview_demo.py now defaults to real-workbook mode whenever this file exists, directly building source app, copying adjacent workbook to temporary8768 preview and removing demo-data.json. No JSON fetch patch or DEMO flag is used. --demo is an explicit synthetic-only override; routine --source refresh keeps real data. Source reference4 read with6sheets and zero warnings, same BS45/PL46 schema. Values are never embedded in code/docs or Windows/GitHub deliverables. User original workbook unchanged. Later workbook updates should replace private dataa.xlsx and rerun source preview. This supersedes all prior instructions to keep local preview synthetic.
+
+
+## Current source and Windows publication — 2026-10-13
+
+User authorized publishing latest source and rebuilding no-data Windows deliveries. Includes ratio level option, simplified presentation value axes,12-month composition history and arbitrary-month comparison, native pie hover values, en-US numeric separators, real local-workbook preview workflow. Custom floating tooltip is reverted. Private local-data/dataa.xlsx and temporary preview Excel are excluded. 26 tests pass. Previous deferred-release statements are superseded for this release.

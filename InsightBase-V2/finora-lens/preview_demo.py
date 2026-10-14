@@ -7,7 +7,9 @@ root=Path(__file__).parent
 template=json.loads((root/'dist/structure.json').read_text())
 preview=Path('/private/tmp/insightbase-v2-preview')
 preview.mkdir(exist_ok=True)
-if '--source' in sys.argv:
+live_file=root.parent/'local-data/dataa.xlsx'
+live=live_file.exists() and '--demo' not in sys.argv
+if '--source' in sys.argv or live:
     source=root/'dist'
     html=(source/'index.html').read_text().replace('href="styles.css"','href="InsightBase.css"')
     start=html.index('<script src="structure.js">');html=html[:start]+'<script src="InsightBase.js"></script></body></html>'
@@ -20,6 +22,12 @@ if '--source' in sys.argv:
 else:
     for p in (root.parent/'InsightBase-Windows').iterdir():
         if p.is_file():shutil.copy2(p,preview/p.name)
+
+if live:
+    shutil.copy2(live_file,preview/'dataa.xlsx')
+    (preview/'demo-data.json').unlink(missing_ok=True)
+    print('Local preview ready: real adjacent workbook; no synthetic data.')
+    sys.exit(0)
 
 dates=[]
 d=date(2024,12,27)

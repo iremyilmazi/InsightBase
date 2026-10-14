@@ -32,3 +32,6 @@ InsightBase-V2/InsightBase-Windows-Live*.zip
 
 InsightBase-V2/InsightBase-Windows-Demo/
 InsightBase-V2/InsightBase-Windows-TXT/
+
+# Private active local workbook; never commit or package.
+InsightBase-V2/local-data/

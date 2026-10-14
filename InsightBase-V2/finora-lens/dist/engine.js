@@ -43,9 +43,20 @@ function monthlyChanges(source,date,type,horizon='change',ratio=false,cumulative
   if(!c||c.date.slice(0,7)!==end.slice(0,7))return {date:end,value:null};
   const m=monthlyCompare(source,c.date,type,ratio,cumulative,cut);
   const ytd=type==='PL'?compare(ytdSource,c.date,type,ratio,true).yoyChange:m.ytdChange;
-  return {date:end,sourceDate:c.date,priorDate:(horizon==='change'?m.prior:horizon==='yoyChange'?m.yoy:m.ytd)?.date,value:horizon==='ytdChange'?ytd:m[horizon]??null};
+  return {date:end,sourceDate:c.date,priorDate:(horizon==='change'?m.prior:horizon==='yoyChange'?m.yoy:m.ytd)?.date,value:horizon==='nominal'?c.value:horizon==='ytdChange'?ytd:m[horizon]??null};
  });
 }
-root.FinoraEngine={DAY,iso,shift,monthEnd,monthAgo,finite,pct,at,compare,monthlyCompare,series,metricSeries,cumulativeYoY,monthlyChanges};
+function compositionHistory(sheet,totalRow,partRows,date){
+ const total=metricSeries(sheet,totalRow),d=new Date(date+'T00:00:00Z');
+ const all=Array.from({length:13},(_,i)=>{const end=monthEnd(d.getUTCFullYear(),d.getUTCMonth()-12+i),cut=end<date?end:date,t=at(total,cut,7);const slot={month:end.slice(0,7),date:t?.date||null,valid:false};if(!t||t.date.slice(0,7)!==slot.month||t.value<=0)return slot;
+ const parts=partRows.map(row=>({row,point:at(metricSeries(sheet,row),t.date)}));if(parts.some(p=>!p.point||p.point.value<0))return slot;const sum=parts.reduce((n,p)=>n+p.point.value,0);if(sum<=0||Math.abs(sum-t.value)/t.value>.005)return {...slot,reason:'Kırılım toplamı kaynak toplamıyla eşleşmiyor.'};return {...slot,valid:true,total:t.value,parts:parts.map(p=>({row:p.row,value:p.point.value,share:p.point.value/sum*100}))};});
+ return all.slice(1).map((p,i)=>({...p,parts:p.parts?.map(part=>({...part,delta:all[i].valid?part.share-all[i].parts.find(x=>x.row===part.row).share:null}))}));
+}
+function compareComposition(start,end){
+ if(!start?.valid||!end?.valid||start.month>=end.month)return null;
+ const parts=end.parts.map(p=>{const base=start.parts.find(b=>b.row===p.row);return base?{row:p.row,start:base.value,end:p.value,delta:p.value-base.value,growth:pct(p.value,base.value),startShare:base.share,endShare:p.share,shareDelta:p.share-base.share}:null;});if(parts.some(p=>!p))return null;
+ return {parts,startDate:start.date,endDate:end.date,startTotal:start.total,endTotal:end.total,totalDelta:end.total-start.total,totalGrowth:pct(end.total,start.total)};
+}
+root.FinoraEngine={DAY,iso,shift,monthEnd,monthAgo,finite,pct,at,compare,monthlyCompare,series,metricSeries,cumulativeYoY,monthlyChanges,compositionHistory,compareComposition};
 if(typeof module!=='undefined')module.exports=root.FinoraEngine;
 })(typeof window==='undefined'?globalThis:window);

@@ -152,3 +152,13 @@ User supplied şablon (3).xlsx. Secondary cumulative/monthly reporting blocks re
 ## Release publication — 2026-10-13
 
 User authorized GitHub publication and Windows packages for current reference3 and expanded BS highlights. Prior deferred statements are superseded for this release. Three-file canonical build includes highlights module; live delivery adds CMD launcher/guide, no Excel. Both standard and TXT variants updated; local demo remains separate. 23 automated tests pass.
+
+
+## Real local workbook — 2026-10-13
+
+User supplied populated şablon (4).xlsx and requested replacing synthetic preview. Private working copy is InsightBase-V2/local-data/dataa.xlsx (directory ignored by Git). preview_demo.py now defaults to real-workbook mode whenever this file exists, directly building source app, copying adjacent workbook to temporary8768 preview and removing demo-data.json. No JSON fetch patch or DEMO flag is used. --demo is an explicit synthetic-only override; routine --source refresh keeps real data. Source reference4 read with6sheets and zero warnings, same BS45/PL46 schema. Values are never embedded in code/docs or Windows/GitHub deliverables. User original workbook unchanged. Later workbook updates should replace private dataa.xlsx and rerun source preview. This supersedes all prior instructions to keep local preview synthetic.
+
+
+## Current source and Windows publication — 2026-10-13
+
+User authorized publishing latest source and rebuilding no-data Windows deliveries. Includes ratio level option, simplified presentation value axes,12-month composition history and arbitrary-month comparison, native pie hover values, en-US numeric separators, real local-workbook preview workflow. Custom floating tooltip is reverted. Private local-data/dataa.xlsx and temporary preview Excel are excluded. 26 tests pass. Previous deferred-release statements are superseded for this release.

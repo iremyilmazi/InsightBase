@@ -117,3 +117,8 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 | 83 | 58 | Monthly Fee / OPEX | % |
 
 Reference3: BS45 unchanged metrics, PL46 (22 cumulative +22 monthly +2 auxiliary). Cumulative source rows8–29 and31, monthly35–56 and58. Blank rows and section headings are excluded. Removed secondary operating-revenue/provision/expense/tax/profit blocks are not selectable. Stable internal IDs are preserved, with basis and cumulativeRow metadata; monthly ID65 means net profit from source51, paired to cumulative ID27 source24. Fee/OPEX IDs83/45 use source58/31. Internal offset38 remains for compatibility; physical source offset is now27.
+
+
+## Real local workbook — 2026-10-13
+
+User supplied populated şablon (4).xlsx and requested replacing synthetic preview. Private working copy is InsightBase-V2/local-data/dataa.xlsx (directory ignored by Git). preview_demo.py now defaults to real-workbook mode whenever this file exists, directly building source app, copying adjacent workbook to temporary8768 preview and removing demo-data.json. No JSON fetch patch or DEMO flag is used. --demo is an explicit synthetic-only override; routine --source refresh keeps real data. Source reference4 read with6sheets and zero warnings, same BS45/PL46 schema. Values are never embedded in code/docs or Windows/GitHub deliverables. User original workbook unchanged. Later workbook updates should replace private dataa.xlsx and rerun source preview. This supersedes all prior instructions to keep local preview synthetic.
