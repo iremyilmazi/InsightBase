@@ -4,6 +4,9 @@ from pathlib import Path
 ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 root=Path(__file__).parent
 BS={3:3,4:5,6:6,8:24,9:25,10:26,12:8,13:9,14:10,15:11,17:12,18:13,19:15,21:18,23:19,25:20,28:21,29:22,31:28,32:29,33:30,34:31,35:32,37:34,38:35,39:43,42:39,43:47,44:40,45:41,46:48,47:49,50:36,51:44,52:37,53:38,54:45,55:46,57:52,104:4,114:14,116:16,153:53,154:54,155:55,156:56}
+# Current reference: şablon (2).xlsx; removed consumer-loan rows are not reused.
+BS={ident:(src-1 if src>=10 else src) for ident,src in BS.items() if ident not in [13,14]}
+BS[112]=9
 with zipfile.ZipFile(sys.argv[1]) as z:
  strings=[''.join(t.itertext()) for t in ET.fromstring(z.read('xl/sharedStrings.xml'))] if 'xl/sharedStrings.xml' in z.namelist() else []
  rel={x.get('Id'):x.get('Target') for x in ET.fromstring(z.read('xl/_rels/workbook.xml.rels'))}

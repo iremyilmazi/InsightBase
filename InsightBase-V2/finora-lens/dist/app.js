@@ -5,7 +5,7 @@ const bsTitles={3:'Toplam krediler',4:'TL krediler',6:'YP krediler',12:'Bireysel
 const plTitles={49:'Net faiz geliri',53:'Net ücret & komisyon',57:'Faaliyet giderleri',60:'Karşılık öncesi kâr',61:'Beklenen kredi zararı',65:'Net kâr',67:'Aktif kârlılığı',68:'Özkaynak kârlılığı',69:'Gider / gelir',70:'Net faiz marjı',11:'Net faiz geliri',15:'Net ücret & komisyon',19:'Faaliyet giderleri',22:'Karşılık öncesi kâr',23:'Beklenen kredi zararı',27:'Net kâr',29:'Aktif kârlılığı',30:'Özkaynak kârlılığı',31:'Gider / gelir',32:'Net faiz marjı'};
 const ratio=(type,row)=>T[type].rows.find(r=>r.row===row)?.ratio??(type==='BS'?row===57:[29,30,31,32,45,67,68,69,70,83].includes(row));
 const cumulative=Object.fromEntries(T.PL.rows.filter(r=>r.row>=49).map(r=>[r.row,r.row-38]));
-const children={3:[4,6,104],12:[13,14,15,17,18,114,19,116],21:[23,25,28,29],31:[32,33,34,35],37:[38,39],41:[42,43,44,45,46,47],49:[50,51,52,53,54,55]};
+const children={3:[4,6,104],12:[112,15,17,18,114,19,116],21:[23,25,28,29],31:[32,33,34,35],37:[38,39],41:[42,43,44,45,46,47],49:[50,51,52,53,54,55]};
 let state={view:'overview',group:'Sektör',date:'',unit:1000,basis:'monthly',horizon:'change',trend:3};
 let dataset={sheets:[],warnings:[],demo:false},loadState='loading',loadError='',loadToken=0,lastRead=null;
 const sheet=(type,group=state.group)=>dataset.sheets.find(s=>s.type===type&&s.group===group);

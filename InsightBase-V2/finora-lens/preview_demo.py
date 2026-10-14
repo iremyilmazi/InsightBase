@@ -82,6 +82,7 @@ for group,observations in bs_values.items():
     for v in observations:
         v.update({104:(v[5]+v[7])/v[3]*100,114:v[18]*.028/v[18]*100,116:2.7,153:v[4]/v[38]*100,154:v[6]/v[39]*100,155:2.6,156:2.9})
         for r,base in [(14,13),(29,28),(33,32),(35,34)]:v[r]=v[r]/v[base]*100
+        v[112]=v[14]
         for r in [6,10,25,39,43,46,47,51,54,55]:v[r]/=40
 
 def month_values(group,d):

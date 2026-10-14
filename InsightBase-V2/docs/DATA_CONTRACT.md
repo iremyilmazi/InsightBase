@@ -1,8 +1,8 @@
-# Excel data contract — current schema (2026-10-11)
+# Excel data contract — current schema (2026-10-13)
 
 Every structural change must update the relevant Markdown documents in the same task.
 
-Reference: user-provided `şablon (1).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.
+Reference: user-provided `şablon (2).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.
 
 ## Input layout
 
@@ -16,58 +16,55 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 
 ## Complete catalog
 
-
 ### BS
 
 | Metric ID | Excel row | Source label | Format |
 |---:|---:|---|---|
 | 3 | 3 | Total Loans | TL |
+| 104 | 4 | Total Loans NPL | % |
 | 4 | 5 | TL Krediler | TL |
 | 6 | 6 | YP Krediler | USD |
-| 8 | 24 | Non Cash Loans | TL |
-| 9 | 25 | TL Non Cash Loans | TL |
-| 10 | 26 | FX Non Cash Loans | USD |
 | 12 | 8 | Bireysel Krediler | TL |
-| 13 | 9 | Tüketici Kredileri | TL |
-| 14 | 10 | Tüketici Kredileri NPL | % |
-| 15 | 11 | GPL | TL |
-| 17 | 12 | Konut | TL |
-| 18 | 13 | Taşıt | TL |
-| 19 | 15 | KMH | TL |
-| 21 | 18 | Ticari Krediler cc hariç | TL |
-| 23 | 19 | TL Ticari Krediler | TL |
-| 25 | 20 | FX Ticari Krediler | USD |
-| 28 | 21 | KOBİ Krediler | TL |
-| 29 | 22 | KOBİ Krediler NPL | % |
-| 31 | 28 | Kredi Kartları | TL |
-| 32 | 29 | Bireysel kk | TL |
-| 33 | 30 | Bireysel kk NPL | % |
-| 34 | 31 | Ticari kk | TL |
-| 35 | 32 | Ticari kk NPL | % |
-| 37 | 34 | Mevduatlar | TL |
-| 38 | 35 | TL Mevduat | TL |
-| 39 | 43 | YP Mevduat | USD |
-| 42 | 39 | Vadeli TL | TL |
-| 43 | 47 | Vadeli FX | USD |
-| 44 | 40 | Tasarruf Vadeli TL | TL |
-| 45 | 41 | Ticari Vadeli TL | TL |
-| 46 | 48 | Tasarruf Vadeli FX | USD |
-| 47 | 49 | Ticari Vadeli FX | USD |
-| 50 | 36 | Vadesiz TL | TL |
-| 51 | 44 | Vadesiz FX | USD |
-| 52 | 37 | Tasarruf Vadesiz TL | TL |
-| 53 | 38 | Ticari Vadesiz TL | TL |
-| 54 | 45 | Tasarruf Vadesiz FX | USD |
-| 55 | 46 | Ticari Vadesiz FX | USD |
-| 57 | 52 | LDR | % |
-| 104 | 4 | Total Loans NPL | % |
-| 114 | 14 | Taşıt NPL | % |
-| 116 | 16 | GLP+KMH NPL | % |
-| 153 | 53 | TL LDR | % |
-| 154 | 54 | FX LDR | % |
-| 155 | 55 | Business NPL | % |
-| 156 | 56 | Retail NPL | % |
-
+| 112 | 9 | Bireysel Krediler NPL | % |
+| 15 | 10 | GPL | TL |
+| 17 | 11 | Konut | TL |
+| 18 | 12 | Taşıt | TL |
+| 114 | 13 | Taşıt NPL | % |
+| 19 | 14 | KMH | TL |
+| 116 | 15 | GLP+KMH NPL | % |
+| 21 | 17 | Ticari Krediler cc hariç | TL |
+| 23 | 18 | TL Ticari Krediler | TL |
+| 25 | 19 | FX Ticari Krediler | USD |
+| 28 | 20 | KOBİ Krediler | TL |
+| 29 | 21 | KOBİ Krediler NPL | % |
+| 8 | 23 | Non Cash Loans | TL |
+| 9 | 24 | TL Non Cash Loans | TL |
+| 10 | 25 | FX Non Cash Loans | USD |
+| 31 | 27 | Kredi Kartları | TL |
+| 32 | 28 | Bireysel kk | TL |
+| 33 | 29 | Bireysel kk NPL | % |
+| 34 | 30 | Ticari kk | TL |
+| 35 | 31 | Ticari kk NPL | % |
+| 37 | 33 | Mevduatlar | TL |
+| 38 | 34 | TL Mevduat | TL |
+| 50 | 35 | Vadesiz TL | TL |
+| 52 | 36 | Tasarruf Vadesiz TL | TL |
+| 53 | 37 | Ticari Vadesiz TL | TL |
+| 42 | 38 | Vadeli TL | TL |
+| 44 | 39 | Tasarruf Vadeli TL | TL |
+| 45 | 40 | Ticari Vadeli TL | TL |
+| 39 | 42 | YP Mevduat | USD |
+| 51 | 43 | Vadesiz FX | USD |
+| 54 | 44 | Tasarruf Vadesiz FX | USD |
+| 55 | 45 | Ticari Vadesiz FX | USD |
+| 43 | 46 | Vadeli FX | USD |
+| 46 | 47 | Tasarruf Vadeli FX | USD |
+| 47 | 48 | Ticari Vadeli FX | USD |
+| 57 | 51 | LDR | % |
+| 153 | 52 | TL LDR | % |
+| 154 | 53 | FX LDR | % |
+| 155 | 54 | Business NPL | % |
+| 156 | 55 | Retail NPL | % |
 ### PL
 
 | Metric ID | Excel row | Source label | Format |
@@ -139,12 +136,4 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 | 81 | 78 | Monthly Net profit | TL |
 | 83 | 80 | Monthly Fee / OPEX | % |
 
-
-## Balance-sheet ordering — 2026-10-11
-
-BS catalog and displayed BS tables follow ascending physical Excel sourceRow, not stable internal metric ID. This also applies to detail subitem tables and presentation metric selection. The extractor preserves this order on schema regeneration. Summary cards in the BS tab follow their relative Excel order. Internal IDs and calculations remain unchanged.
-
-
-## Excel title hierarchy — 2026-10-11
-
-Column A formatting is extracted as `titleStyle` (indent, gray, bold) from Excel cellXfs/fonts/alignment. Tables apply it only to the metric title, with 18px per Excel indent level and gray #808080 for the reference gray font. Numeric cells and source captions retain their existing styles. Main and detail BS/P&L metric tables share this rendering. `preview_demo.py --source` builds only temporary preview assets directly from canonical sources; it does not regenerate Windows deliveries. Per user instruction, Windows packages remain frozen until explicitly requested.
+Current BS reference has 45 supported metrics. Consumer loans (ID 13) and consumer NPL (ID 14) are removed. New retail loans NPL is ID 112, source A9, Format %. ID 12 remains retail loan total at A8 and feeds the credit pie. After the removed row all subsequent BS source positions shift up one. New ID 112 is a distinct ratio, not a rename of the removed volume. Source title styling remains in titleStyle.
