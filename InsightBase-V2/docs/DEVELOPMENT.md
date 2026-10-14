@@ -130,3 +130,8 @@ Current schema is `şablon (2).xlsx`. BS consumer-loan volume and consumer NPL e
 ## Current release — 2026-10-13
 
 User authorized GitHub publication and Windows rebuild for şablon (2).xlsx support. Previous deferred-build statement is superseded for this release. Windows app output contains exactly three application files; live operational packages add launcher and guide without any Excel. Synthetic local preview remains separate.
+
+
+## Delivery cleanup — 2026-10-13
+
+User authorized removal of obsolete transfer/delivery artifacts. Removed demo/mail/TXT demo directories and archives, plus duplicate Live-TXT folders numbered2/3/4. Retained current Live and Live-TXT directories/ZIPs and the mandated canonical three-file Windows output/ZIP. Source, local synthetic browser preview and build scripts are preserved. Do not recreate historical demo transfer artifacts during routine production builds.

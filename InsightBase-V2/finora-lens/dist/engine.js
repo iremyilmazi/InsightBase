@@ -18,6 +18,14 @@ function compare(series,date,type,ratio=false,cumulative=false){
  const delta=b=>!b?null:ratio?current.value-b.value:pct(current.value,b.value);
  return {current,prior,yoy,ytd,change:delta(prior),yoyChange:delta(yoy),ytdChange:delta(ytd)};
 }
+// Shared monthly stock comparison; asOf determines whether the month has closed.
+function monthlyCompare(source,date,type,ratio=false,cumulative=false,asOf=date){
+ const m=compare(source,date,type,ratio,cumulative);if(type!=='BS'||!m.current)return m;
+ const d=new Date(m.current.date+'T00:00:00Z'),end=monthEnd(d.getUTCFullYear(),d.getUTCMonth());
+ m.provisional=asOf<end;
+ if(!m.provisional){m.prior=at(source,monthEnd(d.getUTCFullYear(),d.getUTCMonth()-1),7);m.change=m.prior?(ratio?m.current.value-m.prior.value:pct(m.current.value,m.prior.value)):null;}
+ return m;
+}
 function series(sheet,row){if(!sheet)return [];const r=sheet.rows.find(r=>r.row===row);if(!r)return [];
  return sheet.dates.map((date,i)=>({date,value:finite(r.values[i])?r.values[i]:null,source:r.label}));}
 function metricSeries(sheet,row){
@@ -33,11 +41,11 @@ function monthlyChanges(source,date,type,horizon='change',ratio=false,cumulative
  return Array.from({length:12},(_,i)=>{const end=monthEnd(d.getUTCFullYear(),d.getUTCMonth()-11+i),cut=end<date?end:date;
   const c=at(source,cut,type==='BS'?7:32);
   if(!c||c.date.slice(0,7)!==end.slice(0,7))return {date:end,value:null};
-  const m=compare(source,c.date,type,ratio,cumulative);
+  const m=monthlyCompare(source,c.date,type,ratio,cumulative,cut);
   const ytd=type==='PL'?compare(ytdSource,c.date,type,ratio,true).yoyChange:m.ytdChange;
   return {date:end,sourceDate:c.date,priorDate:(horizon==='change'?m.prior:horizon==='yoyChange'?m.yoy:m.ytd)?.date,value:horizon==='ytdChange'?ytd:m[horizon]??null};
  });
 }
-root.FinoraEngine={DAY,iso,shift,monthEnd,monthAgo,finite,pct,at,compare,series,metricSeries,cumulativeYoY,monthlyChanges};
+root.FinoraEngine={DAY,iso,shift,monthEnd,monthAgo,finite,pct,at,compare,monthlyCompare,series,metricSeries,cumulativeYoY,monthlyChanges};
 if(typeof module!=='undefined')module.exports=root.FinoraEngine;
 })(typeof window==='undefined'?globalThis:window);

@@ -32,7 +32,7 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 | 114 | 13 | Taşıt NPL | % |
 | 19 | 14 | KMH | TL |
 | 116 | 15 | GLP+KMH NPL | % |
-| 21 | 17 | Ticari Krediler cc hariç | TL |
+| 21 | 17 | Ticari Krediler | TL |
 | 23 | 18 | TL Ticari Krediler | TL |
 | 25 | 19 | FX Ticari Krediler | USD |
 | 28 | 20 | KOBİ Krediler | TL |
@@ -137,3 +137,8 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 | 83 | 80 | Monthly Fee / OPEX | % |
 
 Current BS reference has 45 supported metrics. Consumer loans (ID 13) and consumer NPL (ID 14) are removed. New retail loans NPL is ID 112, source A9, Format %. ID 12 remains retail loan total at A8 and feeds the credit pie. After the removed row all subsequent BS source positions shift up one. New ID 112 is a distinct ratio, not a rename of the removed volume. Source title styling remains in titleStyle.
+
+
+### Commercial loan title — 2026-10-13
+
+User removed “cc hariç” from Excel. BS metric21 at source row17 is now labeled Ticari Krediler / Ticari krediler. Reader accepts the current label plus the previous exact label via a metric-specific alias for compatibility; no other label validation is relaxed. Only the wording changes; values, row mapping and pie components remain unchanged. Source-only demo updated; Windows packages/GitHub remain the previous release until requested.

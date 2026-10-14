@@ -36,6 +36,9 @@ with zipfile.ZipFile(sys.argv[1]) as z:
    gray=color is not None and ((color.get('theme')=='0' and float(color.get('tint','0'))<0) or color.get('rgb','')[-6:].upper() in ['808080','7F7F7F','999999'])
    title_style={'indent':indent,'gray':gray,'bold':font.find('m:b',ns) is not None}
    rows.append({'titleStyle':title_style,'row':ident,'sourceRow':src,'label':label,'format':fmt,'ratio':fmt=='%'})
+  if kind=='BS':
+   commercial=next(item for item in rows if item['row']==21)
+   commercial['label']='Ticari Krediler';commercial['aliases']=['Ticari Krediler cc hariç']
   rows.sort(key=lambda item:item['sourceRow'])
   structure[kind]={'dates':dates,'headerRow':header,'firstDateColumn':'C','rows':rows}
 (root/'dist/structure.json').write_text(json.dumps(structure,ensure_ascii=False))

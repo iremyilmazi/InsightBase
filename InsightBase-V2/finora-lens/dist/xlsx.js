@@ -44,7 +44,7 @@ async function read(file,template){
   if(!dates.length)throw Error(name+': beklenen tarih satırı bulunamadı.');if(new Set(dates).size!==dates.length)throw Error(name+': yinelenen tarihler var.');
   const order=dates.map((_,i)=>i).sort((a,b)=>dates[a].localeCompare(dates[b]));const rows=[];
   for(const spec of template[type].rows){
-   if(spec.derived)continue;const sourceRow=spec.sourceRow??spec.row;const label=cells.get('A'+sourceRow)?.value;if(typeof label!=='string'||normalize(label)!==normalize(spec.label)){warnings.push(name+'!A'+sourceRow+': kalem başlığı şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
+   if(spec.derived)continue;const sourceRow=spec.sourceRow??spec.row;const label=cells.get('A'+sourceRow)?.value;if(typeof label!=='string'||![spec.label,...(spec.aliases||[])].some(expected=>normalize(label)===normalize(expected))){warnings.push(name+'!A'+sourceRow+': kalem başlığı şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
    const declared=cells.get('B'+sourceRow)?.value;if(spec.format&&declared&&normalize(String(declared))!==normalize(spec.format)){warnings.push(name+'!B'+sourceRow+': Format bilgisi şablonla eşleşmiyor; bu satır kullanılmadı.');continue;}
    const ratio=spec.ratio??(type==='BS'?spec.row===57:[29,30,31,32,45,67,68,69,70,83].includes(spec.row));
    rows.push({...spec,values:order.map(i=>{const c=cells.get(columns[i]+sourceRow);return typeof c?.value==='number'&&Number.isFinite(c.value)?c.value*(ratio&&c.percent?100:1):null;})});
