@@ -17,7 +17,7 @@ ps=' '.join(line.strip() for line in ps.strip().splitlines())
 html=(source/'index.html').read_text()
 html=html.replace('Sektovista','InsightBase').replace('<span>sekto<span class="lens">vista</span></span>','<span>Insight<span class="lens">Base</span></span>').replace('brandmark">S','brandmark">I').replace('M24 8H8v8h16v8H8','M11 8h10M16 8v16M11 24h10')
 html=html.replace('href="styles.css"','href="InsightBase.css"')
-html=html.replace('<script src="structure.js"></script><script src="engine.js"></script><script src="xlsx.js"></script><script src="../vendor/pptxgen.bundle.js"></script><script>window.pptxgen=PptxGenJS;</script><script src="../vendor/jspdf.umd.min.js"></script><script src="presentation.js"></script><script src="app.js"></script>','<script src="InsightBase.js"></script>')
+html=html.replace('<script src="structure.js"></script><script src="engine.js"></script><script src="xlsx.js"></script><script src="highlights.js"></script><script src="../vendor/pptxgen.bundle.js"></script><script>window.pptxgen=PptxGenJS;</script><script src="../vendor/jspdf.umd.min.js"></script><script src="presentation.js"></script><script src="app.js"></script>','<script src="InsightBase.js"></script>')
 help_html='''<section id="windowsStart" class="panel windows-start" hidden>
 <div class="panel-head"><h3>Windows’ta ilk açılış</h3><span class="pill">Üç dosya · Kurulum gerektirmez</span></div>
 <p>HTML, CSS, JS ve kendi <strong>dataa.xlsx</strong> dosyan aynı klasörde olsun. Tarayıcı, çift tıklayarak açılan HTML’in yanındaki Excel’i otomatik okuyamaz.</p>
@@ -55,7 +55,7 @@ document.querySelector('#copyWindowsCommand').addEventListener('click',async()=>
 });
 '''
 # Engine and XLSX reader are scoped IIFEs. Only one application entry point runs.
-bundle='\n'.join((source/f).read_text() for f in ['structure.js','engine.js','xlsx.js'])
+bundle='\n'.join((source/f).read_text() for f in ['structure.js','engine.js','xlsx.js','highlights.js'])
 bundle+='\n'+(root/'vendor/pptxgen.bundle.js').read_text().split('//# sourceMappingURL=')[0]+'\nwindow.pptxgen=PptxGenJS;\n'+(root/'vendor/jspdf.umd.min.js').read_text().split('//# sourceMappingURL=')[0]+'\n'+(source/'presentation.js').read_text()
 bundle+='\nconst WINDOWS_COMMAND='+json.dumps(ps)+';\n'+setup+'\n'+app
 css=(source/'styles.css').read_text()+'''\n.windows-start{margin-bottom:22px}.windows-start[hidden]{display:none}.windows-start p,.windows-start li{font-size:14px;line-height:1.7}.windows-start li{margin-bottom:10px}.windows-start details{margin-top:14px}.windows-start summary{cursor:pointer;font-size:14px;color:var(--blue)}.windows-start textarea{width:100%;min-height:140px;margin-top:12px;font:12px/1.6 Consolas,monospace;border:1px solid var(--line);border-radius:6px;padding:12px;resize:vertical}\n'''

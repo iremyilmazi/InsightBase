@@ -35,3 +35,5 @@
 
 /* Compact shared tab entry */
 .breadcrumb{visibility:hidden}.title-row{margin-bottom:16px}.title-row h1{font-size:25px;line-height:1.3;margin:0}.title-row #subtitle[hidden]{display:none}.toolbar{gap:12px;justify-content:flex-start;margin-bottom:12px}.toolbar-right{margin-left:auto}.toolbar .segmented button{font-size:12px;padding:8px 12px}.toolbar-right label{font-size:11px}.notice:not(.error){background:transparent;border:0;padding:0 0 14px;margin-bottom:4px;font-size:11px;color:var(--muted)}#changeBasis[hidden]{display:none}#changeBasis .mini-controls{margin:0}.deck-toolbar>div:first-child{display:none}.deck-toolbar{justify-content:flex-end;margin:0 0 16px}.overview-highlights{margin-top:0}
+
+.highlight-method{margin-top:8px;font-size:11px;color:var(--muted)}.highlight-method summary{cursor:pointer}.highlight-method p{font-size:11px}.insight strong{display:block}

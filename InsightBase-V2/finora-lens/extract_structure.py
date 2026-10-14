@@ -4,7 +4,7 @@ from pathlib import Path
 ns={'m':'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 root=Path(__file__).parent
 BS={3:3,4:5,6:6,8:24,9:25,10:26,12:8,13:9,14:10,15:11,17:12,18:13,19:15,21:18,23:19,25:20,28:21,29:22,31:28,32:29,33:30,34:31,35:32,37:34,38:35,39:43,42:39,43:47,44:40,45:41,46:48,47:49,50:36,51:44,52:37,53:38,54:45,55:46,57:52,104:4,114:14,116:16,153:53,154:54,155:55,156:56}
-# Current reference: şablon (2).xlsx; removed consumer-loan rows are not reused.
+# Current reference: şablon (3).xlsx; removed consumer-loan rows are not reused.
 BS={ident:(src-1 if src>=10 else src) for ident,src in BS.items() if ident not in [13,14]}
 BS[112]=9
 with zipfile.ZipFile(sys.argv[1]) as z:
@@ -27,7 +27,7 @@ with zipfile.ZipFile(sys.argv[1]) as z:
    col=''.join(filter(str.isalpha,ref));row=int(''.join(filter(str.isdigit,ref)))
    if row==header and col not in ['A','B'] and t not in ['s','inlineStr','str'] and v:
     dates.append((datetime.datetime(1899,12,30)+datetime.timedelta(days=float(v))).strftime('%Y-%m-%d'))
-  mapping=BS if kind=='BS' else {r+3:r for r in range(3,81) if cells.get('A'+str(r),('',None))[0].strip() not in ['', 'Cumulative','Monthly']}
+  mapping=BS if kind=='BS' else {6:3,7:4,**{r+3:r for r in range(8,30) if cells.get('A'+str(r),('',None))[0].strip()},45:31,**{r+14:r for r in range(35,57) if cells.get('A'+str(r),('',None))[0].strip()},83:58}
   rows=[]
   for ident,src in mapping.items():
    label=cells['A'+str(src)][0].strip();fmt=cells.get('B'+str(src),('',None))[0].strip() or 'TL'
@@ -39,6 +39,10 @@ with zipfile.ZipFile(sys.argv[1]) as z:
   if kind=='BS':
    commercial=next(item for item in rows if item['row']==21)
    commercial['label']='Ticari Krediler';commercial['aliases']=['Ticari Krediler cc hariç']
+  if kind=='PL':
+   for item in rows:
+    item['basis']='monthly' if item['row']>=49 else 'cumulative' if item['row']>=11 else 'auxiliary'
+    if item['basis']=='monthly':item['cumulativeRow']=item['row']-38
   rows.sort(key=lambda item:item['sourceRow'])
   structure[kind]={'dates':dates,'headerRow':header,'firstDateColumn':'C','rows':rows}
 (root/'dist/structure.json').write_text(json.dumps(structure,ensure_ascii=False))

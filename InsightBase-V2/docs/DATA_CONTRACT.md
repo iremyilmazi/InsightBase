@@ -2,7 +2,7 @@
 
 Every structural change must update the relevant Markdown documents in the same task.
 
-Reference: user-provided `şablon (2).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.
+Reference: user-provided `şablon (3).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.
 
 ## Input layout
 
@@ -92,53 +92,28 @@ Internal `row` is a stable metric identifier, not the Excel row. `sourceRow` is 
 | 30 | 27 | Cumulative ROAE | % |
 | 31 | 28 | Cumulative Cost/Income | % |
 | 32 | 29 | Cumulative Net Interest Margin | % |
-| 34 | 31 | Cumulative Operating Revenue | TL |
-| 35 | 32 | Cumulative Net Interest Income | TL |
-| 36 | 33 | Cumulative Net Fees&Commissions Income | TL |
-| 37 | 34 | Cumulative Dividend Income | TL |
-| 38 | 35 | Cumulative Net Trading Income | TL |
-| 39 | 36 | Cumulative Other Income | TL |
-| 40 | 37 | Cumulative Provisions | TL |
-| 41 | 38 | Cumulative Total Non-Interest Expenses | TL |
-| 42 | 39 | Cumulative Taxation | TL |
-| 43 | 40 | Cumulative Net profit | TL |
-| 45 | 42 | Cumulative Fee / OPEX | % |
-| 49 | 46 | Monthly Net Interest Income | TL |
-| 50 | 47 | Monthly Interest Income | TL |
-| 51 | 48 | Monthly Interest Expense | TL |
-| 52 | 49 | Monthly Non-Funded Income | TL |
-| 53 | 50 | Monthly Net Fees&Commision | TL |
-| 54 | 51 | Monthly Trading & FX Gain Losses | TL |
-| 55 | 52 | Monthly Other Income | TL |
-| 56 | 53 | Monthly Total Income | TL |
-| 57 | 54 | Monthly Operating Expenses | TL |
-| 58 | 55 | Monthly HR | TL |
-| 59 | 56 | Monthly Non-HR | TL |
-| 60 | 57 | Monthly Pre Provision Profit | TL |
-| 61 | 58 | Monthly Expected Credit Loss | TL |
-| 62 | 59 | Monthly Other Provisions | TL |
-| 63 | 60 | Monthly Profit Before Tax | TL |
-| 64 | 61 | Monthly Tax | TL |
-| 65 | 62 | Monthly Net Profit | TL |
-| 67 | 64 | Monthly ROAA | % |
-| 68 | 65 | Monthly ROAE | % |
-| 69 | 66 | Monthly Cost/Income | % |
-| 70 | 67 | Monthly Net Interest Margin | % |
-| 72 | 69 | Monthly Operating Revenue | TL |
-| 73 | 70 | Monthly Net Interest Income | TL |
-| 74 | 71 | Monthly Net Fees&Commissions Income | TL |
-| 75 | 72 | Monthly Dividend Income | TL |
-| 76 | 73 | Monthly Net Trading Income | TL |
-| 77 | 74 | Monthly Other Income | TL |
-| 78 | 75 | Monthly Provisions | TL |
-| 79 | 76 | Monthly Total Non-Interest Expenses | TL |
-| 80 | 77 | Monthly Taxation | TL |
-| 81 | 78 | Monthly Net profit | TL |
-| 83 | 80 | Monthly Fee / OPEX | % |
+| 45 | 31 | Cumulative Fee / OPEX | % |
+| 49 | 35 | Monthly Net Interest Income | TL |
+| 50 | 36 | Monthly Interest Income | TL |
+| 51 | 37 | Monthly Interest Expense | TL |
+| 52 | 38 | Monthly Non-Funded Income | TL |
+| 53 | 39 | Monthly Net Fees&Commision | TL |
+| 54 | 40 | Monthly Trading & FX Gain Losses | TL |
+| 55 | 41 | Monthly Other Income | TL |
+| 56 | 42 | Monthly Total Income | TL |
+| 57 | 43 | Monthly Operating Expenses | TL |
+| 58 | 44 | Monthly HR | TL |
+| 59 | 45 | Monthly Non-HR | TL |
+| 60 | 46 | Monthly Pre Provision Profit | TL |
+| 61 | 47 | Monthly Expected Credit Loss | TL |
+| 62 | 48 | Monthly Other Provisions | TL |
+| 63 | 49 | Monthly Profit Before Tax | TL |
+| 64 | 50 | Monthly Tax | TL |
+| 65 | 51 | Monthly Net Profit | TL |
+| 67 | 53 | Monthly ROAA | % |
+| 68 | 54 | Monthly ROAE | % |
+| 69 | 55 | Monthly Cost/Income | % |
+| 70 | 56 | Monthly Net Interest Margin | % |
+| 83 | 58 | Monthly Fee / OPEX | % |
 
-Current BS reference has 45 supported metrics. Consumer loans (ID 13) and consumer NPL (ID 14) are removed. New retail loans NPL is ID 112, source A9, Format %. ID 12 remains retail loan total at A8 and feeds the credit pie. After the removed row all subsequent BS source positions shift up one. New ID 112 is a distinct ratio, not a rename of the removed volume. Source title styling remains in titleStyle.
-
-
-### Commercial loan title — 2026-10-13
-
-User removed “cc hariç” from Excel. BS metric21 at source row17 is now labeled Ticari Krediler / Ticari krediler. Reader accepts the current label plus the previous exact label via a metric-specific alias for compatibility; no other label validation is relaxed. Only the wording changes; values, row mapping and pie components remain unchanged. Source-only demo updated; Windows packages/GitHub remain the previous release until requested.
+Reference3: BS45 unchanged metrics, PL46 (22 cumulative +22 monthly +2 auxiliary). Cumulative source rows8–29 and31, monthly35–56 and58. Blank rows and section headings are excluded. Removed secondary operating-revenue/provision/expense/tax/profit blocks are not selectable. Stable internal IDs are preserved, with basis and cumulativeRow metadata; monthly ID65 means net profit from source51, paired to cumulative ID27 source24. Fee/OPEX IDs83/45 use source58/31. Internal offset38 remains for compatibility; physical source offset is now27.

@@ -12,7 +12,7 @@ if '--source' in sys.argv:
     html=(source/'index.html').read_text().replace('href="styles.css"','href="InsightBase.css"')
     start=html.index('<script src="structure.js">');html=html[:start]+'<script src="InsightBase.js"></script></body></html>'
     html=html.replace('Sektovista','InsightBase')
-    bundle='\n'.join((source/f).read_text() for f in ['structure.js','engine.js','xlsx.js'])
+    bundle='\n'.join((source/f).read_text() for f in ['structure.js','engine.js','xlsx.js','highlights.js'])
     bundle+='\n'+(root/'vendor/pptxgen.bundle.js').read_text().split('//# sourceMappingURL=')[0]+'\nwindow.pptxgen=PptxGenJS;\n'+(root/'vendor/jspdf.umd.min.js').read_text().split('//# sourceMappingURL=')[0]+'\n'+(source/'presentation.js').read_text()+'\n'+(source/'app.js').read_text()
     (preview/'InsightBase.html').write_text(html)
     (preview/'InsightBase.css').write_text((source/'styles.css').read_text())
