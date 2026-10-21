@@ -1,6 +1,7 @@
 # Track only the active project and root handoff files.
 /*
 !/.gitignore
+!/.gitattributes
 !/AGENTS.md
 !/README.md
 !/InsightBase-V2/
@@ -35,3 +36,12 @@ InsightBase-V2/InsightBase-Windows-TXT/
 
 # Private active local workbook; never commit or package.
 InsightBase-V2/local-data/
+
+# Publish only the five Raw-copyable Windows live files (never Excel or TXT/ZIP variants).
+!InsightBase-V2/InsightBase-Windows-Live/
+InsightBase-V2/InsightBase-Windows-Live/*
+!InsightBase-V2/InsightBase-Windows-Live/BASLANGIC.md
+!InsightBase-V2/InsightBase-Windows-Live/Baslat.cmd
+!InsightBase-V2/InsightBase-Windows-Live/InsightBase.css
+!InsightBase-V2/InsightBase-Windows-Live/InsightBase.html
+!InsightBase-V2/InsightBase-Windows-Live/InsightBase.js

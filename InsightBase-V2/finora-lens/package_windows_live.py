@@ -1,8 +1,8 @@
 """Build live-data Windows deliveries; never copy a workbook."""
 from pathlib import Path
-import shutil,zipfile
+import shutil,zipfile,sys
 root=Path(__file__).parent
-for txt in [False,True]:
+for txt in ([False,True] if '--txt' in sys.argv else [False]):
  out=root.parent/('InsightBase-Windows-Live-TXT' if txt else 'InsightBase-Windows-Live')
  out.mkdir(exist_ok=True)
  for name in ['InsightBase.html','InsightBase.css','InsightBase.js']:

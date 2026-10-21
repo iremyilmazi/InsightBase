@@ -1,22 +1,46 @@
-# InsightBase — Windows canlı veri
+# InsightBase — Windows / GitHub Raw ile güncelleme
 
-Bu paket demo Excel içermez. Kendi güncel Excel’ini `dataa.xlsx` adıyla uygulama dosyalarıyla aynı klasöre koy.
+Bu klasördeki beş dosya GitHub üzerinden alınır. Altıncı dosya olan **dataa.xlsx**, senin bilgisayarında kalır; GitHub'a yüklenmez.
 
-## Hazırlık ve açılış
+## Güncellenecek dosyalar
 
-1. ZIP’i tamamen çıkar. TXT paketini kullanıyorsan Dosya Gezgini’nde Görünüm → Dosya adı uzantıları seçeneğini aç. `InsightBase.js.txt` adını `InsightBase.js`, `Baslat.cmd.txt` adını `Baslat.cmd` yap.
-2. Kendi `dataa.xlsx` dosyanı aynı klasöre koy.
-3. `Baslat.cmd` dosyasına çift tıkla. Microsoft Edge açılır. PowerShell ve kurulum gerekmez.
-4. Excel’i güncellediğinde hesaplatıp kaydet; uygulamada Veriyi yenile’ye bas.
+- BASLANGIC.md
+- Baslat.cmd
+- InsightBase.css
+- InsightBase.html
+- InsightBase.js
 
-CMD dosyası Edge’i ayrı `%TEMP%\InsightBase-Local` profiliyle ve yerel dosya okuma izniyle açar. Bu profili yalnızca InsightBase için kullan. Kurumun tarayıcı/çalıştırma politikaları geçerlidir; engellenirse BT’nin onayladığı yöntem gerekir.
+GitHub klasörü: https://github.com/iremyilmazi/InsightBase/tree/main/InsightBase-V2/InsightBase-Windows-Live
 
-## Beklenen Excel
+## Raw ile kopyalama
 
-Sheet adları: BS_Sektör, BS_Ozel, BS_Kamu, P&L_Sektör, P&L_Ozel, P&L_Kamu. A sütunu kalem, B Format; veriler C’den başlar. BS tarihleri 1. satır, P&L tarihleri 2. satırdır. Yeni şablonun kalem sırası korunmalıdır. TL tutarlar milyon TL, USD tutarlar milyon USD, % kalemler orandır. FX değerleri TL’ye çevrilmez. Formatı boş toplam hacim satırları TL kabul edilir.
+1. InsightBase için açılan Edge penceresini kapat. Mevcut beş dosyanın yedeğini ayrı bir klasöre al.
+2. GitHub klasöründe dosyayı aç, **Raw** düğmesine bas. GitHub'a giriş yapman gerekebilir.
+3. Raw sayfasındaki dosya içeriğinin tamamını **Ctrl+A → Ctrl+C** ile kopyala.
+4. Bilgisayarındaki aynı adlı dosyayı Not Defteri ile aç; içeriğin tamamını seçip yenisiyle değiştir. **UTF-8** olarak kaydet.
+5. Bu işlemi beş dosya için tamamla. Aynı güncellemede tüm dosyaları aynı GitHub sürümünden al. Sabit sürüm için GitHub'da ilgili commit'i açıp o sürümün Raw dosyalarını kullanabilirsin.
+6. Dosya adlarını değiştirme. Windows'ta **Dosya adı uzantıları** görünür olsun; dosyanın sonuna yanlışlıkla `.txt` eklenmesin. Farklı Kaydet kullanırsan dosya türü **Tüm dosyalar** olsun.
+7. **dataa.xlsx dosyanı değiştirme veya silme.** Uygulama dosyalarıyla aynı klasörde kalmalı.
+8. **Baslat.cmd** dosyasına çift tıkla. Eski görünüm kalırsa **Ctrl+F5** yap.
 
-## Dosyalar
+Dosya yerine GitHub giriş ekranını veya HTML arayüzünü kopyalamadığından emin ol. Raw erişimi kurum politikasıyla engelleniyorsa kurumunun onaylı aktarım yolunu kullan.
 
-HTML, CSS, JS üç uygulama dosyasıdır. Baslat.cmd komut yazmadan açılış için, BASLANGIC.md kullanım rehberi için eklenmiştir. Pakette gerçek veya demo veri bulunmaz. Normal üç dosyalı ZIP de ayrıca mevcuttur. Sunum editörü düzenlenebilir PowerPoint ve PDF verir; dosya adları indirme tarih/saat/saniyesi içerir.
+## Çalıştırma
 
-E-posta kabulü garanti değildir. Kurumun dosya taşıma ve çalıştırma kurallarına uygun kullan. Fiziksel Windows testi yapılmadı; Excel okuyucu ve tarayıcı demo akışı doğrulandı.
+Microsoft Edge gerekir. PowerShell, Python, Node.js ve yönetici yetkisi gerekmez. Baslat.cmd Edge'i ayrı `%TEMP%\InsightBase-Local` profili ve yerel dosya okuma izniyle açar. Bu pencereyi yalnızca InsightBase için kullan. Normal Edge profilin değiştirilmez. Kurumun tarayıcı ve çalıştırma kuralları geçerlidir.
+
+GitHub'a yalnızca dosya güncellerken erişim gerekir. Uygulama çalışırken Excel'i yerelden okur; veriyi dışarı göndermez. Excel'i hesaplatıp kaydettikten sonra **Veriyi yenile** düğmesine bas.
+
+## Excel yapısı
+
+Sheet adları: BS_Sektör, BS_Ozel, BS_Kamu, P&L_Sektör, P&L_Ozel, P&L_Kamu. A sütunu kalem, B Format; veriler C'den başlar. BS tarihleri 1. satır, P&L tarihleri 2. satırdır. Kalem sırası güncel şablonla uyumlu olmalıdır.
+
+TL: milyon TL. USD: milyon USD. %: oran. FX tutarlar TL'ye çevrilmez. Formatı boş toplam hacim satırları TL kabul edilir. Sayı görünümü **123,323.21** biçiminde, en fazla iki ondalık basamaktır.
+
+## Sorun giderme
+
+- Dosyaların tamamı ve dataa.xlsx aynı klasörde olmalı.
+- Baslat.cmd bulunamıyorsa dosya adının Baslat.cmd.txt olmadığını kontrol et.
+- Boş veya bozuk ekran görürsen Raw içeriğinin tamamını kopyaladığını ve UTF-8 kaydettiğini kontrol et.
+- Excel uyarılarında sheet/başlık/Format bilgisini güncel şablonla karşılaştır.
+- Fiziksel Windows testi yapılmadı; paket, hesaplamalar ve yerel tarayıcı akışı doğrulandı.

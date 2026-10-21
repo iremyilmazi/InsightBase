@@ -1,0 +1,5 @@
+InsightBase-V2/InsightBase-Windows-Live/Baslat.cmd text eol=crlf
+InsightBase-V2/InsightBase-Windows-Live/*.html text eol=lf
+InsightBase-V2/InsightBase-Windows-Live/*.css text eol=lf
+InsightBase-V2/InsightBase-Windows-Live/*.js text eol=lf
+InsightBase-V2/InsightBase-Windows-Live/*.md text eol=lf
