@@ -327,3 +327,18 @@ Supersedes the 84%-width trial: both layouts fill their content columns, use the
 ## Publication approved — 2026-10-21
 
 User approved the current presentation workflow, compact settings, independent table metrics, per-chart decimal selection and refined chart/table composition for GitHub publication. This supersedes the local-only publication hold for this release. Rebuild canonical three-file application and five Windows-Live Raw files to keep source and browser-copyable distribution consistent. Workbook, private preview and TXT transfer packages remain excluded.
+
+
+## Stable chart typography and adaptive bounds — 2026-10-21
+
+Adding a mini-table no longer shrinks chart labels: preview font sizes compensate for density-based chart height in both dimensions; PDF uses the same physical label size independent of table height, and native PPTX explicitly fixes dataLabelFontSize at 10. Line charts fit finite observations with 22% headroom on each side; constant/narrow series use a 4% magnitude minimum span (absolute floor .01). Unlike bars, line charts do not force zero. Bars/columns retain zero with 18% outer padding. Bounds shared with native PowerPoint; raw data and financial formulas unchanged. Current follow-up remains local until user requests another publication.
+
+
+## Independent mini-table number settings — 2026-10-21
+
+Each selected table metric exposes 0–4 decimal places; nominal volume metrics additionally expose million/billion/trillion units independently of the chart and other table rows. tableRowFormats stores per-metric settings, survives duplicates and P&L basis remapping, and resets on source-type changes. Ratios retain % and changes retain %/points without nominal unit scaling. Shared tableData formatting applies to browser/PDF/editable PPTX tables; raw observations are unchanged. Local review only.
+
+
+## Follow-up release approved — 2026-10-21
+
+User approved publishing stable chart-label typography, adaptive line bounds and independent table-row unit/decimal settings. All 32 automated tests pass. Canonical source and Windows-Live Raw distribution are rebuilt together; real workbook and TXT/private preview remain excluded.

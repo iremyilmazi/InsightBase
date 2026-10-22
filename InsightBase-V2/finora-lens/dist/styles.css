@@ -83,3 +83,5 @@
 .deck-settings .deck-fields label,.deck-settings input,.deck-settings select{min-width:0;max-width:100%}
 
 .deck-slide-content{grid-template-rows:min-content;align-content:center;align-items:start}
+
+.deck-table-format{margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid #edf1f6}.deck-table-format label{font-size:10px;color:#66758b}
