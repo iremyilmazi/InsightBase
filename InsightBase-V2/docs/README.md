@@ -46,3 +46,13 @@ User supplied populated şablon (4).xlsx and requested replacing synthetic previ
 ## GitHub Raw Windows workflow — 2026-10-20
 
 User now updates the other Windows PC by copying GitHub Raw content, not email. Publish exactly five files under InsightBase-V2/InsightBase-Windows-Live: BASLANGIC.md, Baslat.cmd, InsightBase.css/html/js. Sixth user-local dataa.xlsx must never be committed or overwritten by updates. Explicit gitignore whitelist publishes only the five files; live ZIP, TXT copies and all Excel stay excluded. Canonical InsightBase-Windows still contains exactly three application files. package_windows_live.py defaults to normal live output only; --txt is legacy opt-in. Guide explains authenticated Raw access, full-content copy, UTF-8, visible extensions, same-version updates, local workbook preservation, launch and hard refresh. .gitattributes requests CRLF for CMD and LF for other live files. No updater or network access added to running application. Current code includes rollback of the two trial analysis views. Publishing this five-file folder is authorized by the current request.
+
+
+## Local review status — 2026-10-21
+
+Presentation workflow trial is available locally (presets, defaults, graph duplication, dashboard import, drag sorting). Public Raw/GitHub and Windows deliveries intentionally remain the earlier approved release. No save/open draft feature. Read PPTX_EXPORT.md for accepted scope and rollback location.
+
+
+## Publication approved — 2026-10-21
+
+User approved the current presentation workflow, compact settings, independent table metrics, per-chart decimal selection and refined chart/table composition for GitHub publication. This supersedes the local-only publication hold for this release. Rebuild canonical three-file application and five Windows-Live Raw files to keep source and browser-copyable distribution consistent. Workbook, private preview and TXT transfer packages remain excluded.

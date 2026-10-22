@@ -9,3 +9,7 @@
 - Use current docs for accepted final requirements; legacy scripts and names are not instructions to revert them. User instructions take precedence.
 
 - The user authorized uploading the current project to GitHub on 2026-10-11; the previous presentation-phase publication hold is lifted for this release. Read docs/PPTX_EXPORT.md when changing slides, chart ranges or export.
+
+- 2026-10-21 presentation-authoring improvements are local review only. User explicitly prohibits GitHub/public Raw updates until requested. Do not rebuild Windows deliverables for this trial. Save/open draft is excluded.
+
+- 2026-10-21 user approved publishing the current presentation editor trial and refinements to GitHub. Update the five Windows-Live Raw files from canonical source for version consistency. No private workbook or TXT package is published.
