@@ -258,3 +258,13 @@ Adding a mini-table no longer shrinks chart labels: preview font sizes compensat
 ## Independent mini-table number settings — 2026-10-21
 
 Each selected table metric exposes 0–4 decimal places; nominal volume metrics additionally expose million/billion/trillion units independently of the chart and other table rows. tableRowFormats stores per-metric settings, survives duplicates and P&L basis remapping, and resets on source-type changes. Ratios retain % and changes retain %/points without nominal unit scaling. Shared tableData formatting applies to browser/PDF/editable PPTX tables; raw observations are unchanged. Local review only.
+
+
+## Presentation versions — local review, 2026-10-21
+
+Sunum oluştur adds a compact version bar with Sürüm adı, Sürümü kaydet and Sürüm aç. Selected files are staged with name/time/slide count; Bu sürümü aç replaces the working deck, Vazgeç preserves it. The confirmation reminds users to save the current deck first. Invalid files produce an inline message and leave current slides unchanged. All text is HTML-escaped.
+
+
+## Overview deposit cards — 2026-10-21
+
+Dashboard deposit cards now show [37,38,39,42,50]: total deposits, TL deposits, FX deposits, TL time deposits and TL demand deposits. Replace unsupported aggregate time/demand rows 41/49 with existing TL source metrics 42/50; pie compositions and full balance sheet catalog unchanged. Published Windows-Live JS line 167 belongs to bundled PptxGenJS/JSZip vendor code; Node syntax check passes. Exact external diagnostic still required before modifying third-party code. This follow-up remains local pending publication request; version-save feature remains unpublished.

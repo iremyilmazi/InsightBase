@@ -136,3 +136,8 @@ User requested a simpler table and fewer scrolling controls. Settings now use Sl
 Table defaults are nominal-only rather than a Cartesian list of all measurements. Each selected table metric can choose its own mode via tableRowModes[row]; legacy global tableModes remains fallback. Actual expanded table row count is used for validation. Table bank groups remain separately selectable. Minimal white table has no row fills or vertical grid, only a quiet header/footer rule in preview/PDF. Common measurement/unit appears once in header; only heterogeneous rows show row-specific metadata. Native editable table uses matching simple header and white cells. Source data and calculations unchanged.
 
 Short tables use larger graph area; taller tables reduce chart height in preview/PPTX/PDF to avoid unused space or overlap. Presets now use nominal-only tables. This supersedes prior table-metadata/banded-row settings. Selection/search/individual measurement/export verified against local real dataset. Local review only: do not update GitHub/public Raw or Windows artifacts until requested. No draft persistence added.
+
+
+## Presentation versions — local review, 2026-10-21
+
+presentation.js owns versionSnapshot, cleanVersion, restoreVersion and readVersionFile. Portable JSON envelope: app=InsightBase, schemaVersion=1, name, savedAt ISO, defaults, slides and metricRefs. Definitions are serialized through a strict whitelist, without runtime IDs, datasets, series, points or numeric observations. Restored IDs are regenerated. No new application files/dependencies or network calls.

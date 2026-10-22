@@ -13,3 +13,7 @@
 - 2026-10-21 presentation-authoring improvements are local review only. User explicitly prohibits GitHub/public Raw updates until requested. Do not rebuild Windows deliverables for this trial. Save/open draft is excluded.
 
 - 2026-10-21 user approved publishing the current presentation editor trial and refinements to GitHub. Update the five Windows-Live Raw files from canonical source for version consistency. No private workbook or TXT package is published.
+
+- 2026-10-21 presentation version save/open is now explicitly requested, superseding its earlier exclusion. This feature is local review only: no GitHub, Windows or Raw rebuild/publication until the user approves after testing. Version files store definitions and comments, never workbook observations; data is recalculated from current local Excel when reopened.
+
+- 2026-10-21 user approved publishing the current project including presentation version save/open. Its local-only hold is lifted for this release. Keep Windows-Live Raw synchronized; never publish local-data or financial workbook files.

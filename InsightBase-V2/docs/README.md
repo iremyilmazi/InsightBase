@@ -61,3 +61,18 @@ User approved the current presentation workflow, compact settings, independent t
 ## Follow-up release approved — 2026-10-21
 
 User approved publishing stable chart-label typography, adaptive line bounds and independent table-row unit/decimal settings. All 32 automated tests pass. Canonical source and Windows-Live Raw distribution are rebuilt together; real workbook and TXT/private preview remain excluded.
+
+
+## Presentation versions — local review, 2026-10-21
+
+Presentation version save/open is now implemented locally and awaiting user review; this supersedes the previous draft-save exclusion. No GitHub/Raw/Windows delivery updates are authorized for this feature yet.
+
+
+## Private workbook refresh — 2026-10-21
+
+User-supplied populated şablon (5).xlsx replaces local-data/dataa.xlsx byte-for-byte. Six sheet names and all metric labels/units remain compatible; differences in empty P&L B cells are blank-cell serialization only. BS has 94 date columns and latest populated date 2026-10-16 for all groups; P&L has 21 date columns and latest populated date 2026-08-31. Native app reader loads BS45/PL46 metrics per sheet with zero warnings, no Excel error cells found, and overview TL time/demand cards populate. Source preview refreshed from private workbook; no schema remap, package rebuild or GitHub upload. Real values remain ignored and unembedded.
+
+
+## Portable-version release authorized — 2026-10-21
+
+User approved GitHub publication of the complete current project including portable presentation version save/open, diagnostic cleanup and overview TL time/demand deposit cards. Previous local-only holds for these features are lifted. Rebuild canonical three-file app and five Windows-Live Raw files; do not include private workbook, saved presentation version files, TXT variants or private test exports. 36 automated tests passed; rerun browser version workflow on the latest private workbook before publication.

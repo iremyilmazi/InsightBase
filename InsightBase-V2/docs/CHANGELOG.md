@@ -344,6 +344,31 @@ Each selected table metric exposes 0–4 decimal places; nominal volume metrics 
 User approved publishing stable chart-label typography, adaptive line bounds and independent table-row unit/decimal settings. All 32 automated tests pass. Canonical source and Windows-Live Raw distribution are rebuilt together; real workbook and TXT/private preview remain excluded.
 
 
-## Editor diagnostic cleanup — 2026-10-21
+## Presentation versions — local review, 2026-10-21
 
-Removed duplicate showCatName/showTitle chart object keys (identical values; behavior unchanged) and added standard line-clamp alongside -webkit-line-clamp. Synchronized canonical and Windows-Live JS/CSS. Published bundle passes Node syntax check; local 36-test regression suite passes. User-reported third JS diagnostic remains unconfirmed without its actual message. Presentation version save/open is a separate local-only trial and is intentionally absent from this release; no private workbook is published.
+Added explicitly requested portable presentation versions for local review. Previous prohibition on save/open is superseded for this feature. No GitHub, Windows/Raw or package updates until user approval. Feature exports definitions only and recalculates against local Excel, stages imported versions before replacement and rejects incompatible files without changing the working deck.
+
+Validation: 36 automated tests passed. Headless Chrome E2E passed a five-slide/four-chart-type save → browser refresh → staged open → exact restore → native PPTX/PDF export workflow, including cancel, invalid/future files and zero browser errors. A dedicated test confirms changed local Excel values recalculate after restore while saved date ranges remain unchanged. No publication or distribution rebuild performed.
+
+
+## Published-file diagnostic follow-up — 2026-10-21
+
+Verified local Windows-Live JS/CSS Git blob hashes match public main. Node syntax check passes for published bundled JS. Removed repeated showCatName/showTitle object properties from native presentation chart options (identical values, no behavior change). Added standard line-clamp next to prefixed declaration for editor compatibility. User reported 3 JS / 1 CSS diagnostics on another PC; exact messages/tool remain needed to identify the third JS report and confirm CSS diagnostic. These fixes and version feature remain unpublished; no delivery rebuild.
+
+
+Diagnostic-only publication: ab3a652a7a822855ca84580da49c5e3e3a204bcd updates duplicate chart keys and standard line-clamp in source and Windows Raw files. Version save/open remains unpublished. Local delivery JS/CSS match this diagnostic-only release; do not run the full package builder until version feature publication is authorized.
+
+
+## Overview deposit cards — 2026-10-21
+
+Dashboard deposit cards now show [37,38,39,42,50]: total deposits, TL deposits, FX deposits, TL time deposits and TL demand deposits. Replace unsupported aggregate time/demand rows 41/49 with existing TL source metrics 42/50; pie compositions and full balance sheet catalog unchanged. Published Windows-Live JS line 167 belongs to bundled PptxGenJS/JSZip vendor code; Node syntax check passes. Exact external diagnostic still required before modifying third-party code. This follow-up remains local pending publication request; version-save feature remains unpublished.
+
+
+## Private workbook refresh — 2026-10-21
+
+User-supplied populated şablon (5).xlsx replaces local-data/dataa.xlsx byte-for-byte. Six sheet names and all metric labels/units remain compatible; differences in empty P&L B cells are blank-cell serialization only. BS has 94 date columns and latest populated date 2026-10-16 for all groups; P&L has 21 date columns and latest populated date 2026-08-31. Native app reader loads BS45/PL46 metrics per sheet with zero warnings, no Excel error cells found, and overview TL time/demand cards populate. Source preview refreshed from private workbook; no schema remap, package rebuild or GitHub upload. Real values remain ignored and unembedded.
+
+
+## Portable-version release authorized — 2026-10-21
+
+User approved GitHub publication of the complete current project including portable presentation version save/open, diagnostic cleanup and overview TL time/demand deposit cards. Previous local-only holds for these features are lifted. Rebuild canonical three-file app and five Windows-Live Raw files; do not include private workbook, saved presentation version files, TXT variants or private test exports. 36 automated tests passed; rerun browser version workflow on the latest private workbook before publication.

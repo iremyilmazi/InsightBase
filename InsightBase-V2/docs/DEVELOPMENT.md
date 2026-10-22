@@ -194,3 +194,15 @@ Metric details offer Sunuma ekle: capture source row, group, unit, horizon/ratio
 Page sidebar shows miniature charts and supports native drag/drop; separate Slaytları sırala grid previews full slides. Drag identity uses unique slide IDs; deep copies regenerate slide/widget IDs. Reorder preserves active slide identity; existing up/down controls remain as keyboard-friendly alternatives. Overview selection returns to editor. No JSON save/open, localStorage or server persistence added.
 
 Validation includes defaults isolation, inherited template settings, deep clone independence, reorder identity, cumulative dashboard import, existing native PPTX exports, local browser preset/default/duplicate/navigation and actual drag/drop. No GitHub or delivery rebuild.
+
+
+## Presentation versions — local review, 2026-10-21
+
+Version tests cover exact definition round-trip, independent clones, regenerated IDs, absence of workbook observations, invalid/future schemas, invalid dates/IDs/options, changed metric semantics, oversize/malformed files, escaped text and staged imports. Browser E2E covers download naming, refresh, cancel, exact restore, invalid-file rejection and both exports after restore. Private real-data export test artifacts stay under /private/tmp; never publish them.
+
+Validation: 36 automated tests passed. Headless Chrome E2E passed a five-slide/four-chart-type save → browser refresh → staged open → exact restore → native PPTX/PDF export workflow, including cancel, invalid/future files and zero browser errors. A dedicated test confirms changed local Excel values recalculate after restore while saved date ranges remain unchanged. No publication or distribution rebuild performed.
+
+
+## Published-file diagnostic follow-up — 2026-10-21
+
+Verified local Windows-Live JS/CSS Git blob hashes match public main. Node syntax check passes for published bundled JS. Removed repeated showCatName/showTitle object properties from native presentation chart options (identical values, no behavior change). Added standard line-clamp next to prefixed declaration for editor compatibility. User reported 3 JS / 1 CSS diagnostics on another PC; exact messages/tool remain needed to identify the third JS report and confirm CSS diagnostic. These fixes and version feature remain unpublished; no delivery rebuild.

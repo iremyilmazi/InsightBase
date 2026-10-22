@@ -52,3 +52,8 @@ Monthly/Cumulative segmented selector now sits beside the bank-group toolbar on 
 ## Analysis view rollback — 2026-10-18
 
 User rejected the two trial integrations and requested rollback. Esnek karşılaştırma and Kâr köprüsü are not part of the active product. Removed analysis module/tests, navigation, view registry, events, CSS and loader/bundler hooks. Earlier dashboard, comparison, ratio/composition history, P&L and presentation features retained. Separate synthetic demo in outputs remains isolated for possible future reference. Neither integration was published to GitHub or Windows deliverables, so no release rebuild is needed. Real local workbook remains the active preview input.
+
+
+## Presentation versions — local review, 2026-10-21
+
+Users can name and download distinct portable presentation versions and reopen them after browser restart or on another machine. Version files preserve authoring choices, text and fixed dates; they are not historical financial snapshots. Values are recalculated from the local workbook. No automatic storage or cloud service is used.

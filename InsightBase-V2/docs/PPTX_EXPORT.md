@@ -155,3 +155,8 @@ Adding a mini-table no longer shrinks chart labels: preview font sizes compensat
 ## Independent mini-table number settings — 2026-10-21
 
 Each selected table metric exposes 0–4 decimal places; nominal volume metrics additionally expose million/billion/trillion units independently of the chart and other table rows. tableRowFormats stores per-metric settings, survives duplicates and P&L basis remapping, and resets on source-type changes. Ratios retain % and changes retain %/points without nominal unit scaling. Shared tableData formatting applies to browser/PDF/editable PPTX tables; raw observations are unchanged. Local review only.
+
+
+## Presentation versions — local review, 2026-10-21
+
+Portable .insightbase.json versions have date/time/seconds filenames, preserve all slide and widget authoring options (including P&L basis, groups, fixed date ranges, per-chart precision and per-row table modes/units/precision). Opening uses the current local Excel, never freezes old numeric observations. Catalog metric label/format identities are checked before applying, and missing or changed meanings reject the version. Import validates schema version, maximum 5 MB, 1–100 slides, layout/widget counts, known metric IDs, enum choices, date ranges and bounded text. JSON is never executed. Unknown fields are discarded. Draft/incomplete metric selections can be saved; export validation remains responsible for chart-data readiness. Reopening never auto-shifts date ranges. No localStorage/auto-save, server upload or version database.
