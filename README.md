@@ -1,7 +1,9 @@
 # InsightBase
 
-Offline Windows banking-sector dashboard. Active project: [InsightBase-V2](InsightBase-V2/docs/README.md).
+Offline banking-sector dashboard and editable presentation builder for Windows.
 
-Sources, financial definitions, data schema, UI rules and development instructions are documented there. Every structural change must update the related Markdown documentation.
+Start with the [agent handoff index](InsightBase-V2/docs/README.md), [current state](InsightBase-V2/docs/CURRENT_STATE.md), [requirements](InsightBase-V2/docs/REQUIREMENTS.md) and [development guide](InsightBase-V2/docs/DEVELOPMENT.md). Canonical source: `InsightBase-V2/finora-lens/dist`.
 
-Windows application: [InsightBase-V2/InsightBase-Windows](InsightBase-V2/InsightBase-Windows), exactly HTML, CSS and JS. Supply your own dataa.xlsx separately; workbook data is excluded from Git.
+Windows users copy the five [Windows-Live files](InsightBase-V2/InsightBase-Windows-Live) and keep their own dataa.xlsx beside them. Baslat.cmd uses CMD/Microsoft Edge; no PowerShell or Python install is required. Real Excel is never published. The canonical application remains exactly HTML/CSS/JS.
+
+**Every development must update the affected Markdown documentation and change log in the same task.** See [AGENTS.md](AGENTS.md) and the [handoff checklist](InsightBase-V2/docs/HANDOFF.md). Only V2 is maintained.

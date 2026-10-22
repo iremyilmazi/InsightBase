@@ -1,5 +1,9 @@
 # Excel data contract — current schema (2026-10-13)
 
+> **Maintenance:** Every development must review and update affected Markdown documents in the same task; record changes, checks and any no-contract-change conclusion in CHANGELOG.md. See [HANDOFF.md](HANDOFF.md).
+
+> Current implementation and publication status: [CURRENT_STATE.md](CURRENT_STATE.md), verified 2026-10-21. Older dated addenda are historical; current decisions supersede conflicting past statements.
+
 Every structural change must update the relevant Markdown documents in the same task.
 
 Reference: user-provided `şablon (3).xlsx`. The reference is read-only; financial values are never embedded in source, docs or deliverables.

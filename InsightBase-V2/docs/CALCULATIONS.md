@@ -1,6 +1,8 @@
 # Financial calculation contract
 
-> Maintenance rule: every new structural change must update the affected Markdown documents in this documentation set in the same task. Changes to architecture, files, data contracts, row mappings, formulas, UI structure, packaging, scope or operational rules are incomplete until the matching documentation is updated. Update the index/status date and change log as appropriate. V1 was deleted with user authorization on 2026-10-09; V2 is the only maintained version.
+> **Maintenance:** Every development must review and update affected Markdown documents in the same task; record changes, checks and any no-contract-change conclusion in CHANGELOG.md. See [HANDOFF.md](HANDOFF.md).
+
+> Current implementation and publication status: [CURRENT_STATE.md](CURRENT_STATE.md), verified 2026-10-21. Older dated addenda are historical; current decisions supersede conflicting past statements.
 
 ## Dates and current observations
 
@@ -14,7 +16,7 @@
 |---|---|
 | Amount growth | `(current / base - 1) * 100` |
 | Ratio movement | `currentRatio - baseRatio`, percentage points |
-| BS MoM | Target one calendar month before actual current observation; clamp day to prior month's last day. Last finite observation on/before target, at most 7 days back. |
+| BS MoM | Shared monthlyCompare: when asOf is before current month-end, compare actual current date with one calendar month earlier (day clamped); after month close use prior calendar month-end. Last finite observation on/before target, at most 7 days back. |
 | PL MoM | Exact previous calendar month-end, tolerance 0. |
 | BS YoY | Same day prior year (leap date clamped), at most 7 days back. |
 | PL YoY | Exact same month-end previous year. |

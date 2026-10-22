@@ -1,6 +1,8 @@
 # Accepted changes and current status
 
-> Maintenance rule: every new structural change must update the affected Markdown documents in this documentation set in the same task. Changes to architecture, files, data contracts, row mappings, formulas, UI structure, packaging, scope or operational rules are incomplete until the matching documentation is updated. Update the index/status date and change log as appropriate. V1 was deleted with user authorization on 2026-10-09; V2 is the only maintained version.
+> **Maintenance:** Every development must review and update affected Markdown documents in the same task; record changes, checks and any no-contract-change conclusion in CHANGELOG.md. See [HANDOFF.md](HANDOFF.md).
+
+> Current implementation and publication status: [CURRENT_STATE.md](CURRENT_STATE.md), verified 2026-10-21. Older dated addenda are historical; current decisions supersede conflicting past statements.
 
 ## V1 freeze — 2026-10-07
 
@@ -372,3 +374,14 @@ User-supplied populated şablon (5).xlsx replaces local-data/dataa.xlsx byte-for
 ## Portable-version release authorized — 2026-10-21
 
 User approved GitHub publication of the complete current project including portable presentation version save/open, diagnostic cleanup and overview TL time/demand deposit cards. Previous local-only holds for these features are lifted. Rebuild canonical three-file app and five Windows-Live Raw files; do not include private workbook, saved presentation version files, TXT variants or private test exports. 36 automated tests passed; rerun browser version workflow on the latest private workbook before publication.
+
+## 2026-10-21 — Consolidated agent handoff documentation
+
+User requested complete agent-readable requirements, structure and rules, plus an every-development update obligation. Rewrote root/V2 instructions and readme entry points; added CURRENT_STATE, REQUIREMENTS and HANDOFF; refreshed Architecture, Product and Development; clarified authoritative current presentation contract and overview deposit IDs. Corrected obsolete synthetic-only/PowerShell/no-save guidance and marked historical addenda as superseded. No application code, financial formulas, schema IDs, packages or real workbook contents changed. Documentation-only work remains local; no GitHub publication implied. Validate local Markdown links and current-state claims against source.
+
+Documentation verification completed: 16 Markdown entry/specialist files scanned; zero broken relative links. Source inspection confirmed current CMD launcher, package counts, portable-version envelope, deposit card IDs and monthlyCompare partial/completed behavior. Application code unchanged, so no additional application regression run required for this documentation-only change.
+
+
+## 2026-10-21 — Documentation publication authorized
+
+User approved uploading the agent handoff Markdown files. Publish documentation-only changes; preserve application/Windows file SHAs and exclude private workbook/test artifacts. No application rebuild or new financial behavior. Relative Markdown links verified before publication.

@@ -1,0 +1,52 @@
+# Current state and binding decisions
+
+> **Mandatory documentation maintenance:** Every development must review and update the affected Markdown documents in the same task, including fixes, features, calculations, UI, data mapping, packaging and operational rules. Record the change and actual verification in CHANGELOG.md. If no contract changes, record that conclusion and verification in the change log. A task is incomplete with stale documentation. Never include private financial values in documentation.
+
+Verified: 2026-10-21. This file supersedes conflicting historical notes elsewhere. Update it whenever the current implementation, restrictions or release status changes.
+
+## Product and environment
+
+- Brand: **InsightBase**. Internal identifiers such as FinoraEngine are implementation details, not product renaming instructions.
+- Offline banking-sector finance/strategy dashboard with editable presentation authoring. No AI connection, external API, CDN, cloud storage or network dependency at runtime.
+- Production: Windows with CMD and Microsoft Edge; PowerShell is unavailable to the user. Development: macOS.
+- Canonical three-file app: InsightBase.html, InsightBase.css, InsightBase.js.
+- Windows-Live operational distribution: those three plus Baslat.cmd and BASLANGIC.md. User supplies a sixth file, dataa.xlsx. This is intentional and does not change the three-application-file constraint.
+- Baslat.cmd starts Edge with adjacent file reading enabled in a dedicated temporary profile. No Python, Node or PowerShell required. This launch path is inspected but has not been run on a real Windows host in this environment.
+- There is no Excel upload screen. The version-file chooser is for presentation definitions only.
+
+## Data and calculations
+
+- Local private source: `InsightBase-V2/local-data/dataa.xlsx`, currently copied from user-supplied şablon (5).xlsx. It is Git-ignored and never embedded in JS, docs, ZIPs or GitHub.
+- Local preview now uses real supplied data, not demo. `preview_demo.py --source` stages it in `/private/tmp/insightbase-v2-preview`; `--demo` explicitly requests synthetic mode.
+- Six sheets: BS_Sektör/Ozel/Kamu and P&L_Sektör/Ozel/Kamu. Column A labels, B Format, data C onward. BS dates row 1; PL dates row 2. BS45/PL46 mapped metrics per sheet. Stable internal IDs are not physical Excel rows.
+- Current file: BS94 date columns, latest populated 2026-10-16; PL21 date columns, latest populated 2026-08-31. Future refreshes must derive dates, never hardcode these values.
+- Amounts: million TL or million USD, according to Format; ratios percent. No FX conversion or TL/USD summation. Display units million/billion/trillion. Numeric locale en-US; Turkish date labels.
+- Default maximum 2 decimals for dashboard. Presentation charts and table rows independently support 0–4 decimal places.
+- Latest available BS and PL periods remain independent. No global historical analysis-date picker. Weekly BS inputs still produce calendar-aware MoM, not fixed four-week comparisons. See CALCULATIONS and engine code for partial/completed month distinction.
+
+## Current UI
+
+- Navigation: Genel bakış, Bilanço, Kârlılık, Grup karşılaştırması, Sunum oluştur, Veri & yöntem.
+- Overview: BS-only deterministic highlights; credit pie and a shared card with TL/FX deposit pies; separate credit/deposit card groups and PL cards.
+- Deposit cards use stable IDs [37,38,39,42,50]: total, TL, FX, TL time and TL demand deposits. Removed aggregate IDs41/49 must not be restored to these cards.
+- BS table follows Excel source order and title hierarchy. PL keeps English source names, strips Monthly/Cumulative display prefixes only. Repeated per-row name/date subtitles are removed.
+- P&L monthly/cumulative switch affects PL only. Presentation widgets have their own independent basis.
+- Detail charts default to one change series, with MoM/YoY/YTD selection and nominal ratio option, 12 calendar-month slots and point labels.
+- Pie history supports 12 monthly compositions and comparison of any selected pair. Native hover titles retained; rejected floating tooltip and verbose comparison footer remain absent.
+
+## Presentation behavior
+
+- Session defaults, templates, per-widget selections/dates/groups/units, duplicate widgets/slides, drag sorting and dashboard import are implemented.
+- Charts: line, column, horizontal bar, pie. Independent mini-table metrics, measurements, units and decimals. TL/USD and ratio/amount mixing guards remain enforced.
+- Line bounds fit observed values with padding; bars retain zero. Mini-table addition preserves chart label size. Period cells follow the existing plot grid.
+- PPTX: native editable charts, embedded chart data, editable text/tables. PDF: static 16:9 visual pages. Download names include local date/time/seconds.
+- Presentation versions are implemented and published: named `.insightbase.json` files store definitions/text, never Excel observations. Opening recalculates from current local Excel while preserving saved date ranges. Imports are validated and staged before replacing the working deck. No localStorage, autosave or cloud history.
+- Rejected flexible-comparison and profit-bridge experiments are not part of the active app. Do not reintroduce them without request.
+
+## Publication and verification
+
+- Repository: https://github.com/iremyilmazi/InsightBase (public).
+- Last application release verified: `e909418326245a36bfb851516c5acb7fe8afd6a9`, including presentation versions and TL deposit cards. Five Windows-Live Raw files match that release.
+- 36 automated tests passed. Browser E2E verified five-slide/four-chart-type version save, refresh, cancel, exact restore, malformed/future-file rejection, and PPTX/PDF exports. Workbook reader: six sheets, zero warnings; TL deposit cards populated.
+- Windows JS line167 is bundled third-party presentation code; Node syntax check passes. User-reported remaining diagnostic cannot be identified without its exact message. Do not claim all Windows editor diagnostics are resolved.
+- The user explicitly authorized publishing this documentation refresh on 2026-10-21. This release changes Markdown only; no app/Windows rebuild or private data publication. Future publication requires user authorization for that work; prior approval is not an unlimited future instruction.

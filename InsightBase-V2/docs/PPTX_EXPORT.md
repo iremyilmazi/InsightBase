@@ -1,6 +1,20 @@
 # Presentation editor and editable PowerPoint export
 
-> Maintenance rule: every new structural change MUST update this document and other affected Markdown documents in the same task. Do not publish current work to GitHub until the user explicitly requests it.
+> **Maintenance:** Every development must review and update affected Markdown documents in the same task; record changes, checks and any no-contract-change conclusion in CHANGELOG.md. See [HANDOFF.md](HANDOFF.md).
+
+> Current implementation and publication status: [CURRENT_STATE.md](CURRENT_STATE.md), verified 2026-10-21. Older dated addenda are historical; current decisions supersede conflicting past statements.
+
+## Current presentation contract (2026-10-21)
+
+- 16:9 one/two-chart slides; independent chart dates (max24months), metrics/groups (max6series), BS/PL basis, nominal/MoM/YoY/YTD, units and 0–4 decimals. Templates, defaults, clones, drag sorting and dashboard imports are implemented.
+- Mini-table independently chooses rows/groups/measurements and per-row units/decimals, shares dates, max12months/12expandedrows. Labels include measurement/unit; period columns follow chart plot. Chart labels keep physical size when tables are added.
+- TL amounts are million TL, USD million USD, ratios %. Currency/ratio mixing checks apply. Weekly inputs use the same partial/completed calendar-month MoM policy as the app; full source precision retained. Defaults use12months, including available current-month data.
+- Line scales fit finite observations with22% span padding; minimum span4% of magnitude or .01. Bars retain zero with18% outer padding. Scale bounds do not change financial values.
+- PPTX contains native editable charts, embedded selected data, text and tables; PDF is static visual output. Filenames include local date/time/seconds. No vertical value labels on presentation charts; points/bars show values.
+- Named portable versions are supported: schema1 `.insightbase.json` envelope has app, schemaVersion, name, savedAt, defaults, slides, metricRefs. Definitions exclude workbook observations and runtime IDs. Current Excel is used on restore; saved date ranges stay fixed. Validation caps5MB/100slides, checks identifiers/semantics/enums/ranges/text; import stages confirmation and regenerates IDs. No localStorage/autosave/cloud history.
+- Latest published implementation and verification are in CURRENT_STATE. The following dated implementation notes retain evolution history and must not restore old six-month/synthetic-only/TL-only/no-save restrictions.
+
+## Historical implementation notes and subsequent amendments
 
 Accepted and implemented on 2026-10-09. Interface language is Turkish.
 

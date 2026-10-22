@@ -1,143 +1,56 @@
 # Architecture and source inventory
 
-> Maintenance rule: every new structural change must update the affected Markdown documents in this documentation set in the same task. Changes to architecture, files, data contracts, row mappings, formulas, UI structure, packaging, scope or operational rules are incomplete until the matching documentation is updated. Update the index/status date and change log as appropriate. V1 was deleted with user authorization on 2026-10-09; V2 is the only maintained version.
+> **Mandatory documentation maintenance:** Every development must review and update the affected Markdown documents in the same task, including fixes, features, calculations, UI, data mapping, packaging and operational rules. Record the change and actual verification in CHANGELOG.md. If no contract changes, record that conclusion and verification in the change log. A task is incomplete with stale documentation. Never include private financial values in documentation.
 
-## Directory tree
+## Maintained directory structure
 
 ```text
+AGENTS.md / README.md                 repository entry points
 InsightBase-V2/
-  AGENTS.md
-  docs/                     this handoff documentation
+  AGENTS.md                          current operational instructions
+  docs/                              requirements and handoff guides
+  local-data/dataa.xlsx               PRIVATE, ignored; never distribute
   finora-lens/
-    README.md               development entry point
-    dist/                   canonical editable browser source, despite directory name
-      index.html            shell, navigation, dialogs, single display-unit selector
-      styles.css            UI styling, responsive layouts, SVG label styling
-      app.js                state, view rendering, chart/pie/highlight selection, load lifecycle
-      presentation.js       slide session state, SVG preview, editable PPTX export
-      engine.js             pure financial functions, Node-compatible tests
-      xlsx.js               browser-native ZIP/XML workbook reader
-      structure.json        exact template row labels and structure metadata
-      structure.js          browser TEMPLATE representation
-    vendor/                 offline PptxGenJS 4.0.1 / jsPDF 3.0.3 bundles and MIT licenses
-    package_three_files.py  active production builder
-    package_local.py        legacy builder; supplies PowerShell string via AST to active builder
-    extract_structure.py    extracts template labels/dates (not real financial data)
-    preview_demo.py         synthetic preview generator; patches preview JS only
-    local_server.py         legacy development helper
-    update_local.py         legacy migration script; do not rerun casually
-    tests/
-      engine.test.cjs
-      presentation.test.cjs
-      local_server_test.py  tests legacy local_server helper, not Windows PowerShell
-  InsightBase-Windows/
-    InsightBase.html
-    InsightBase.css
-    InsightBase.js
-  InsightBase-Windows.zip   same three entries, root of archive
-  *preview.jpg             review artifacts, not production assets
+    dist/                            canonical editable browser source
+      index.html                     shell, navigation, dialogs
+      styles.css                     app and presentation styling
+      app.js                         state, loading, views, UI events
+      engine.js                      pure date/financial/composition functions
+      xlsx.js                        browser ZIP/XML Excel reader
+      structure.json / structure.js  label/format/style/row metadata only
+      highlights.js                  deterministic BS insights
+      presentation.js                editor, SVG, PPTX/PDF, portable versions
+    vendor/                          offline PPTX/jsPDF bundles + licenses
+    tests/                           engine, highlights, presentation tests
+    extract_structure.py             schema extraction, never numeric observations
+    preview_demo.py                  source preview; real Excel by default if present
+    package_three_files.py           canonical three-file production builder
+    package_windows_live.py          Live wrapper; TXT opt-in legacy only
+    windows_start.cmd                current CMD/Edge launcher source
+    WINDOWS_LIVE_README.md           source for generated BASLANGIC.md
+    package_local.py / local_server.py / update_local.py
+                                     legacy helpers, not current launch workflow
+  InsightBase-Windows/                generated HTML/CSS/JS, exactly 3 files
+  InsightBase-Windows-Live/           generated five Raw-copyable files
 ```
 
-## Browser execution flow
+Top-level legacy project copies and deleted V1 are not maintained. ZIPs, synthetic/transfer assets and private review outputs are not canonical. Do not put documentation in the three-file output; the Live guide is the intentional five-file wrapper exception.
 
-HTML shell → bundled `TEMPLATE` → `FinoraEngine` → `LocalXLSX` → vendored PptxGenJS + jsPDF + InsightDeck → Windows setup helper → app entry point → `loadWorkbook()` → fetch local Excel with `cache: no-store` → parser → dataset → render current view.
+## Runtime
 
-No framework, npm build or remote chart/XLSX library. Browser charts are SVG; a vendored offline PptxGenJS library builds native editable PowerPoint charts. Native APIs include `DOMParser`, `TextDecoder`, `Blob`, `Response`, `DecompressionStream('deflate-raw')`, `AbortController`, and `<dialog>`.
+HTML → TEMPLATE → FinoraEngine → LocalXLSX → highlights → offline PptxGenJS/jsPDF → InsightDeck → startup helper → app loadWorkbook → local dataa.xlsx → in-memory dataset → view rendering.
 
-## Global interfaces
+No framework or npm build step. SVG renders browser charts; native editable PPTX charts include their embedded data; PDF uses canvas pages. Native browser APIs include DOMParser, DecompressionStream, Blob, URL, fetch, dialog and File.text. Real Excel is not serialized into application files.
 
-- `InsightDeck`: presentation session/editor/export API; see PPTX_EXPORT.md.
-- `PptxGenJS` / `window.pptxgen`: native PPTX generation (vendored).
-- `TEMPLATE`: workbook row schema from structure.js.
-- `FinoraEngine`: `DAY`, `iso`, `shift`, `monthEnd`, `monthAgo`, `finite`, `pct`, `at`, `compare`, `series`, `metricSeries`, `cumulativeYoY`, `monthlyChanges`.
-- `LocalXLSX.read(file, template)`: Promise of sheets/warnings.
-- App `state`: view, group, date (internal latest fallback, no picker), unit (1/1000/1000000), basis, horizon, legacy trend.
-- `dataset`: sheets, warnings, demo, hasValues. Read state: loading/ready/error, error message, load token, lastRead.
-- Optional browser WebMCP `set_insightbase_view` after packaging changes view/group only. It is optional; production does not require an agent or AI access.
+## State ownership
 
-## Important functions
+- app.js: navigation, group, display unit, horizon, PL basis, load state and current dataset.
+- engine.js: pure calculations; no UI/network persistence.
+- xlsx.js: template-validated extraction and warnings.
+- highlights.js: BS-only deterministic selection.
+- presentation.js: slides/defaults/widget selection, per-widget/table settings, SVG and exports. JSON versions whitelist definitions, regenerate runtime IDs on restore, check metric identity and stage imports before apply. No localStorage/server persistence.
+- structure metadata: stable IDs, sourceRow, label/aliases, format, ratio, titleStyle, PL basis/cumulativeRow. Never equate internal ID with physical worksheet row.
 
-`metric()` uses `latestDate(type,group)`; `getSeries()` preserves source-million values. `render()` produces the current screen, `overview()` produces overview sections, `loanPie(currency)` renders credit (null), TL deposit or FX deposit composition, `insights()` ranks six MoM candidates, `showDetail()` opens a drilldown, `chartPoints()` gets monthly changes and `chart()` renders one SVG line.
+## Delivery vs preview
 
-Refresh clears the current dataset while loading; errors show an error state instead of retaining old values as current. A token prevents stale concurrent responses overwriting newer loads. There is no background refresh timer or persisted data cache.
-
-PDF export uses high-resolution local canvas pages and vendored jsPDF; see PPTX_EXPORT.md for visual-output limitations. No delivery file or runtime endpoint is added.
-
-
-## Windows e-posta demo paketi — 2026-10-11
-
-`InsightBase-Mail-Windows` ve `InsightBase-Windows-Demo.zip` yerel teslim çıktılarıdır. Paket tam beş dosya içerir: üç uygulama dosyası, sentetik `dataa.xlsx` ve `BASLANGIC.md`. Üç dosyalı üretim paketi korunur. Demo çalışma kitabı `package_mail_demo.mjs` ile, `preview_demo.py` tarafından üretilen sentetik JSON üzerinden artifact-tool kullanılarak hazırlanır. Önce `package_three_files.py`, sonra `preview_demo.py` çalıştırılır; builder bundled Node/artifact-tool ortamında çalıştırılır. Rehber kaynağı `finora-lens/WINDOWS_DEMO_README.md` dosyasıdır. Demo Excel’deki `INSIGHTBASE_DEMO` sheet adı uygulamada ve sunumlarda DEMO işaretini etkinleştirir. XLSX okuyucu shared/inline string yanında `t=str` metin hücrelerini de destekler. Gerçek veriler ve yerel demo teslim çıktıları GitHub’a eklenmez. Yeni yapısal değişikliklerde ilgili Markdown belgeleri aynı değişiklik kapsamında güncellenmelidir.
-
-
-### CMD teslim güncellemesi
-
-Kullanıcının Windows bilgisayarında PowerShell bulunmadığından e-posta paketi altı dosyadır: HTML, CSS, JS, sentetik Excel, `Baslat.cmd` ve rehber. CMD dosyası Edge’i ayrı `%TEMP%\InsightBase-Local` profili ve `--allow-file-access-from-files` ile açar. Sunucu gerekmez. Yerel dosya erişimi paketlenmiş uygulamada desteklenir; normal tarayıcı profili değiştirilmez. Kurum politikaları geçerlidir. Gerçek XLSX okuyucu altı sheet’i uyarısız okudu; yerel file:// akışı Chrome’da aynı bayrakla doğrulandı. Fiziksel Windows doğrulaması yapılmadı. Önceki PowerShell / beş dosya açıklamaları bu teslim için geçersizdir.
-
-
-## Current schema update — 2026-10-11
-
-The user supplied a new six-sheet reference `şablon (1).xlsx`. DATA_CONTRACT.md is the authoritative current catalog; earlier physical row numbers in this document are superseded. Stable internal metric IDs remain, with explicit `sourceRow`, `format` and `ratio` metadata. BS has 46 supported metrics; P&L 66. Date headers start in C, with B reserved for Format. `extract_structure.py <reference.xlsx>` extracts metadata only and writes both structure.json and structure.js. No financial values are committed.
-
-TL means million TL, USD million USD, % ratio, explicitly confirmed by the user. NPL rows flagged % now use percentage-point changes. Dashboard cards, detail tables, pies and slide outputs preserve each currency. No FX conversion or TL+USD addition occurs. Nominal/pie charts mixing currencies are rejected; growth charts may compare percentage changes and table rows show their own currencies. Monthly P&L-to-cumulative ID offset remains 38 (physical source offset also 38). Removed TL/YP NPL volume rows, branch/headcount and aggregate term/demand source rows are excluded. LDR fallback uses total loans and total deposits, both TL aggregates.
-
-The local 8768 preview keeps synthetic JSON and shows DEMO. The new Windows live delivery excludes Excel; the user provides adjacent dataa.xlsx. Canonical three-file build stays unchanged in count. Additional CMD launcher and guide are operational helpers. Source Excel passed the browser reader with six sheets and zero warnings; 18 engine/presentation tests passed, including ratio deltas and mixed-currency rejection. Local browser preview verified TL/USD labels and USD detail with no page errors. Windows itself remains unverified. This change is not automatically published to GitHub.
-
-New structural changes must update these Markdown files in the same task.
-
-
-## Reference update — 2026-10-13
-
-Current schema is `şablon (2).xlsx`. BS consumer-loan volume and consumer NPL entries are removed (IDs 13/14); retail loans NPL added as distinct ratio ID112 at source row9. Retail total ID12 remains at source row8. Subsequent BS sources shift up one; stable IDs preserve existing pie/card calculations. BS catalog now has45 metrics; PL retains66 and its source positions. Retail detail uses new ratio plus remaining product breakdowns. Excel source order, title indent/gray/bold and TL/USD/% metadata are regenerated. Local preview retains synthetic data and includes retail NPL. Six source sheets read with zero warnings; existing calculation/export tests passed. Windows packages and GitHub are not rebuilt/published for this task. The current release artifacts therefore remain the preceding release until requested. All structural changes require corresponding MD updates.
-
-
-## Expanded BS highlights — 2026-10-13
-
-Implemented in pure dist/highlights.js (InsightHighlights.analyze), bundled by preview and Windows builders without changing the three-file contract. It reads BS only and emits up to one growth, funding and NPL/risk card; insufficient data may yield fewer cards. Candidate rules: volume MoM, product-vs-total growth, TL/USD growth difference, TL/FX demand-deposit share changes, loan/deposit growth difference, LDR and NPL point changes, completed-month credit acceleration, sector-view private/public growth differences. Composition and contribution are excluded pending scope confirmation. Shared monthlyCompare supplies MoM bases. Derived metrics require identical current/base dates. Demand shares additionally require nonnegative same-currency components and 0.5% total reconciliation at both dates.
-
-No financial significance cutoff or anomaly label is invented. For completed periods with12 prior valid completed observations (searching36months), selection ranks empirical absolute deviation from each candidate's own median; MAD is also recorded. Tied scores use stable IDs. Provisional periods cannot use this history ranking. Without comparable history, explicit fallback kind priority is share, fundingGap, currency, product, ratio, growth, groups, acceleration; within a kind, absolute change ranks candidates. This is a deterministic editorial selection, not a financial importance score. Historical values and scoring details are available in analyze return metadata; card method disclosure explains history/fallback choice. Empty, invalid or unchanged candidates are skipped; missing values are never zero-filled. No inferred funding cost or NPL cause is asserted. P&L basis cannot affect cards. Local preview updated; no GitHub publication or Windows rebuilding requested for this change.
-
-
-## P&L reference3 — 2026-10-13
-
-User supplied şablon (3).xlsx. Secondary cumulative/monthly reporting blocks removed; current source catalog is DATA_CONTRACT.md. PL has46 metrics:22 cumulative,22 monthly,2 auxiliary stocks. Monthly source section starts35 instead of46; cumulative Fee/OPEX is31 and monthly58. Net Profit uses monthly51/cumulative24. Stable metric IDs keep dashboard formulas and existing configured charts intact. Each monthly spec explicitly records cumulativeRow and basis; app and slides use pairing metadata. Physical source difference is27, not internal ID difference38. Removed IDs34–43 and72–81 are absent from tables/selectors. English source wording is retained, display prefixes hidden; source title formatting extracted. BS unchanged, including approved commercial label alias. Demo source remains synthetic. Six sheets read with zero warnings, pairing regression and financial/export tests pass. Windows/GitHub not rebuilt for this task; publication remains separately requested.
-
-
-## Analysis view rollback — 2026-10-18
-
-User rejected the two trial integrations and requested rollback. Esnek karşılaştırma and Kâr köprüsü are not part of the active product. Removed analysis module/tests, navigation, view registry, events, CSS and loader/bundler hooks. Earlier dashboard, comparison, ratio/composition history, P&L and presentation features retained. Separate synthetic demo in outputs remains isolated for possible future reference. Neither integration was published to GitHub or Windows deliverables, so no release rebuild is needed. Real local workbook remains the active preview input.
-
-
-## GitHub Raw Windows workflow — 2026-10-20
-
-User now updates the other Windows PC by copying GitHub Raw content, not email. Publish exactly five files under InsightBase-V2/InsightBase-Windows-Live: BASLANGIC.md, Baslat.cmd, InsightBase.css/html/js. Sixth user-local dataa.xlsx must never be committed or overwritten by updates. Explicit gitignore whitelist publishes only the five files; live ZIP, TXT copies and all Excel stay excluded. Canonical InsightBase-Windows still contains exactly three application files. package_windows_live.py defaults to normal live output only; --txt is legacy opt-in. Guide explains authenticated Raw access, full-content copy, UTF-8, visible extensions, same-version updates, local workbook preservation, launch and hard refresh. .gitattributes requests CRLF for CMD and LF for other live files. No updater or network access added to running application. Current code includes rollback of the two trial analysis views. Publishing this five-file folder is authorized by the current request.
-
-
-## Presentation workflow trial — 2026-10-21
-
-User approved local implementation of five authoring improvements, explicitly excluding save/open and forbidding GitHub publication until later approval. Windows packages and public Raw files must remain unchanged during review. Local rollback copies of presentation.js/app.js/styles.css are under ignored outputs/review-backups/presentation-before-2026-10-21. Real workbook stays private.
-
-Session-only defaults: group, end month,3/6/12/24-month span, display unit. Defaults initialize from latest BS source and apply only to new widgets/slides. Existing widgets retain independent selections; changing defaults never mutates them. Shared end month may exceed latest PL data, preserving missing slots visibly. Settings details stay open while fields change.
-
-Ready templates: credit growth (4BS series, nominal/YoY table), TL/FX deposit composition (2separate nominal pies), monthly profitability (3PL series, nominal/YoY table), LDR ratios (3BS ratios, nominal table). All inherit defaults and remain editable. For24-month presets, optional tables are disabled to respect12-month table limit. No assumptions about mutually exclusive loan composition were introduced.
-
-Graph duplicate deep-copies config. Single-chart slide becomes double; a full two-chart slide creates a new single-chart copy. Quick metric selector changes primary metric and matching single-metric table only; independent table selections remain. PL widgets have explicit monthly/cumulative source selector, including dashboard-imported cumulative rows. Source-type change resets compatible metrics and basis while preserving dates, group and unit.
-
-Metric details offer Sunuma ekle: capture source row, group, unit, horizon/ratio level and12-month range, then open selected new slide. Composition history offers pie-to-slide import with same row/group/currency selections. Existing slides remain. This captures selection settings, not static workbook snapshots; Excel refresh updates underlying series.
-
-Page sidebar shows miniature charts and supports native drag/drop; separate Slaytları sırala grid previews full slides. Drag identity uses unique slide IDs; deep copies regenerate slide/widget IDs. Reorder preserves active slide identity; existing up/down controls remain as keyboard-friendly alternatives. Overview selection returns to editor. No JSON save/open, localStorage or server persistence added.
-
-Validation includes defaults isolation, inherited template settings, deep clone independence, reorder identity, cumulative dashboard import, existing native PPTX exports, local browser preset/default/duplicate/navigation and actual drag/drop. No GitHub or delivery rebuild.
-
-
-## Compact editor and independent table rows — 2026-10-21
-
-User requested a simpler table and fewer scrolling controls. Settings now use Slayt/Grafik/Veri/Tablo tabs. Wide screens keep a compact sticky right panel; small screens use a bounded-height settings panel. Searchable metric pickers retain keyboard focus/caret across rerenders and show removable selected chips. Graph and table metrics are independently selected; replacing a graph metric no longer modifies a matching table row implicitly.
-
-Table defaults are nominal-only rather than a Cartesian list of all measurements. Each selected table metric can choose its own mode via tableRowModes[row]; legacy global tableModes remains fallback. Actual expanded table row count is used for validation. Table bank groups remain separately selectable. Minimal white table has no row fills or vertical grid, only a quiet header/footer rule in preview/PDF. Common measurement/unit appears once in header; only heterogeneous rows show row-specific metadata. Native editable table uses matching simple header and white cells. Source data and calculations unchanged.
-
-Short tables use larger graph area; taller tables reduce chart height in preview/PPTX/PDF to avoid unused space or overlap. Presets now use nominal-only tables. This supersedes prior table-metadata/banded-row settings. Selection/search/individual measurement/export verified against local real dataset. Local review only: do not update GitHub/public Raw or Windows artifacts until requested. No draft persistence added.
-
-
-## Presentation versions — local review, 2026-10-21
-
-presentation.js owns versionSnapshot, cleanVersion, restoreVersion and readVersionFile. Portable JSON envelope: app=InsightBase, schemaVersion=1, name, savedAt ISO, defaults, slides and metricRefs. Definitions are serialized through a strict whitelist, without runtime IDs, datasets, series, points or numeric observations. Restored IDs are regenerated. No new application files/dependencies or network calls.
+Canonical builders inline source/vendor code into one JS and reference one CSS. Windows-Live uses the CMD/Edge file-access path; development preview uses loopback HTTP port8768. package_local.py contributes a historical literal via AST extraction only; do not infer PowerShell is required by the current launcher. The application has no runtime GitHub dependency.
