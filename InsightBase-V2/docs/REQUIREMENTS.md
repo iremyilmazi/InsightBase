@@ -25,6 +25,7 @@ Help a banking-sector finance/strategy user read current balance-sheet and profi
 | R15 | Editable PPTX charts/data/text/tables; visual PDF | Native chart XML tests; browser export downloads |
 | R16 | Timestamped portable versions, strict import validation, no embedded observations | Version unit tests and browser round-trip |
 | R17 | Mini-table does not resize chart labels; aligned periods and padded scales | Bounds tests; visual/browser review |
+| R19 | P&L complete-quarter totals plus open-quarter months, with explicit aggregation and comparable growth bases | Quarter tests; CALCULATIONS/PPTX_EXPORT |
 | R18 | Development changes preserve agreed scope and update docs | Handoff checklist; change log |
 
 ## Out of scope / rejected
@@ -33,4 +34,4 @@ No automatic AI commentary, cloud synchronization, automatic publishing, Excel u
 
 ## Limits that must remain visible
 
-Presentation chart maximum 24 months and 6 series; mini-table maximum 12 months and 12 expanded metric/group/measurement rows. Version import maximum 5 MB and 100 slides. Missing data stays unavailable. JSON versions preserve definitions, not immutable financial snapshots. Never describe PDF as editable or browser/Node tests as proof of real Windows execution.
+Presentation chart maximum 24 months and 6 series; mini-table maximum 12 monthly/displayed hybrid periods and 12 expanded metric/group/measurement rows. Version import maximum 5 MB and 100 slides. Missing data stays unavailable. JSON versions preserve definitions, not immutable financial snapshots. Never describe PDF as editable or browser/Node tests as proof of real Windows execution.

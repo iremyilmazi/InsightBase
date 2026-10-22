@@ -45,3 +45,8 @@ InsightBase-V2/InsightBase-Windows-Live/*
 !InsightBase-V2/InsightBase-Windows-Live/InsightBase.css
 !InsightBase-V2/InsightBase-Windows-Live/InsightBase.html
 !InsightBase-V2/InsightBase-Windows-Live/InsightBase.js
+
+# Only the specifically user-authorized presentation definition is published.
+InsightBase-V2/presentations/*
+!InsightBase-V2/presentations/README.md
+!InsightBase-V2/presentations/Sektor-Hikayesi.insightbase.json

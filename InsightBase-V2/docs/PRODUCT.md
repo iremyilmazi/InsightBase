@@ -18,6 +18,10 @@ The current normative requirements are in REQUIREMENTS.md; current decisions and
 - Portable presentation versions preserve definitions and recalculate against local Excel. The old save/open exclusion was explicitly superseded and the feature published.
 - No automatic GitHub publishing. Trial changes remain local until the user authorizes release.
 
+## P&L quarterly presentation
+
+Presentation P&L flow amounts can show complete calendar quarters as three-month totals and the remaining available months individually. Monthly basis sums monthly flow rows; cumulative basis samples the source cumulative row at each quarter/month endpoint. Ratios remain monthly until a supported quarterly formula exists. A clear per-chart period selector preserves the existing monthly default.
+
 ## Scope boundaries
 
 Data-quality-summary development, profit bridge and flexible-comparison experiments were declined. Custom floating pie tooltip and verbose period-comparison footer were rolled back. Do not treat old proposals or historical demo files as accepted product requirements. V1 remains deleted. User can request changes to these decisions explicitly.

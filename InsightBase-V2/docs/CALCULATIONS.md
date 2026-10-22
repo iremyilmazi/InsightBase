@@ -130,3 +130,23 @@ User rejected the two trial integrations and requested rollback. Esnek karşıla
 ## Stable chart typography and adaptive bounds — 2026-10-21
 
 Adding a mini-table no longer shrinks chart labels: preview font sizes compensate for density-based chart height in both dimensions; PDF uses the same physical label size independent of table height, and native PPTX explicitly fixes dataLabelFontSize at 10. Line charts fit finite observations with 22% headroom on each side; constant/narrow series use a 4% magnitude minimum span (absolute floor .01). Unlike bars, line charts do not force zero. Bars/columns retain zero with 18% outer padding. Bounds shared with native PowerPoint; raw data and financial formulas unchanged. Current follow-up remains local until user requests another publication.
+
+## P&L quarter-plus-month series — 2026-10-21
+
+Optional presentation aggregation quarterlyMonthly supports monthly flow amounts and source cumulative P&L amounts. The default remains monthly. All three calendar months must lie within the chosen range for a quarter bucket. Leading/trailing partial quarters retain individual months; the selected end is capped to latest available P&L month across the selected chart/table groups. Different groups share slots and retain missing values independently. A quarter with any missing source month is unavailable, never a partial total or zero. No summation of cumulative source levels occurs.
+
+- Nominal quarter: sum three exact month-end monthly source values, then scale once to the selected unit. Open-quarter months retain monthly observations. Negative nominal flows remain valid.
+- Change: quarter versus the previous complete calendar-quarter sum (QoQ); monthly slot versus previous calendar month (MoM). Label QoQ / MoM explicitly. Never compare an open-quarter month to a three-month total.
+- YoY: quarter total versus the same three months one year earlier; monthly slot versus the same prior-year month.
+- YTD YoY: cumulative source at the exact slot-ending month versus the same prior-year cumulative month, using existing monthly pairing/availability rules.
+- Nonpositive amount bases and missing comparisons retain existing null-growth semantics.
+- Quarterly ratios (ROAA/ROAE/NIM and other ratios) cannot be inferred by adding/averaging monthly ratios. Their selection in hybrid charts/tables blocks export with an explicit monthly-view instruction. No balance/average-denominator assumptions are introduced.
+
+Switching aggregation preserves the monthly/cumulative basis and identities; only the explicit basis selector remaps paired rows. The original dashboard/BS comparisons are unchanged. Financial catalog and workbook row mappings were reviewed and do not change.
+
+
+## Cumulative hybrid correction — 2026-10-21
+
+The preceding three-month sum rules describe monthly basis only. Cumulative basis uses the exact source cumulative observation at each slot endpoint: Q1 is January–March, Q2 January–June, July January–July, August January–August. Never add cumulative monthly balances or derive them from monthly flows. Missing exact cumulative endpoints remain unavailable, even when monthly values exist.
+
+Cumulative Change compares quarter-end cumulative levels to the preceding quarter-end within the same year; monthly slots compare to preceding month-end within the year. The Q1 prior-December reset comparison is unavailable. YoY and YTD YoY compare the exact endpoint to the same prior-year month. These are changes in year-to-date levels, not standalone quarterly flow growth. The chart subtitle explicitly says Kümülatif. Ratio restrictions remain unchanged. This correction supersedes the earlier forced-monthly selection limitation.

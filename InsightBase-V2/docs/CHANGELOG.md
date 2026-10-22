@@ -385,3 +385,81 @@ Documentation verification completed: 16 Markdown entry/specialist files scanned
 ## 2026-10-21 — Documentation publication authorized
 
 User approved uploading the agent handoff Markdown files. Publish documentation-only changes; preserve application/Windows file SHAs and exclude private workbook/test artifacts. No application rebuild or new financial behavior. Relative Markdown links verified before publication.
+
+## 2026-10-21 — Private sector narrative presentation draft
+
+Created the user-requested three-slide sector narrative with separate credit, deposit and P&L pages through the existing InsightBase presentation editor. Outputs remain private under ignored root outputs/sunum-2026-10-21: portable presentation definition, editable PPTX and visual PDF. Titles/comments are editorial text fixed to the source dates shown on each slide; reopening recalculates charts but does not rewrite those messages. No private financial observations are reproduced in documentation.
+
+Verification: current private workbook loaded through the app reader with no warnings; all six widget configurations passed the app's export validation. Portable version was reopened through the actual file chooser. PPTX and PDF downloads completed with zero browser page errors. PDF has three pages; PPTX has six native charts, six embedded chart workbooks and native tables on all three slides. All browser slide previews and all rendered PDF pages inspected. No application source, calculation, schema, UI or packaging contract changed, so no additional application regression run was required. Existing source/package work was preserved. No GitHub publication or Windows rebuild.
+
+
+## 2026-10-21 — Percentage suffixes and visible negative bar labels
+
+User requested presentation-format corrections without changing messages. Percentage chart/mini-table values now carry %, while ratio movements retain puan and nominal amounts retain their original units. Native PPTX uses quoted literal suffixes for percentage-point-scaled series so data is not multiplied by 100; pie percentage formatting is unchanged. Negative SVG/PDF horizontal-bar labels move outside the left endpoint with end anchoring; negative column labels move below the endpoint instead of inside the fill. Native bar/column labels use supported inEnd placement with dark text (the bundled library filters outEnd for clustered bars).
+
+Verification: all 38 Node tests passed, including new regressions for negative horizontal/vertical geometry, ratio-versus-growth units, native number formats/label position and unchanged raw chart values. Source preview regenerated; three-slide saved narrative version opened through the real chooser with exact equality of slide definitions/text. All three negative percent labels verified in actual chart DOM; all browser slide screenshots and rendered PDF pages inspected. PPTX/PDF exports succeeded with zero browser page errors, three PDF pages and literal-percent native chart formats. Updated private outputs under ignored outputs/sunum-2026-10-21/format-v2. Financial calculations, workbook mapping, authoring schema and narrative text did not change. No Windows rebuild, GitHub publication or private-data disclosure.
+
+## 2026-10-21 — Simplified private narrative deck v3
+
+User requested a cleaner presentation with clearer messages and no table repeating chart evidence. Updated only the private saved presentation and exports under ignored outputs/sunum-2026-10-21/yalin-v3. Removed all three redundant mini-tables, reduced the deposit comparison to the current monthly period, removed an unnecessary deposit series, shortened titles/comments and removed the unrelated cumulative P&L digression. Existing percentage suffixes and visible negative labels are retained. Source dates and provisional-month comparison remain explicit.
+
+Verification: version reopened through the app file chooser, all three pages rendered without tables, six native charts exported in a three-slide PPTX, three-page PDF exported, and zero browser page errors. All browser previews and rendered PDF pages inspected. Reviewed presentation/UI contracts: no application, calculation, schema or default-template contract changed; this is an editorial revision to one private deck. No application regression rerun needed, Windows rebuild or GitHub publication performed. No private financial observations reproduced in documentation.
+
+
+## 2026-10-21 — Complementary credit table and shared table metadata
+
+User provided a screenshot adding six monthly nominal credit-volume rows below the credit-ratio chart. Reproduced its metric order, source period, trillion-TL units and one-decimal precision in private narrative v4. Simplified common table metadata at application level: one shared measurement/unit caption replaces repeated row suffixes; mixed units/measurements remain explicit on individual rows. Preview uses a table caption; PPTX uses a spanning native cell; PDF includes the same caption with row allocation adjusted. Financial formulas, data schema and version-file schema are unchanged.
+
+Verification: 39 automated tests passed, including homogeneous caption/metric-only rows, mixed-unit fallback and unchanged values. Real-workbook browser import reopened the three-slide v4, asserted exactly one complementary table and its expected caption/metric order, exported PPTX/PDF with zero page errors. Native PPTX has one shared caption and native table with no repeated old row metadata; PDF has three pages. Credit preview and all PDF pages visually inspected. Outputs remain ignored under outputs/sunum-2026-10-21/hacim-v4. No private observations in documentation, Windows rebuild or GitHub publication.
+
+
+## 2026-10-21 — Left-column metric labels
+
+Moved mini-table metric names from separate full-width label rows into a dedicated left column at the user's request. All values for each metric now share the same row. Common measurement/unit caption remains once above the table; mixed settings retain row-level meaning. Updated preview, editable PPTX and PDF consistently. Chart geometry is preserved and category dates restored so the independently laid-out table does not imply shared plot alignment. Private narrative v5 retains v4 metric selections, source periods, precision and messages.
+
+Verification: 39 Node tests passed, including row-header/value geometry assertions. Browser v5 reopen verified left-column metric names and shared caption, successful exports and zero page errors. Native PPTX table verified as five rows (caption, dates, three metrics) with seven cells per metric (label plus six months). Three PDF pages and browser credit preview visually inspected. No financial/calculation/version schema changes, Windows rebuild or GitHub publication. Private artifacts stay under ignored outputs/sunum-2026-10-21/solda-v5.
+
+
+## 2026-10-21 — Bar names and consolidated chart/table context
+
+User requested identifying horizontal bars directly and moving repeated sector/currency information into heading context. Added full metric names inside wide preview/PDF bars with white text and a dark above-bar fallback for short/dense bars. Numeric labels retain negative endpoints and percent/point semantics. Removed horizontal legends; other legends show only metric names unless group/currency disambiguation is needed. Native PPTX enables series-name/value labels at center and removes the bar legend. Common group, measurement, unit/source currency and Turkish month/range appear below chart headings. Single-group tables include their own group in the caption, even with mixed row settings.
+
+Verification: 40 automated tests passed, including direct labels/short-bar fallback, removed legends, shared context and existing native export/units/financial checks. Three-slide v6 reopened in browser and exported without page errors. Four native horizontal charts verified to enable series names, center positioning and omit legends. All three rendered PDF pages inspected for direct name readability and retained negative values; credit preview and prior full-slide preview set inspected. Financial formulas, raw observations, saved selections/messages and version schema unchanged. Private v6 artifacts remain ignored; no Windows rebuild or GitHub publication.
+
+
+## 2026-10-21 — Source dates instead of ambiguous short years
+
+User interpreted the month/two-digit-year chart label as a day. Replaced two-digit presentation years with full years and display actual common observation dates for single-period subtitles/current partial-month chart and table slots. Single-period horizontal category labels are suppressed as redundant. Dates derive from point sourceDate, with month/year fallback for missing or differing series dates. No financial observations, dates, baselines or saved range definitions changed.
+
+Verification: all 41 automated tests passed, including fixed-clock regression for full source dates versus monthly slots, native subtitle/cache date labels and partial-month table header. Browser v7 reopened unchanged financial selections, asserted observation-date subtitle/table, exported PPTX/PDF without page errors. Native chart/table/subtitle labels verified; three PDF pages and credit browser preview visually inspected. Private artifacts remain ignored under outputs/sunum-2026-10-21/tarih-v7. Financial/data/version contracts reviewed unchanged; presentation display contract updated. No Windows rebuild or GitHub publication.
+
+
+## 2026-10-21 — Hybrid P&L quarterly/monthly presentation and deposit selection
+
+Implemented the user-requested P&L period control: full calendar quarters sum exact monthly flow observations, while open/boundary quarter months remain separate. Shared slots/series drive preview, tables and native PPTX/PDF. Missing months invalidate a quarter; change compares quarter-to-quarter or month-to-month appropriately, YoY uses matching lengths, and YTD uses existing exact-month cumulative pairing. Ratios explicitly require monthly mode because no valid quarterly denominator is supplied. Aggregation persists through duplication and schema-2 versions, with schema-1 backward support and rejection of invalid/downgraded hybrid semantics. Reviewed data mapping: no workbook/catalog changes. Dashboard and BS calculation contracts unchanged.
+
+Also applied the user's follow-up to the private deck: right-hand deposit chart now shows total TL deposits, TL time deposits and TL demand deposits, in that order. Private narrative v8 updates the P&L example to the hybrid view with an explicit three-month/monthly disclosure.
+
+Verification: 46 automated tests passed, covering quarter sums/gaps, like-period comparisons, leading partial quarters, year boundaries, latest-data caps, ratio restrictions, cumulative metric/settings remap, version validation/restore and editable chart contents. Real-workbook browser UI selected hybrid mode and checked both quarter totals against independent sums of exact monthly observations, retained the two available open-quarter months, restored a schema-2 version through the chooser and exported PPTX/PDF with zero page errors. Native quarter/month cache labels verified; three PDF pages and P&L browser preview visually inspected. Final deposit follow-up exported in the same v8. Artifacts remain ignored; no private observations in docs, Windows rebuild or GitHub publication.
+
+
+## 2026-10-21 — Preserve cumulative P&L in hybrid view
+
+Corrected the unnecessary forced-monthly limitation identified by the user. Quarter-plus-month grouping and monthly/cumulative basis are independent. The cumulative selector remains available; changing grouping preserves identities and independent row settings. Cumulative hybrid values come directly from exact quarter/month-end source cumulative rows, never sums. Missing endpoints stay missing; changes use matching quarter/month-end cumulative levels within the same year, with Q1 year-reset comparison unavailable. YoY/YTD YoY use exact same prior-year month. Ratio restrictions remain. Schema-2 imports now accept cumulative hybrid definitions. Workbook mapping reviewed unchanged.
+
+Verification: 47 Node tests passed. Browser UI selected cumulative basis while retaining hybrid periods, compared all four displayed values to exact cumulative Excel source observations, restored the saved version and exported PPTX/PDF with zero page errors. Private narrative v9 preserves the deposit trio and updates the left P&L chart/note to cumulative endpoints. No Windows rebuild or GitHub publication.
+
+## 2026-10-21 — Match the user's wider cumulative P&L view
+
+Updated private narrative v10 P&L left chart to the supplied screenshot: January 2025 through August 2026, cumulative Net Profit, four completed prior-year quarters, two current-year quarters and two available open-quarter months. Retained the right monthly YoY comparison and other slide configurations. Kept a correct cumulative-source note instead of the screenshot's outdated three-month-total wording.
+
+Verification: browser UI changed the date range, all eight chart values matched exact source cumulative endpoints, schema-2 saved version reopened, PPTX/PDF exported with zero page errors. PDF has three pages; P&L page visually inspected against the screenshot. This is a private deck configuration update; application, calculations and version contracts reviewed unchanged. No application regression rerun, Windows rebuild or GitHub publication. Artifacts remain ignored under outputs/sunum-2026-10-21/genis-v10.
+
+
+## 2026-10-21 — Current application and v10 publication authorized
+
+User explicitly requested publishing the current application plus the working v10 presentation definition, with no PDF/PPTX. Added only presentations/Sektor-Hikayesi.insightbase.json and its usage guide, documenting the narrow saved-version exception in instructions/current state/development. Real Excel, observation series and all private outputs remain excluded. Source, canonical three-file Windows app and five-file Live wrapper rebuilt together.
+
+Pre-publication verification: remote main inspected at 739d9198fb36422694c6d0b4ac1fc8a3e0df6e8e and local blob hashes compared with its recursive tree, preserving unchanged remote files. All 47 Node tests passed; rebuilt bundled JS syntax check passed; builders asserted exactly three/five distribution files. Current v10 previously passed real-workbook source/browser/schema-2 restore/export and eight cumulative endpoint checks. Publication uses the inspected remote parent and expected-head, non-forced update. Only the approved version is included; no financial observations reproduced in docs.
+
+Production-bundle verification also passed before publication: staged rebuilt HTML/CSS/JS read the real adjacent workbook, restored the approved v10 definition, retained eight cumulative P&L periods and the requested deposit trio, with no configuration or browser page errors. Physical Windows execution remains unverified.

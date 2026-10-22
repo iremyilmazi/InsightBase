@@ -10,8 +10,9 @@
 - Mini-table independently chooses rows/groups/measurements and per-row units/decimals, shares dates, max12months/12expandedrows. Labels include measurement/unit; period columns follow chart plot. Chart labels keep physical size when tables are added.
 - TL amounts are million TL, USD million USD, ratios %. Currency/ratio mixing checks apply. Weekly inputs use the same partial/completed calendar-month MoM policy as the app; full source precision retained. Defaults use12months, including available current-month data.
 - Line scales fit finite observations with22% span padding; minimum span4% of magnitude or .01. Bars retain zero with18% outer padding. Scale bounds do not change financial values.
+- Percentage chart labels and mini-table values include a trailing %. Nominal ratios use %, ratio changes use puan, and nominal amounts keep numeric labels with their stated currency/unit. PPTX uses a literal percent suffix for percentage-point-scaled data; pie percentages retain true percent formatting. Negative SVG/PDF bar labels sit outside the negative endpoint (horizontal left/end anchor, vertical below); native PPTX bar/column labels use the supported inEnd placement and dark text.
 - PPTX contains native editable charts, embedded selected data, text and tables; PDF is static visual output. Filenames include local date/time/seconds. No vertical value labels on presentation charts; points/bars show values.
-- Named portable versions are supported: schema1 `.insightbase.json` envelope has app, schemaVersion, name, savedAt, defaults, slides, metricRefs. Definitions exclude workbook observations and runtime IDs. Current Excel is used on restore; saved date ranges stay fixed. Validation caps5MB/100slides, checks identifiers/semantics/enums/ranges/text; import stages confirmation and regenerates IDs. No localStorage/autosave/cloud history.
+- Named portable versions are supported: schema 1 (monthly-only) or schema 2 (hybrid P&L) `.insightbase.json` envelope has app, schemaVersion, name, savedAt, defaults, slides, metricRefs. Definitions exclude workbook observations and runtime IDs. Current Excel is used on restore; saved date ranges stay fixed. Validation caps5MB/100slides, checks identifiers/semantics/enums/ranges/text; import stages confirmation and regenerates IDs. No localStorage/autosave/cloud history.
 - Latest published implementation and verification are in CURRENT_STATE. The following dated implementation notes retain evolution history and must not restore old six-month/synthetic-only/TL-only/no-save restrictions.
 
 ## Historical implementation notes and subsequent amendments
@@ -174,3 +175,39 @@ Each selected table metric exposes 0–4 decimal places; nominal volume metrics 
 ## Presentation versions — local review, 2026-10-21
 
 Portable .insightbase.json versions have date/time/seconds filenames, preserve all slide and widget authoring options (including P&L basis, groups, fixed date ranges, per-chart precision and per-row table modes/units/precision). Opening uses the current local Excel, never freezes old numeric observations. Catalog metric label/format identities are checked before applying, and missing or changed meanings reject the version. Import validates schema version, maximum 5 MB, 1–100 slides, layout/widget counts, known metric IDs, enum choices, date ranges and bounded text. JSON is never executed. Unknown fields are discarded. Draft/incomplete metric selections can be saved; export validation remains responsible for chart-data readiness. Reopening never auto-shifts date ranges. No localStorage/auto-save, server upload or version database.
+
+## Shared mini-table measurement/unit — 2026-10-21
+
+When all mini-table rows share measurement and unit, show one caption above the period header and only metric/group names on the rows. Nominal volume caption is Hacim and nominal ratio caption is Oran; display expanded Turkish amount units (milyon/milyar/trilyon). Mixed measurements or units keep explicit row metadata and omit the shared caption. Browser preview, native editable PPTX tables and PDF use the same tableData caption/rows. The additional caption is counted in export table height allocation; date columns retain plot alignment. Saved-version schema and financial calculations are unchanged.
+
+The private narrative v4 includes the user's complementary six-month credit-volume table under the ratio chart: total, retail and commercial loans, nominal trillion TL with one decimal. This table provides volume context rather than repeating ratio observations. Local review only.
+
+
+## Left-column mini-table labels — 2026-10-21
+
+User requested metric names on the left instead of full-width rows above each value row. Mini-tables now use a 28% left label column and 72% equal period columns. Each metric/group/measurement combination occupies one row. The shared measurement/unit caption and mixed-unit fallback remain. Preview uses row-header cells, PPTX uses a native label cell plus period cells, and PDF draws matching columns. Chart plot geometry remains independent; chart category dates are visible again rather than assuming alignment to the table's different grid. This supersedes the full-span-label and plot-aligned-period table layout. Caption/table height allocation counts one row per metric. No schema or calculation changes. Local review only.
+
+
+## Direct horizontal-bar labels and shared context — 2026-10-21
+
+Horizontal bars identify metrics directly instead of requiring a separate legend. Preview/PDF center white names inside sufficiently wide/tall bars; short/dense bars put the full name immediately above in dark text, retaining outside numeric value labels. Native editable PPTX enables series-name/value labels at center and hides the bar legend. Other chart types retain metric-only legends. Multi-group selections retain group names per series, and mixed source currencies retain currency per series so meanings are not lost.
+
+Chart subtitles share bank group(s), meaningful measurement (Hacim/Oran for nominal), unit, applicable source currency for growth, and a Turkish month/range once below the title. Do not describe ratio-only charts as TL amounts. Common mini-table captions include the single selected table group independently of the chart group; mixed table settings still show their row metadata and group caption. No calculation, unit scaling or version schema changes. Local source/private v6 export only.
+
+
+## Unambiguous presentation dates — 2026-10-21
+
+Two-digit year labels could be mistaken for a day (Eki 26 meant October 2026). Presentation months now use four-digit years. Single-month selections with one common observed source date show the full observation date in the subtitle. Current incomplete-month chart/table slots use dd.mm.yyyy from actual point sourceDate, never the calendar slot's month-end. Multi-month subtitles use month/full-year start and the actual current partial-month observation date when common. Completed historical slots remain month/year labels. If selected series have different source dates or no observation, keep the month/year label rather than inventing a common date. Single-period horizontal bars omit their redundant category-axis date since the subtitle carries it. Preview, native PPTX caches/tables and PDF use the same rules. Calculation baselines and selected ranges are unchanged.
+
+
+## P&L completed quarters and open-quarter months — 2026-10-21
+
+Grafik settings for P&L now offer Dönem görünümü: Aylık (default) or Tam çeyrek + açık çeyrek ayları. Hybrid widgets preserve the selected monthly or cumulative source basis. Changing the period view never remaps metric identities; source-type changes reset aggregation to monthly. Both Aylık and Kümülatif remain available while hybrid is active. Duplicates preserve aggregation.
+
+Shared periodSlots/widgetPoints supply quarter and monthly slots to preview, independent mini-tables, editable PPTX chart data/tables and PDF. Full-quarter labels use year plus Ç1–Ç4; open/boundary months use full-year Turkish labels. Missing quarters remain gaps. Chart range remains at most 24 calendar months; tables allow at most 12 displayed slots. See CALCULATIONS for nominal/QoQ/MoM/YoY/YTD rules and unsupported quarterly ratios. Mixed three-month/monthly totals are disclosed in the chart subtitle and sample slide note.
+
+Portable versions with any hybrid widget use schemaVersion 2 and persist aggregation; readers accept schemas 1 and 2. Missing aggregation defaults monthly for older files. Schema 1 cannot contain hybrid semantics, and invalid aggregation and BS hybrid imports are rejected. Monthly-only saves remain schema 1. Older app builds reject schema 2 instead of silently displaying quarter definitions as monthly. No observations are embedded in version files.
+
+## Scoped release authorization — 2026-10-21
+
+Current formatting/date/hybrid/cumulative improvements are authorized for the current application release. The user additionally authorized publishing only v10 at presentations/Sektor-Hikayesi.insightbase.json, with no PDF/PPTX or workbook. Other historical local-only notes are superseded for this release. Future versions still require explicit authorization.

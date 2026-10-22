@@ -24,7 +24,7 @@ node --test InsightBase-V2/finora-lens/tests/*.test.cjs
 node --check InsightBase-V2/finora-lens/dist/presentation.js
 ```
 
-Current baseline: 36 passing Node tests. Legacy Python server tests do not establish Windows launcher compatibility. Browser tests should check actual Excel reading, scope of filters, chart/table geometry, no console errors and successful downloads as relevant. Presentation-version E2E covers save, refresh, staged restore/cancel, exact choices, malformed/future files and exports. Private test outputs must remain outside Git. Actual Windows execution is still a separate verification step; do not claim it was performed from macOS checks.
+Current local baseline: 47 passing Node tests (release baseline: 47). Legacy Python server tests do not establish Windows launcher compatibility. Browser tests should check actual Excel reading, scope of filters, chart/table geometry, no console errors and successful downloads as relevant. Presentation-version E2E covers save, refresh, staged restore/cancel, exact choices, malformed/future files and exports. Private test outputs must remain outside Git. Actual Windows execution is still a separate verification step; do not claim it was performed from macOS checks.
 
 ## Build deliverables when authorized
 
@@ -47,7 +47,7 @@ Copy complete Raw content as UTF-8, keep exact extensions and take all app files
 Repository: https://github.com/iremyilmazi/InsightBase (public). Publish only work authorized by the user, after local trial if requested. Last application release: see CURRENT_STATE.
 
 1. Inspect remote main head and tree. Compare exact local Git blob hashes to remote; local status alone is insufficient.
-2. Confirm staged changes exclude private Excel, local-data, saved presentation versions, screenshots/test exports, TXT/mail variants and accidental secrets.
+2. Confirm staged changes exclude private Excel, local-data, unapproved saved presentation versions, screenshots/test exports, TXT/mail variants and accidental secrets.
 3. Source, docs and five Windows-Live Raw files must describe the same release. A diagnostic-only publish must exclude unapproved feature code.
 4. Use an available authenticated Git tool/connector with current remote parent, expected-head lease and no force overwrite. If GitHub CLI is unavailable, do not invent authentication or expose credentials.
 5. Verify resulting main head and changed file SHAs. Do not imply a push succeeded from merely creating a commit.
@@ -61,3 +61,7 @@ No routine upload is implied by development or documentation tasks. Application 
 - Distinguish editor lint warnings from runtime errors. Node syntax success does not prove every editor diagnostic resolved.
 - Never add false zero data to hide missing workbook inputs. Verify source row/Format/date identity.
 - Repair canonical code and regenerate only when release scope permits.
+
+Hybrid P&L versions require the locally updated app (schema 2); monthly-only schema-1 files remain compatible. Quarterly checks cover missing months, year boundaries, availability caps, like-period growth, cumulative-to-monthly remapping and native exports.
+
+The 2026-10-21 release explicitly includes only presentations/Sektor-Hikayesi.insightbase.json (v10) plus its guide. This scoped exception does not authorize other local versions or PDF/PPTX publication. Include that exact definition in the release manifest, not the ignored outputs directory.

@@ -54,3 +54,12 @@ No framework or npm build step. SVG renders browser charts; native editable PPTX
 ## Delivery vs preview
 
 Canonical builders inline source/vendor code into one JS and reference one CSS. Windows-Live uses the CMD/Edge file-access path; development preview uses loopback HTTP port8768. package_local.py contributes a historical literal via AST extraction only; do not infer PowerShell is required by the current launcher. The application has no runtime GitHub dependency.
+
+
+## Local quarter-series extension — 2026-10-21
+
+Presentation periodSlots and widgetPoints provide shared monthly/hybrid calendar buckets and flow aggregation to rendering, tables and exports; the existing monthly points function is unchanged. Widget aggregation defaults monthly. Portable envelope schema 2 is used only for hybrid decks, with strict schema/aggregation checks and schema-1 compatibility. Calculation details live in CALCULATIONS; workbook schema is unchanged.
+
+Cumulative hybrid widgets retain basis/metric identities and sample exact cumulative source endpoints; changing aggregation no longer forces monthly basis. Schema-2 hybrid validation accepts either P&L basis.
+
+The user-approved v10 definition is published under presentations/Sektor-Hikayesi.insightbase.json with a README. It is separate from the three-file app and five-file launcher distribution, and contains no workbook observation series. Other local versions/exports remain private.

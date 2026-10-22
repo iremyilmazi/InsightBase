@@ -37,8 +37,13 @@ Verified: 2026-10-21. This file supersedes conflicting historical notes elsewher
 ## Presentation behavior
 
 - Session defaults, templates, per-widget selections/dates/groups/units, duplicate widgets/slides, drag sorting and dashboard import are implemented.
+- Local formatting follow-up: horizontal bars identify series directly and omit duplicate legends; short bars use adjacent full-name fallback in preview/PDF. Shared group/measurement/unit context appears below chart headings, and single-group tables include group in their shared caption. Included in this authorized release.
+- Local date-label follow-up: four-digit years; single-period headings and current incomplete-month chart/table labels use actual common observation dates. Source dates are derived from points, not hardcoded or inferred from month-end. Included in this authorized release.
+- Local P&L extension: optional complete-quarter plus open-quarter-month grouping for monthly or cumulative P&L amounts, shared by charts/tables/PPTX/PDF. Missing quarters stay unavailable; ratios remain monthly. Hybrid versions use schema 2; schema 1 remains supported. Included in this authorized release.
 - Charts: line, column, horizontal bar, pie. Independent mini-table metrics, measurements, units and decimals. TL/USD and ratio/amount mixing guards remain enforced.
-- Line bounds fit observed values with padding; bars retain zero. Mini-table addition preserves chart label size. Period cells follow the existing plot grid.
+- Local formatting follow-up: percentage labels include % in charts/mini-tables; ratio changes retain puan. Negative preview/PDF bar labels sit outside the bar endpoint; PPTX uses supported dark inEnd labels. Existing saved definitions need no migration. Included in this authorized release.
+- Local mini-table follow-up: common measurement/unit appears once in a caption, with metric names in the left column; mixed selections retain row-specific metadata. Preview/PPTX/PDF share the rule. Included in this authorized release.
+- Line bounds fit observed values with padding; bars retain zero. Mini-table addition preserves chart label size. Mini-tables use a left label column (28%) and equal period columns (72%); chart dates remain visible on the independent chart grid.
 - PPTX: native editable charts, embedded chart data, editable text/tables. PDF: static 16:9 visual pages. Download names include local date/time/seconds.
 - Presentation versions are implemented and published: named `.insightbase.json` files store definitions/text, never Excel observations. Opening recalculates from current local Excel while preserving saved date ranges. Imports are validated and staged before replacing the working deck. No localStorage, autosave or cloud history.
 - Rejected flexible-comparison and profit-bridge experiments are not part of the active app. Do not reintroduce them without request.
@@ -46,7 +51,11 @@ Verified: 2026-10-21. This file supersedes conflicting historical notes elsewher
 ## Publication and verification
 
 - Repository: https://github.com/iremyilmazi/InsightBase (public).
-- Last application release verified: `e909418326245a36bfb851516c5acb7fe8afd6a9`, including presentation versions and TL deposit cards. Five Windows-Live Raw files match that release.
-- 36 automated tests passed. Browser E2E verified five-slide/four-chart-type version save, refresh, cancel, exact restore, malformed/future-file rejection, and PPTX/PDF exports. Workbook reader: six sheets, zero warnings; TL deposit cards populated.
+- Current release: 2026-10-21, commit titled `Publish presentation refinements, quarterly P&L and approved sector deck`, including all current presentation formatting/date fixes, monthly/cumulative hybrid P&L and the authorized v10 definition. Prior app release: `e909418326245a36bfb851516c5acb7fe8afd6a9`; prior documentation head: `739d9198fb36422694c6d0b4ac1fc8a3e0df6e8e`. Three-file app and five-file Windows-Live Raw outputs rebuilt together.
+- Current local baseline: 47 automated tests passed after the presentation-label fixes. This release baseline is 47. Browser E2E verified five-slide/four-chart-type version save, refresh, cancel, exact restore, malformed/future-file rejection, and PPTX/PDF exports. Workbook reader: six sheets, zero warnings; TL deposit cards populated.
 - Windows JS line167 is bundled third-party presentation code; Node syntax check passes. User-reported remaining diagnostic cannot be identified without its exact message. Do not claim all Windows editor diagnostics are resolved.
 - The user explicitly authorized publishing this documentation refresh on 2026-10-21. This release changes Markdown only; no app/Windows rebuild or private data publication. Future publication requires user authorization for that work; prior approval is not an unlimited future instruction.
+
+## Authorized presentation definition
+
+On 2026-10-21 the user explicitly requested publishing the current app and v10 presentation definition, excluding PDF/PPTX. Only `presentations/Sektor-Hikayesi.insightbase.json` is included with its usage guide. This is a scoped exception to the saved-version privacy default. It contains configuration/editorial text, not workbook observation series; graphics recalculate locally. Other saved versions, workbook data and test/export artifacts remain excluded.

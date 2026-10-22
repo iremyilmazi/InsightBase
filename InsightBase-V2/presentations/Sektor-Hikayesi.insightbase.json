@@ -1,0 +1,336 @@
+{
+  "app": "InsightBase",
+  "schemaVersion": 2,
+  "name": "Sektör hikâyesi — 2025–2026 kümülatif görünüm v10",
+  "savedAt": "2026-10-21T15:37:58.865Z",
+  "defaults": {
+    "group": "Sektör",
+    "months": 6,
+    "end": "2026-10",
+    "unit": 1000
+  },
+  "slides": [
+    {
+      "title": "Kredide ticari büyüme, bireyselde yükselen takip oranı",
+      "layout": "double",
+      "comment": "Toplam kredi hacmi 24.42 trilyon TL. Ticari krediler büyürken kredi kartı bakiyesi daralıyor.",
+      "source": "Kaynak: yerel dataa.xlsx / BS_Sektör / 16 Ekim 2026",
+      "note": "Ekim geçici dönem. MoM: 16 Ekim / 11 Eylül. Takip oranı grafiği: ayın son mevcut gözlemi.",
+      "widgets": [
+        {
+          "title": "Ticari krediler büyüyor, kartlar daralıyor",
+          "type": "BS",
+          "basis": "monthly",
+          "aggregation": "monthly",
+          "kind": "bar",
+          "mode": "change",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2026-10",
+          "end": "2026-10",
+          "rows": [
+            3,
+            21,
+            31
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            3,
+            21,
+            31
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "change"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {},
+          "table": false
+        },
+        {
+          "title": "Bireysel kredi takip oranı yükseliyor",
+          "type": "BS",
+          "basis": "monthly",
+          "aggregation": "monthly",
+          "kind": "line",
+          "mode": "nominal",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2026-05",
+          "end": "2026-10",
+          "rows": [
+            104,
+            112
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            3,
+            12,
+            21
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "nominal"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {
+            "3": {
+              "unit": 1000000,
+              "decimals": 1
+            },
+            "12": {
+              "unit": 1000000,
+              "decimals": 1
+            },
+            "21": {
+              "unit": 1000000,
+              "decimals": 1
+            }
+          },
+          "table": true
+        }
+      ]
+    },
+    {
+      "title": "Mevduat artışı krediyi aşıyor, TL büyümesi vadelide",
+      "layout": "double",
+      "comment": "Kredi/mevduat oranı son bir aylık karşılaştırmada 1.01 puan düşerek 82.66% oldu.",
+      "source": "Kaynak: yerel dataa.xlsx / BS_Sektör / 16 Ekim 2026",
+      "note": "Ekim geçici dönem. MoM: 16 Ekim / 11 Eylül. Tutarlar nominal.",
+      "widgets": [
+        {
+          "title": "Mevduat krediye göre daha hızlı büyüyor",
+          "type": "BS",
+          "basis": "monthly",
+          "aggregation": "monthly",
+          "kind": "bar",
+          "mode": "change",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2026-10",
+          "end": "2026-10",
+          "rows": [
+            37,
+            3
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            37,
+            3
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "nominal"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {},
+          "table": false
+        },
+        {
+          "title": "TL mevduatın vadeli ve vadesiz gelişimi",
+          "type": "BS",
+          "basis": "monthly",
+          "aggregation": "monthly",
+          "kind": "bar",
+          "mode": "change",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2026-10",
+          "end": "2026-10",
+          "rows": [
+            38,
+            42,
+            50
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            42,
+            50
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "change"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {},
+          "table": false
+        }
+      ]
+    },
+    {
+      "title": "Kâr aylık toparlandı, geçen yılın altında kaldı",
+      "layout": "double",
+      "comment": "Ağustos kârı temmuza göre 14.92% arttı. Yıllık karşılaştırmada faaliyet giderleri net faiz gelirinden daha hızlı büyüyor.",
+      "source": "Kaynak: yerel dataa.xlsx / P&L_Sektör / 31 Ağustos 2026",
+      "note": "Sol: Excel kaynaklı yılbaşından itibaren kümülatif tutarlar. Ç1: ocak–mart, Ç2: ocak–haziran; temmuz ve ağustos kümülatif. Sağ: aylık YoY.",
+      "widgets": [
+        {
+          "title": "Net Profit: çeyrekler ve açık çeyreğin ayları",
+          "type": "PL",
+          "basis": "cumulative",
+          "aggregation": "quarterlyMonthly",
+          "kind": "column",
+          "mode": "nominal",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2025-01",
+          "end": "2026-08",
+          "rows": [
+            27
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            27
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "nominal"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {},
+          "table": false
+        },
+        {
+          "title": "Gider artışı net faiz geliri artışını aşıyor",
+          "type": "PL",
+          "basis": "monthly",
+          "aggregation": "monthly",
+          "kind": "bar",
+          "mode": "yoyChange",
+          "decimals": 2,
+          "unit": 1000,
+          "start": "2026-08",
+          "end": "2026-08",
+          "rows": [
+            49,
+            57,
+            65
+          ],
+          "groups": [
+            "Sektör"
+          ],
+          "tableRows": [
+            49,
+            57,
+            65
+          ],
+          "tableGroups": [
+            "Sektör"
+          ],
+          "tableModes": [
+            "yoyChange"
+          ],
+          "tableRowModes": {},
+          "tableRowFormats": {},
+          "table": false
+        }
+      ]
+    }
+  ],
+  "metricRefs": [
+    {
+      "type": "BS",
+      "row": 3,
+      "label": "Total Loans",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 21,
+      "label": "Ticari Krediler",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 31,
+      "label": "Kredi Kartları",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 104,
+      "label": "Total Loans NPL",
+      "format": "%"
+    },
+    {
+      "type": "BS",
+      "row": 112,
+      "label": "Bireysel Krediler NPL",
+      "format": "%"
+    },
+    {
+      "type": "BS",
+      "row": 12,
+      "label": "Bireysel Krediler",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 37,
+      "label": "Mevduatlar",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 38,
+      "label": "TL Mevduat",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 42,
+      "label": "Vadeli TL",
+      "format": "TL"
+    },
+    {
+      "type": "BS",
+      "row": 50,
+      "label": "Vadesiz TL",
+      "format": "TL"
+    },
+    {
+      "type": "PL",
+      "row": 27,
+      "label": "Cumulative Net Profit",
+      "format": "TL"
+    },
+    {
+      "type": "PL",
+      "row": 49,
+      "label": "Monthly Net Interest Income",
+      "format": "TL"
+    },
+    {
+      "type": "PL",
+      "row": 57,
+      "label": "Monthly Operating Expenses",
+      "format": "TL"
+    },
+    {
+      "type": "PL",
+      "row": 65,
+      "label": "Monthly Net Profit",
+      "format": "TL"
+    }
+  ]
+}

@@ -270,3 +270,36 @@ Sunum oluştur adds a compact version bar with Sürüm adı, Sürümü kaydet an
 ## Overview deposit cards — 2026-10-21
 
 Dashboard deposit cards now show [37,38,39,42,50]: total deposits, TL deposits, FX deposits, TL time deposits and TL demand deposits. Replace unsupported aggregate time/demand rows 41/49 with existing TL source metrics 42/50; pie compositions and full balance sheet catalog unchanged. Published Windows-Live JS line 167 belongs to bundled PptxGenJS/JSZip vendor code; Node syntax check passes. Exact external diagnostic still required before modifying third-party code. This follow-up remains local pending publication request; version-save feature remains unpublished.
+
+## Presentation percentage and negative-bar labels — 2026-10-21
+
+Presentation chart labels and mini-table percentage values now include %. Ratio movements retain puan, while nominal ratios use %. Nominal amount labels keep their original number/unit semantics. Negative horizontal-bar values are placed to the left of the endpoint with end anchoring; negative column values sit below the endpoint. This keeps labels outside same-colored fills in preview and PDF. Native PPTX uses supported inEnd bar/column labels with dark text and literal percentage suffix formatting, without rescaling chart data. Current narrative slide definitions and editorial text are unchanged. Local review only; no Windows rebuild or GitHub publication.
+
+
+## Shared mini-table measurement/unit — 2026-10-21
+
+When all mini-table rows share measurement and unit, show one caption above the period header and only metric/group names on the rows. Nominal volume caption is Hacim and nominal ratio caption is Oran; display expanded Turkish amount units (milyon/milyar/trilyon). Mixed measurements or units keep explicit row metadata and omit the shared caption. Browser preview, native editable PPTX tables and PDF use the same tableData caption/rows. The additional caption is counted in export table height allocation; date columns retain plot alignment. Saved-version schema and financial calculations are unchanged.
+
+The private narrative v4 includes the user's complementary six-month credit-volume table under the ratio chart: total, retail and commercial loans, nominal trillion TL with one decimal. This table provides volume context rather than repeating ratio observations. Local review only.
+
+
+## Left-column mini-table labels — 2026-10-21
+
+User requested metric names on the left instead of full-width rows above each value row. Mini-tables now use a 28% left label column and 72% equal period columns. Each metric/group/measurement combination occupies one row. The shared measurement/unit caption and mixed-unit fallback remain. Preview uses row-header cells, PPTX uses a native label cell plus period cells, and PDF draws matching columns. Chart plot geometry remains independent; chart category dates are visible again rather than assuming alignment to the table's different grid. This supersedes the full-span-label and plot-aligned-period table layout. Caption/table height allocation counts one row per metric. No schema or calculation changes. Local review only.
+
+
+## Direct horizontal-bar labels and shared context — 2026-10-21
+
+Horizontal bars identify metrics directly instead of requiring a separate legend. Preview/PDF center white names inside sufficiently wide/tall bars; short/dense bars put the full name immediately above in dark text, retaining outside numeric value labels. Native editable PPTX enables series-name/value labels at center and hides the bar legend. Other chart types retain metric-only legends. Multi-group selections retain group names per series, and mixed source currencies retain currency per series so meanings are not lost.
+
+Chart subtitles share bank group(s), meaningful measurement (Hacim/Oran for nominal), unit, applicable source currency for growth, and a Turkish month/range once below the title. Do not describe ratio-only charts as TL amounts. Common mini-table captions include the single selected table group independently of the chart group; mixed table settings still show their row metadata and group caption. No calculation, unit scaling or version schema changes. Local source/private v6 export only.
+
+
+## Unambiguous presentation dates — 2026-10-21
+
+Two-digit year labels could be mistaken for a day (Eki 26 meant October 2026). Presentation months now use four-digit years. Single-month selections with one common observed source date show the full observation date in the subtitle. Current incomplete-month chart/table slots use dd.mm.yyyy from actual point sourceDate, never the calendar slot's month-end. Multi-month subtitles use month/full-year start and the actual current partial-month observation date when common. Completed historical slots remain month/year labels. If selected series have different source dates or no observation, keep the month/year label rather than inventing a common date. Single-period horizontal bars omit their redundant category-axis date since the subtitle carries it. Preview, native PPTX caches/tables and PDF use the same rules. Calculation baselines and selected ranges are unchanged.
+
+
+## P&L period grouping — 2026-10-21
+
+Sunum oluştur → Grafik → Dönem görünümü exposes Aylık and Tam çeyrek + açık çeyrek ayları for P&L only. Full quarters and remaining months share one axis, with explicit quarter/month disclosure. Change-mode captions and corresponding mini-table measurements read QoQ / MoM. Selecting hybrid preserves the chosen monthly/cumulative basis; ratios display a validation message and block export instead of fabricating quarterly levels. Dates, group, units, decimals and independent table selections remain configurable. Monthly mode is the default and BS has no new period control. The current private deck's deposit right chart uses total TL deposits, TL time deposits and TL demand deposits in that order, as requested.

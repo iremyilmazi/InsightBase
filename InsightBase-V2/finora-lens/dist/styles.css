@@ -87,3 +87,12 @@
 .deck-table-format{margin:0 0 10px;padding-bottom:8px;border-bottom:1px solid #edf1f6}.deck-table-format label{font-size:10px;color:#66758b}
 
 .deck-version-bar{display:flex;align-items:end;gap:10px;flex-wrap:wrap;margin:0 0 14px}.deck-version-bar>label:first-child{font-size:11px;color:#66758b;display:grid;gap:5px}.deck-version-bar input:not([type=file]){border:1px solid var(--line);border-radius:7px;padding:10px;font:inherit;color:#17243b;background:white}.deck-version-bar>span{font-size:11px;color:#66758b;align-self:center}.deck-version-open{position:relative;cursor:pointer;overflow:hidden;display:inline-block}.deck-version-open input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}.deck-version-confirm{display:flex;align-items:center;flex-wrap:wrap;gap:12px;padding:14px;background:#f0f5ff;border:1px solid #cddbf8;border-radius:10px;margin-bottom:14px}.deck-version-confirm span{font-size:12px;flex:1;min-width:200px}
+
+/* Shared mini-table measurement and unit appear once above the periods. */
+.deck-table caption{text-align:left;caption-side:top;color:#66758b;font-size:.85cqw;font-weight:500;line-height:1.25;padding:.35cqw 0 .45cqw}
+
+/* Table metric labels occupy a dedicated left column. Chart geometry stays independent. */
+.deck-widget .deck-table{margin-left:0;margin-right:0;width:100%;max-width:100%}
+.deck-widget .deck-table th,.deck-widget .deck-table td{padding:.45cqw .15cqw;font-size:.95cqw}
+.deck-widget .deck-table th:first-child,.deck-widget .deck-table td:first-child{width:28%;text-align:left;white-space:normal;padding-right:.65cqw}
+.deck-widget .deck-table th[scope=row]{font-weight:400;color:#526582;vertical-align:middle}

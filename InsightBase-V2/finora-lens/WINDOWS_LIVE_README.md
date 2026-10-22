@@ -44,3 +44,7 @@ TL: milyon TL. USD: milyon USD. %: oran. FX tutarlar TL'ye çevrilmez. Formatı 
 - Boş veya bozuk ekran görürsen Raw içeriğinin tamamını kopyaladığını ve UTF-8 kaydettiğini kontrol et.
 - Excel uyarılarında sheet/başlık/Format bilgisini güncel şablonla karşılaştır.
 - Fiziksel Windows testi yapılmadı; paket, hesaplamalar ve yerel tarayıcı akışı doğrulandı.
+
+## Hazır sunum sürümünü açma
+
+GitHub'da `InsightBase-V2/presentations/Sektor-Hikayesi.insightbase.json` dosyasını Raw olarak alıp UTF-8 ile aynı uzantıda kaydedebilirsin. Güncel uygulamada **Sunum oluştur → Sürüm aç → Bu sürümü aç** yolunu kullan. Dosya sunum düzenini ve metinlerini içerir; grafikler kendi dataa.xlsx dosyandan hesaplanır. Başlık/yorumlar otomatik güncellenmez. PDF veya PowerPoint indirmen gerekmez. Bu sürüm için güncel uygulama dosyalarını birlikte al.
