@@ -342,3 +342,8 @@ Each selected table metric exposes 0–4 decimal places; nominal volume metrics 
 ## Follow-up release approved — 2026-10-21
 
 User approved publishing stable chart-label typography, adaptive line bounds and independent table-row unit/decimal settings. All 32 automated tests pass. Canonical source and Windows-Live Raw distribution are rebuilt together; real workbook and TXT/private preview remain excluded.
+
+
+## Editor diagnostic cleanup — 2026-10-21
+
+Removed duplicate showCatName/showTitle chart object keys (identical values; behavior unchanged) and added standard line-clamp alongside -webkit-line-clamp. Synchronized canonical and Windows-Live JS/CSS. Published bundle passes Node syntax check; local 36-test regression suite passes. User-reported third JS diagnostic remains unconfirmed without its actual message. Presentation version save/open is a separate local-only trial and is intentionally absent from this release; no private workbook is published.
