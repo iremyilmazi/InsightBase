@@ -315,3 +315,10 @@ Shared source/group/unit captions identify a different table source. Values foll
 ## Commentary below slide title — 2026-10-22
 
 Slide commentary now appears immediately after the main slide title and before widget headings/charts, in preview, PDF and editable PPTX. Empty comments consume no dedicated commentary block. Exports reserve top space for commentary and reuse the former bottom commentary area for charts/tables; source/footer remain at the bottom. Existing saved versions need no migration: text, financial calculations and schema are unchanged. The user authorized publication of this change; canonical source and both Windows distributions are rebuilt together.
+
+
+## Export visual consistency — 2026-10-22
+
+PDF now lays out the same slide markup/CSS as browser preview at the current slide width, then paints its measured text, table cells, borders, backgrounds and SVGs into a 1920×1080 canvas. SVG computed fill/stroke/font styles and aspect-ratio behavior are retained; no separate PDF table-value/layout calculation is used. Temporary offscreen markup and image URLs are released after each slide, including failures. This supersedes the older independently reconstructed PDF layout.
+
+Editable PPTX keeps native charts/tables. Single-series non-pie charts use one series color instead of a point palette; multi-series charts and pies retain their distinct colors. Horizontal-bar and pie interior labels are white. Table captions are separate editable text above the native table, avoiding merged-caption column-width fallback. Source data, calculations, narrative definitions and version schema are unchanged. The user authorized publication; source and both Windows distributions are rebuilt together.

@@ -25,3 +25,6 @@ Only this one presentation definition is authorized for publication; it contains
 
 
 2026-10-22 follow-up: the user authorized the commentary-layout release, commit title `Move slide commentary below the title`. Source and both Windows distributions are rebuilt together. Approved v13 definition is unchanged. Private workbook and QA exports remain excluded; this authorization does not cover future unrelated work.
+
+
+2026-10-22 export follow-up: user authorized release `Preserve preview styling and tables in presentation exports`, covering preview-based PDF rendering and native PPTX styling/table fixes, canonical source and both rebuilt Windows distributions. Approved v13 definition is unchanged; private data and QA artifacts remain excluded. Future unrelated publication requires authorization.

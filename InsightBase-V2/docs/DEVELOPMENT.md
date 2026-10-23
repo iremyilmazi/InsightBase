@@ -72,3 +72,6 @@ Local 2026-10-22 table-source extension uses schema 3 for independent source/bas
 
 
 2026-10-22 commentary layout publication: user authorized publishing the title/comment/content order. Both Windows distributions rebuilt using the prescribed builders; package JavaScript syntax passed. Approved v13 definition and schema remain unchanged.
+
+
+2026-10-22 export consistency release: user authorized publishing the preview-based PDF renderer and native PPTX styling/table fixes. Rebuilt three-file Windows app and five-file Live wrapper; 50 tests and packaged JS syntax checks passed. Saved presentation definition unchanged.

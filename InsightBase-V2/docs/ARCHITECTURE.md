@@ -68,3 +68,8 @@ The user-approved v10 definition is published under presentations/Sektor-Hikayes
 ## Table-source separation — 2026-10-22
 
 Presentation tableType/tableBasis are independent widget fields with legacy inheritance. tableWidget builds a source-scoped calculation context; tablePoints maps that context's output to chart slots by endpoint date. Pickers, formatting, validation and semantic metric references use the table catalog separately from chart rows. Schema 3 guards cross-source/basis definitions; schemas 1/2 remain readable. Table dictionaries contain IDs from one selected source, so source switches clear stale row settings to avoid ID collisions.
+
+
+### PDF rendering revision — 2026-10-22
+
+Presentation PDF uses the shared preview DOM/CSS layout, measures text runs/table cells and paints them plus styled SVGs onto a high-resolution slide canvas. It does not reconstruct a separate chart/table layout. Offscreen elements are removed in finally blocks; no network resources or new dependencies are introduced. Native editable PPTX remains independently generated.

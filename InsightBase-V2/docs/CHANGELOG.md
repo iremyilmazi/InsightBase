@@ -515,3 +515,16 @@ Publication verified: application/v13 commit 228ed174d2fd4e69f37cf141024a10c513c
 ## 2026-10-22 — Authorized commentary-layout publication
 
 User requested publishing the preceding local commentary change. Built the exact three-file Windows app and separate five-file Live wrapper with the prescribed scripts; packaged JS syntax check passed. Release scope: canonical layout source, regression assertions, affected documentation and rebuilt distribution files/previously tracked app ZIP. Approved v13 definition, financial calculations and schema unchanged. Private Excel, PDF/PPTX and screenshots are excluded. Publication uses the current remote parent and a non-forced expected-head update.
+
+
+## 2026-10-22 — PDF/PPTX visual consistency (local)
+
+- Replaced independently rebuilt PDF layout with painting of measured preview DOM/CSS, including all visible table cells and SVG computed colors/fonts/aspect ratios. Zero values remain visible; chart geometry follows preview. Temporary DOM and SVG URLs are cleaned up on success/failure.
+- Native PPTX non-pie single-series charts use one color; bar/pie interior labels use white. Moved shared table captions into separate editable text so native table grids retain intended column widths.
+- Reviewed and updated UI, export, architecture and current-state docs. Financial formulas, schema and saved definitions are unchanged. No Windows rebuild or GitHub publication requested for this follow-up.
+- Verification: all 50 Node tests passed, including native single-series color/interior-label assertions. Real-workbook three-slide preview/PDF/PPTX browser export passed with no page errors. Visually reviewed PDF table numbers and white bar labels. Synthetic pie/table fixture preserved zero values; rendered pie bounds measured 316×316 pixels. Native PPTX tables contain numeric cells and matching header/grid column counts. Actual Windows/PowerPoint execution remains untested. Private QA files remain outside the repository.
+
+
+## 2026-10-22 — Authorized export consistency release
+
+User requested GitHub publication of the PDF/PPTX fixes. Rebuilt three-file Windows app and five-file Live wrapper using the prescribed builders. All 50 Node tests and packaged JavaScript syntax checks passed. Publication scope includes source, regression assertions, affected docs, rebuilt JS and previously tracked Windows app ZIP. Approved v13 presentation, schemas and calculations unchanged; Excel, private screenshots and PDF/PPTX excluded. Use current remote parent and non-forced expected-head update, then verify resulting tree hashes.

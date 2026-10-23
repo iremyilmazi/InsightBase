@@ -77,3 +77,13 @@ Slide commentary is immediately below the main title in preview/PDF/editable PPT
 ## Commentary layout release — 2026-10-22
 
 User authorized GitHub publication of the commentary layout. This supersedes the local-only status above. Release commit title: `Move slide commentary below the title`. Canonical source, three-file Windows app and five-file Live wrapper were rebuilt together. The approved v13 presentation definition is unchanged and uses the new layout when opened in the updated app. Fifty tests and source browser/PDF/PPTX checks passed; packaged JavaScript syntax checked. Private Excel and QA exports remain excluded.
+
+
+## Local export consistency fixes — 2026-10-22
+
+PDF reuses preview layout and computed SVG styles to retain table values, interior label colors and pie proportions. PPTX single-series chart colors are fixed per series, interior bar/pie labels are white and captions no longer trigger table column-width fallback. Fifty Node tests pass. Browser checks exported the three-slide deck without errors; a synthetic pie/table fixture preserved zero values and measured a circular 316×316 pixel pie. Native PPTX table grids/numeric cells were checked. No financial/schema/approved-definition changes. These fixes are local; GitHub and Windows packages still contain the preceding commentary-layout release. No actual PowerPoint/Windows execution was performed.
+
+
+## Export consistency release — 2026-10-22
+
+The user authorized publication of the preceding PDF/PPTX fixes. This supersedes their local-only status. Release title: `Preserve preview styling and tables in presentation exports`. Both Windows distributions were rebuilt with the prescribed builders; 50 Node tests and packaged JavaScript syntax checks pass. The approved v13 definition and financial/schema contracts are unchanged. Private Excel and QA artifacts remain excluded. Actual Windows/PowerPoint execution remains untested.
