@@ -19,6 +19,6 @@ Read [docs/README.md](docs/README.md), [CURRENT_STATE.md](docs/CURRENT_STATE.md)
 
 ## Publication scope
 
-Current release authorized on 2026-10-22: independent BS/P&L table source and table P&L basis (schema 3), plus the approved v13 definition at `presentations/Sektor-Hikayesi.insightbase.json`. Release commit title: `Publish independent table sources and context-reviewed v13 deck`. Source, three-file Windows app and five-file Live wrapper rebuilt together. Prior verified app release: dc99aed685b0817c0e7f0a0a9e195965ae2fe7a7; prior documentation head: ec3de1645552438a00ce4d79f5895bb070f00de4.
+Current release verified at `228ed174d2fd4e69f37cf141024a10c513c1b271` on 2026-10-22: independent BS/P&L table source and table P&L basis (schema 3), plus the approved v13 definition at `presentations/Sektor-Hikayesi.insightbase.json`. Release commit title: `Publish independent table sources and context-reviewed v13 deck`. Source, three-file Windows app and five-file Live wrapper rebuilt together. Prior verified app release: dc99aed685b0817c0e7f0a0a9e195965ae2fe7a7; prior documentation head: ec3de1645552438a00ce4d79f5895bb070f00de4.
 
 Only this one presentation definition is authorized for publication; it contains definitions/editorial text and recalculates from the user's local Excel. Other saved versions, Excel, PDF/PPTX, private screenshots/test outputs remain excluded. Future publication requires user authorization for that work. Preserve current remote parent and use a non-forced expected-head update.
