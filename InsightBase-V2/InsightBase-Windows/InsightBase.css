@@ -97,4 +97,6 @@
 .deck-widget .deck-table th:first-child,.deck-widget .deck-table td:first-child{width:28%;text-align:left;white-space:normal;padding-right:.65cqw}
 .deck-widget .deck-table th[scope=row]{font-weight:400;color:#526582;vertical-align:middle}
 
+.deck-widget .deck-table.is-wide thead th{font-size:.75cqw;white-space:normal;line-height:1.2}
+
 .windows-start{margin-bottom:22px}.windows-start[hidden]{display:none}.windows-start p,.windows-start li{font-size:14px;line-height:1.7}.windows-start li{margin-bottom:10px}.windows-start details{margin-top:14px}.windows-start summary{cursor:pointer;font-size:14px;color:var(--blue)}.windows-start textarea{width:100%;min-height:140px;margin-top:12px;font:12px/1.6 Consolas,monospace;border:1px solid var(--line);border-radius:6px;padding:12px;resize:vertical}

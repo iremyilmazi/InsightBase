@@ -25,3 +25,5 @@ Presentation P&L flow amounts can show complete calendar quarters as three-month
 ## Scope boundaries
 
 Data-quality-summary development, profit bridge and flexible-comparison experiments were declined. Custom floating pie tooltip and verbose period-comparison footer were rolled back. Do not treat old proposals or historical demo files as accepted product requirements. V1 remains deleted. User can request changes to these decisions explicitly.
+
+Presentation tables can independently select a balance-sheet or P&L source and P&L monthly/cumulative basis. A table uses one source at a time and shares chart period columns while preserving its own financial semantics.

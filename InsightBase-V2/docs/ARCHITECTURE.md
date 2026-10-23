@@ -63,3 +63,8 @@ Presentation periodSlots and widgetPoints provide shared monthly/hybrid calendar
 Cumulative hybrid widgets retain basis/metric identities and sample exact cumulative source endpoints; changing aggregation no longer forces monthly basis. Schema-2 hybrid validation accepts either P&L basis.
 
 The user-approved v10 definition is published under presentations/Sektor-Hikayesi.insightbase.json with a README. It is separate from the three-file app and five-file launcher distribution, and contains no workbook observation series. Other local versions/exports remain private.
+
+
+## Table-source separation — 2026-10-22
+
+Presentation tableType/tableBasis are independent widget fields with legacy inheritance. tableWidget builds a source-scoped calculation context; tablePoints maps that context's output to chart slots by endpoint date. Pickers, formatting, validation and semantic metric references use the table catalog separately from chart rows. Schema 3 guards cross-source/basis definitions; schemas 1/2 remain readable. Table dictionaries contain IDs from one selected source, so source switches clear stale row settings to avoid ID collisions.

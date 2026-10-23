@@ -465,3 +465,39 @@ Pre-publication verification: remote main inspected at 739d9198fb36422694c6d0b4a
 Production-bundle verification also passed before publication: staged rebuilt HTML/CSS/JS read the real adjacent workbook, restored the approved v10 definition, retained eight cumulative P&L periods and the requested deposit trio, with no configuration or browser page errors. Physical Windows execution remains unverified.
 
 Publication verified: application/deck commit dc99aed685b0817c0e7f0a0a9e195965ae2fe7a7 is on main. All 25 changed file SHAs match the release manifest; all unchanged remote files were preserved. The resulting tree contains 57 files and no Excel, PDF/PPTX, screenshots or local-data paths. The only presentation definition is the explicitly approved v10 file. This follow-up records the verified application commit; it changes documentation only.
+
+
+## 2026-10-22 — Independent balance-sheet/P&L table source
+
+Added Tablo veri kaynağı selector and independent table P&L monthly/cumulative basis. Each table selects one catalog independently from chart settings. Source changes clear stale table-only IDs/modes/formats/search; basis changes remap table rows/settings without altering the chart. Labels, currencies, ratios and validation now resolve through tableWidget/tablePoints. Cross-source captions identify the source; BS rows on hybrid P&L charts are endpoint stocks rather than quarter sums. Wide period headers are compact/wrapping.
+
+Independent source/basis definitions use schema 3, typed metric references and table-catalog validation; schemas 1/2 inherit their original source/basis and remain supported. Invalid/downgraded imports reject without replacing the working deck. Reviewed DATA_CONTRACT: no workbook/schema ID changes. Financial formulas remain unchanged; source routing and period alignment are explicit in CALCULATIONS.
+
+Verification: all 50 Node tests passed, including cross-source quarter stock versus flow totals, independent table controls/formats, typed schema-3 round-trip/rejection, legacy compatibility and native table exports. Real-workbook browser UI changed P&L-chart tables to BS, independently selected metrics/units/precision, matched all cells to source endpoint observations and preserved chart configuration. Schema-3 file chooser restore, PDF/PPTX downloads and table-only cumulative selection passed with zero browser page errors. Credit/table preview and rendered P&L PDF page visually inspected; native table source captions/BS labels verified. Private check artifacts remain in /private/tmp. Published v10, GitHub and Windows packages unchanged.
+
+## 2026-10-22 — Add the user's P&L YoY table to the working deck
+
+Created private narrative v11 matching the supplied screenshot: left P&L chart retains cumulative Net Profit and its existing quarter/month slots, while its independent P&L table uses monthly Net Profit, YoY measurement and one decimal. Historical comparisons without source history remain unavailable. Other slide configurations and the right P&L chart are unchanged. This uses the local schema-3 table-source/basis feature; published v10 remains unchanged.
+
+Verification: actual browser table controls selected P&L/monthly source, metric, YoY and precision. All displayed table cells matched the screenshot, the chart remained cumulative, and the other two slides/right chart were deep-compared unchanged. Version downloaded through the real save button and restored through the chooser, preserving the table exactly, with zero browser page errors. P&L slide preview visually inspected. No application/calculation/schema contract changes in this artifact-only task, so no additional regression run required. No PDF/PPTX generated, Windows rebuild or GitHub publication. Private definition/preview remain ignored under outputs/sunum-2026-10-22/yoy-tablo-v11; no private financial values in documentation.
+
+## 2026-10-22 — Strengthen the private deck's deposit message
+
+Applied the user's accepted deposit narrative proposal to private v12: title contrasts faster deposit growth with declining TL demand share; the slide comment gives the prior/current TL demand share and movement, the LDR change, and concentration in time deposits. Retained both existing charts and the requested TL-total/time/demand ordering. The P&L YoY table from v11 and credit page remain unchanged.
+
+Verification: recalculated demand/total shares at exactly matched current and engine-selected comparison dates, checked nonnegative components and reconciliation at both dates, and derived LDR movement from the same engine comparison. Browser controls updated only deposit title/comment, deep comparisons confirmed all widgets and other slides unchanged. The real version-save download and file-chooser restore preserved the new text; no browser page errors. Deposit slide visually inspected. No application/calculation/schema contract change or additional regression run, no PDF/PPTX generation, Windows rebuild or GitHub publication. Private v12 definition/preview remain ignored under outputs/sunum-2026-10-22/mevduat-v12; no private observations in documentation.
+
+## 2026-10-22 — Audit narrative context across the private deck
+
+Applied the user-approved deposit explanation connecting displayed time/demand growth to the change in demand share, replacing the isolated share-change line. Removed unsupported standalone LDR figures from the comment and explained the credit/deposit growth relationship instead. Audited all three pages: credit commentary now directly interprets the displayed growth/risk comparisons; P&L headline/comment reference the displayed annual comparison rather than an unshown monthly recovery. P&L left chart title explicitly says cumulative; the note distinguishes cumulative chart, period-flow YoY table and monthly YoY right chart.
+
+Verification: numeric deposit/P&L messages recalculated from current local source observations, all chart/table financial configurations deep-compared unchanged, schema-3 version downloaded and restored with exact slide equality and zero browser page errors. All three final slide previews inspected. Private v13 stays ignored under outputs/sunum-2026-10-22/baglam-v13. No app/calculation/schema contract changed, no additional application regression run, PDF/PPTX generation, Windows rebuild or GitHub publication. No private financial values in documentation.
+
+
+## 2026-10-22 — Publish independent table sources and context-reviewed v13
+
+User explicitly authorized the latest version. Replaced the single approved presentation path with v13 (schema 3) including the P&L period-flow YoY table and context-reviewed credit/deposit/P&L text. Release includes independent table source/basis support and matching source/three-file Windows/five-file Live output. No PDF/PPTX, Excel or other private outputs included.
+
+Pre-publication checks: remote main inspected at ec3de1645552438a00ce4d79f5895bb070f00de4, preserving its tree as the release base. All 50 Node tests passed. Previous real-workbook UI tests verified independent source/basis, exact stock endpoint values, schema-3 restore/export and exact current narrative restore; all three final slide previews inspected. Publication uses a non-forced expected-head update and resulting blob hashes are checked.
+
+Rebuilt production bundle also passed the real-Excel/approved-v13 restore check: three slides, eight cumulative P&L periods, requested deposit trio and no configuration/browser page errors. Canonical/Live file counts and bundled JS syntax passed. Physical Windows testing remains unverified.

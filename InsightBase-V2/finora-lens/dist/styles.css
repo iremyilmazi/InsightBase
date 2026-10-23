@@ -96,3 +96,5 @@
 .deck-widget .deck-table th,.deck-widget .deck-table td{padding:.45cqw .15cqw;font-size:.95cqw}
 .deck-widget .deck-table th:first-child,.deck-widget .deck-table td:first-child{width:28%;text-align:left;white-space:normal;padding-right:.65cqw}
 .deck-widget .deck-table th[scope=row]{font-weight:400;color:#526582;vertical-align:middle}
+
+.deck-widget .deck-table.is-wide thead th{font-size:.75cqw;white-space:normal;line-height:1.2}

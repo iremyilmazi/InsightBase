@@ -2,7 +2,7 @@
 
 > **Mandatory documentation maintenance:** Every development must review and update the affected Markdown documents in the same task, including fixes, features, calculations, UI, data mapping, packaging and operational rules. Record the change and actual verification in CHANGELOG.md. If no contract changes, record that conclusion and verification in the change log. A task is incomplete with stale documentation. Never include private financial values in documentation.
 
-Verified against current source on **2026-10-21**. Documentation is English for agent portability; the application and user communication are Turkish.
+Verified against current source on **2026-10-22**. Documentation is English for agent portability; the application and user communication are Turkish.
 
 ## Required reading order
 

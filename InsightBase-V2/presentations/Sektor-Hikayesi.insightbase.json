@@ -1,8 +1,8 @@
 {
   "app": "InsightBase",
-  "schemaVersion": 2,
-  "name": "Sektör hikâyesi — 2025–2026 kümülatif görünüm v10",
-  "savedAt": "2026-10-21T15:37:58.865Z",
+  "schemaVersion": 3,
+  "name": "Sektör hikâyesi — bağlamı netleştirilmiş v13",
+  "savedAt": "2026-10-22T06:25:22.594Z",
   "defaults": {
     "group": "Sektör",
     "months": 6,
@@ -13,7 +13,7 @@
     {
       "title": "Kredide ticari büyüme, bireyselde yükselen takip oranı",
       "layout": "double",
-      "comment": "Toplam kredi hacmi 24.42 trilyon TL. Ticari krediler büyürken kredi kartı bakiyesi daralıyor.",
+      "comment": "Ticari krediler toplam kredilerden daha hızlı büyüyor, kart bakiyesi ise geriliyor. Bireysel kredilerde takip oranı, toplam kredi takip oranından daha yüksek.",
       "source": "Kaynak: yerel dataa.xlsx / BS_Sektör / 16 Ekim 2026",
       "note": "Ekim geçici dönem. MoM: 16 Ekim / 11 Eylül. Takip oranı grafiği: ayın son mevcut gözlemi.",
       "widgets": [
@@ -36,6 +36,8 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "BS",
+          "tableBasis": "monthly",
           "tableRows": [
             3,
             21,
@@ -69,6 +71,8 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "BS",
+          "tableBasis": "monthly",
           "tableRows": [
             3,
             12,
@@ -100,9 +104,9 @@
       ]
     },
     {
-      "title": "Mevduat artışı krediyi aşıyor, TL büyümesi vadelide",
+      "title": "Mevduat büyümesi krediyi aşıyor, TL vadesizin payı geriliyor",
       "layout": "double",
-      "comment": "Kredi/mevduat oranı son bir aylık karşılaştırmada 1.01 puan düşerek 82.66% oldu.",
+      "comment": "Mevduatın krediden hızlı büyümesi kredi/mevduat oranını düşürüyor.\nTL vadeli mevduat 3.86% büyürken vadesiz mevduat 0.80% azaldı. Bu ayrışma, vadesizin toplam TL mevduat içindeki payını 16.67%’den 16.04%’e düşürdü.",
       "source": "Kaynak: yerel dataa.xlsx / BS_Sektör / 16 Ekim 2026",
       "note": "Ekim geçici dönem. MoM: 16 Ekim / 11 Eylül. Tutarlar nominal.",
       "widgets": [
@@ -124,6 +128,8 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "BS",
+          "tableBasis": "monthly",
           "tableRows": [
             37,
             3
@@ -157,6 +163,8 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "BS",
+          "tableBasis": "monthly",
           "tableRows": [
             42,
             50
@@ -174,14 +182,14 @@
       ]
     },
     {
-      "title": "Kâr aylık toparlandı, geçen yılın altında kaldı",
+      "title": "Ağustos kârı yıllık geriliyor, giderler net faiz gelirinden hızlı büyüyor",
       "layout": "double",
-      "comment": "Ağustos kârı temmuza göre 14.92% arttı. Yıllık karşılaştırmada faaliyet giderleri net faiz gelirinden daha hızlı büyüyor.",
+      "comment": "Ağustos net kârı geçen yılın aynı ayının 11.09% altında. Faaliyet giderlerindeki 39.53% artış, net faiz geliri artışını (32.57%) aşıyor.",
       "source": "Kaynak: yerel dataa.xlsx / P&L_Sektör / 31 Ağustos 2026",
-      "note": "Sol: Excel kaynaklı yılbaşından itibaren kümülatif tutarlar. Ç1: ocak–mart, Ç2: ocak–haziran; temmuz ve ağustos kümülatif. Sağ: aylık YoY.",
+      "note": "Sol: yılbaşından itibaren kümülatif kâr. Alt tablo: dönemsel kârın YoY değişimi (çeyreklerde üç ay, açık çeyrekte tek ay). Sağ: ağustos aylık YoY.",
       "widgets": [
         {
-          "title": "Net Profit: çeyrekler ve açık çeyreğin ayları",
+          "title": "Kümülatif Net Profit: çeyrek sonları ve son aylar",
           "type": "PL",
           "basis": "cumulative",
           "aggregation": "quarterlyMonthly",
@@ -197,8 +205,10 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "PL",
+          "tableBasis": "monthly",
           "tableRows": [
-            27
+            65
           ],
           "tableGroups": [
             "Sektör"
@@ -206,9 +216,18 @@
           "tableModes": [
             "nominal"
           ],
-          "tableRowModes": {},
-          "tableRowFormats": {},
-          "table": false
+          "tableRowModes": {
+            "65": [
+              "yoyChange"
+            ]
+          },
+          "tableRowFormats": {
+            "65": {
+              "unit": 1000,
+              "decimals": 1
+            }
+          },
+          "table": true
         },
         {
           "title": "Gider artışı net faiz geliri artışını aşıyor",
@@ -229,6 +248,8 @@
           "groups": [
             "Sektör"
           ],
+          "tableType": "PL",
+          "tableBasis": "monthly",
           "tableRows": [
             49,
             57,
@@ -316,6 +337,12 @@
     },
     {
       "type": "PL",
+      "row": 65,
+      "label": "Monthly Net Profit",
+      "format": "TL"
+    },
+    {
+      "type": "PL",
       "row": 49,
       "label": "Monthly Net Interest Income",
       "format": "TL"
@@ -324,12 +351,6 @@
       "type": "PL",
       "row": 57,
       "label": "Monthly Operating Expenses",
-      "format": "TL"
-    },
-    {
-      "type": "PL",
-      "row": 65,
-      "label": "Monthly Net Profit",
       "format": "TL"
     }
   ]

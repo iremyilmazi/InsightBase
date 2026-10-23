@@ -12,7 +12,7 @@
 - Line scales fit finite observations with22% span padding; minimum span4% of magnitude or .01. Bars retain zero with18% outer padding. Scale bounds do not change financial values.
 - Percentage chart labels and mini-table values include a trailing %. Nominal ratios use %, ratio changes use puan, and nominal amounts keep numeric labels with their stated currency/unit. PPTX uses a literal percent suffix for percentage-point-scaled data; pie percentages retain true percent formatting. Negative SVG/PDF bar labels sit outside the negative endpoint (horizontal left/end anchor, vertical below); native PPTX bar/column labels use the supported inEnd placement and dark text.
 - PPTX contains native editable charts, embedded selected data, text and tables; PDF is static visual output. Filenames include local date/time/seconds. No vertical value labels on presentation charts; points/bars show values.
-- Named portable versions are supported: schema 1 (monthly-only) or schema 2 (hybrid P&L) `.insightbase.json` envelope has app, schemaVersion, name, savedAt, defaults, slides, metricRefs. Definitions exclude workbook observations and runtime IDs. Current Excel is used on restore; saved date ranges stay fixed. Validation caps5MB/100slides, checks identifiers/semantics/enums/ranges/text; import stages confirmation and regenerates IDs. No localStorage/autosave/cloud history.
+- Named portable versions are supported: schema 1 (monthly-only), schema 2 (hybrid P&L), or schema 3 (independent table source/basis) `.insightbase.json` envelope has app, schemaVersion, name, savedAt, defaults, slides, metricRefs. Definitions exclude workbook observations and runtime IDs. Current Excel is used on restore; saved date ranges stay fixed. Validation caps5MB/100slides, checks identifiers/semantics/enums/ranges/text; import stages confirmation and regenerates IDs. No localStorage/autosave/cloud history.
 - Latest published implementation and verification are in CURRENT_STATE. The following dated implementation notes retain evolution history and must not restore old six-month/synthetic-only/TL-only/no-save restrictions.
 
 ## Historical implementation notes and subsequent amendments
@@ -211,3 +211,14 @@ Portable versions with any hybrid widget use schemaVersion 2 and persist aggrega
 ## Scoped release authorization — 2026-10-21
 
 Current formatting/date/hybrid/cumulative improvements are authorized for the current application release. The user additionally authorized publishing only v10 at presentations/Sektor-Hikayesi.insightbase.json, with no PDF/PPTX or workbook. Other historical local-only notes are superseded for this release. Future versions still require explicit authorization.
+
+
+## Independent table source/basis — 2026-10-22
+
+Optional tableType and tableBasis decouple mini-tables from chart type/basis; absent fields inherit chart semantics. One source is selected per table. Chart dates remain the column authority. tableWidget/tablePoints resolve labels, source catalog, ratios/currencies, monthly/cumulative rows and formatting independently and align results by slot date. Preview, native editable PPTX tables and PDF consume the same tableData.
+
+A definition with a different table source/basis requires schema 3. Readers accept schemas 1/2/3, validate table IDs/formats/modes against its own catalog, use typed metricRefs (type plus stable ID), reject invalid P&L basis selections and prevent silent schema downgrades. Older files retain their existing interpretation; older app builds reject schema 3 instead of confusing overlapping BS/PL IDs. No observations are added to definitions. Independent-source copies and published v10 files remain separate; this local feature is not yet in Windows/public Raw.
+
+## Schema-3/v13 publication authorized — 2026-10-22
+
+User authorized releasing independent table source/basis and the current v13 definition. The schema-3 feature is included in production source/Windows output for this release; earlier local-only statements are historical. Only presentations/Sektor-Hikayesi.insightbase.json is published, replacing approved v10 with v13; no workbook/PDF/PPTX or private checks.

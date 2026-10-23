@@ -2,7 +2,7 @@
 
 > **Mandatory documentation maintenance:** Every development must review and update the affected Markdown documents in the same task, including fixes, features, calculations, UI, data mapping, packaging and operational rules. Record the change and actual verification in CHANGELOG.md. If no contract changes, record that conclusion and verification in the change log. A task is incomplete with stale documentation. Never include private financial values in documentation.
 
-Verified: 2026-10-21. This file supersedes conflicting historical notes elsewhere. Update it whenever the current implementation, restrictions or release status changes.
+Verified: 2026-10-22. This file supersedes conflicting historical notes elsewhere. Update it whenever the current implementation, restrictions or release status changes.
 
 ## Product and environment
 
@@ -52,10 +52,18 @@ Verified: 2026-10-21. This file supersedes conflicting historical notes elsewher
 
 - Repository: https://github.com/iremyilmazi/InsightBase (public).
 - Current release verified: `dc99aed685b0817c0e7f0a0a9e195965ae2fe7a7` (2026-10-21), commit titled `Publish presentation refinements, quarterly P&L and approved sector deck`, including all current presentation formatting/date fixes, monthly/cumulative hybrid P&L and the authorized v10 definition. Prior app release: `e909418326245a36bfb851516c5acb7fe8afd6a9`; prior documentation head: `739d9198fb36422694c6d0b4ac1fc8a3e0df6e8e`. Three-file app and five-file Windows-Live Raw outputs rebuilt together.
-- Current local baseline: 47 automated tests passed after the presentation-label fixes. This release baseline is 47. Browser E2E verified five-slide/four-chart-type version save, refresh, cancel, exact restore, malformed/future-file rejection, and PPTX/PDF exports. Workbook reader: six sheets, zero warnings; TL deposit cards populated.
+- Current local baseline: 50 automated tests passed after the presentation-label fixes. Current release baseline is 50 (previous release: 47). Browser E2E verified five-slide/four-chart-type version save, refresh, cancel, exact restore, malformed/future-file rejection, and PPTX/PDF exports. Workbook reader: six sheets, zero warnings; TL deposit cards populated.
 - Windows JS line167 is bundled third-party presentation code; Node syntax check passes. User-reported remaining diagnostic cannot be identified without its exact message. Do not claim all Windows editor diagnostics are resolved.
 - The user explicitly authorized publishing this documentation refresh on 2026-10-21. This release changes Markdown only; no app/Windows rebuild or private data publication. Future publication requires user authorization for that work; prior approval is not an unlimited future instruction.
 
 ## Authorized presentation definition
 
 On 2026-10-21 the user explicitly requested publishing the current app and v10 presentation definition, excluding PDF/PPTX. Only `presentations/Sektor-Hikayesi.insightbase.json` is included with its usage guide. This is a scoped exception to the saved-version privacy default. It contains configuration/editorial text, not workbook observation series; graphics recalculate locally. Other saved versions, workbook data and test/export artifacts remain excluded.
+
+## Local follow-up — 2026-10-22
+
+Independent table source (Bilanço/P&L) and table P&L basis are implemented locally with schema-3 support and legacy schema-1/2 compatibility. Chart selections remain independent, and BS tables on quarterly P&L charts show endpoint stocks. Fifty automated tests passed plus real-workbook browser source/basis, restore and export checks. Published application dc99aed685b0817c0e7f0a0a9e195965ae2fe7a7 and approved v10 definition remain unchanged; no Windows rebuild or publication for this follow-up.
+
+## Release authorization — 2026-10-22
+
+User explicitly authorized publishing the current application and latest working v13 presentation. The local independent-table follow-up and v11–v13 narrative/table updates are included in this release, superseding their local-only status. Source and Windows three/five-file distributions are rebuilt together. Current release is identified by commit title `Publish independent table sources and context-reviewed v13 deck`; preceding verified app/documentation commits remain recorded above. Approved presentation path stays presentations/Sektor-Hikayesi.insightbase.json, now schema 3. Fifty tests pass. PDF/PPTX, Excel and private outputs stay excluded; future versions require fresh authorization.

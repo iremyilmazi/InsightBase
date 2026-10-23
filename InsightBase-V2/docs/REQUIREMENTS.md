@@ -21,7 +21,7 @@ Help a banking-sector finance/strategy user read current balance-sheet and profi
 | R11 | PL original metric language; monthly/cumulative scope PL only | UI, engine tests |
 | R12 | Highlights deterministic and BS-only | highlights.test.cjs; Calculations |
 | R13 | Reconciled credit/TL/FX pies with history and pair comparison | Composition engine tests and browser checks |
-| R14 | Independent chart/table rows, groups, measurements, units and decimals | presentation.test.cjs; editor/export checks |
+| R14 | Independent chart/table data sources, P&L bases, rows, groups, measurements, units and decimals | presentation.test.cjs; editor/export checks |
 | R15 | Editable PPTX charts/data/text/tables; visual PDF | Native chart XML tests; browser export downloads |
 | R16 | Timestamped portable versions, strict import validation, no embedded observations | Version unit tests and browser round-trip |
 | R17 | Mini-table does not resize chart labels; aligned periods and padded scales | Bounds tests; visual/browser review |

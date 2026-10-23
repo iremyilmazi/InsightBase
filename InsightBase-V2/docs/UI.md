@@ -303,3 +303,10 @@ Two-digit year labels could be mistaken for a day (Eki 26 meant October 2026). P
 ## P&L period grouping — 2026-10-21
 
 Sunum oluştur → Grafik → Dönem görünümü exposes Aylık and Tam çeyrek + açık çeyrek ayları for P&L only. Full quarters and remaining months share one axis, with explicit quarter/month disclosure. Change-mode captions and corresponding mini-table measurements read QoQ / MoM. Selecting hybrid preserves the chosen monthly/cumulative basis; ratios display a validation message and block export instead of fabricating quarterly levels. Dates, group, units, decimals and independent table selections remain configurable. Monthly mode is the default and BS has no new period control. The current private deck's deposit right chart uses total TL deposits, TL time deposits and TL demand deposits in that order, as requested.
+
+
+## Independent table data source — 2026-10-22
+
+Sunum oluştur → Tablo → Tablo veri kaynağı chooses Bilanço or P&L independently of the chart. Each table uses one source at a time. P&L tables additionally expose their own Aylık/Kümülatif selector; picker labels, measurement/unit controls and pairing use that table source/basis. Switching table source clears its selected metrics, row modes/formats and search; chart selections are untouched. Changing table P&L basis remaps only table metric identities and row settings. Explicit table source/basis selections survive chart source/basis changes and duplication.
+
+Shared source/group/unit captions identify a different table source. Values follow the chart's period columns; a BS table beneath a hybrid P&L chart uses period-ending stock observations and says Dönem sonu. Wide table headers use smaller/wrapping period labels. Existing versions without table-source fields inherit their original chart source/basis. Local review only.

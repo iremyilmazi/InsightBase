@@ -24,7 +24,7 @@ node --test InsightBase-V2/finora-lens/tests/*.test.cjs
 node --check InsightBase-V2/finora-lens/dist/presentation.js
 ```
 
-Current local baseline: 47 passing Node tests (release baseline: 47). Legacy Python server tests do not establish Windows launcher compatibility. Browser tests should check actual Excel reading, scope of filters, chart/table geometry, no console errors and successful downloads as relevant. Presentation-version E2E covers save, refresh, staged restore/cancel, exact choices, malformed/future files and exports. Private test outputs must remain outside Git. Actual Windows execution is still a separate verification step; do not claim it was performed from macOS checks.
+Current local baseline: 50 passing Node tests (release baseline: 50). Legacy Python server tests do not establish Windows launcher compatibility. Browser tests should check actual Excel reading, scope of filters, chart/table geometry, no console errors and successful downloads as relevant. Presentation-version E2E covers save, refresh, staged restore/cancel, exact choices, malformed/future files and exports. Private test outputs must remain outside Git. Actual Windows execution is still a separate verification step; do not claim it was performed from macOS checks.
 
 ## Build deliverables when authorized
 
@@ -65,3 +65,7 @@ No routine upload is implied by development or documentation tasks. Application 
 Hybrid P&L versions require the locally updated app (schema 2); monthly-only schema-1 files remain compatible. Quarterly checks cover missing months, year boundaries, availability caps, like-period growth, cumulative-to-monthly remapping and native exports.
 
 The 2026-10-21 release explicitly includes only presentations/Sektor-Hikayesi.insightbase.json (v10) plus its guide. This scoped exception does not authorize other local versions or PDF/PPTX publication. Include that exact definition in the release manifest, not the ignored outputs directory.
+
+Local 2026-10-22 table-source extension uses schema 3 for independent source/basis; published schema-2 v10 remains compatible and unchanged. Browser regression covers BS tables under quarterly/cumulative P&L charts, table-only P&L remapping and schema-3 restore/export.
+
+2026-10-22 release: the specifically approved presentation path now contains v13 (schema 3); independent table-source/basis support is included in rebuilt production files. No other saved versions or PDF/PPTX are authorized for publication.

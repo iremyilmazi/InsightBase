@@ -150,3 +150,10 @@ Switching aggregation preserves the monthly/cumulative basis and identities; onl
 The preceding three-month sum rules describe monthly basis only. Cumulative basis uses the exact source cumulative observation at each slot endpoint: Q1 is January–March, Q2 January–June, July January–July, August January–August. Never add cumulative monthly balances or derive them from monthly flows. Missing exact cumulative endpoints remain unavailable, even when monthly values exist.
 
 Cumulative Change compares quarter-end cumulative levels to the preceding quarter-end within the same year; monthly slots compare to preceding month-end within the year. The Q1 prior-December reset comparison is unavailable. YoY and YTD YoY compare the exact endpoint to the same prior-year month. These are changes in year-to-date levels, not standalone quarterly flow growth. The chart subtitle explicitly says Kümülatif. Ratio restrictions remain unchanged. This correction supersedes the earlier forced-monthly selection limitation.
+
+
+## Cross-source presentation tables — 2026-10-22
+
+Tables may use BS or P&L independently of the chart, with an independent P&L basis. Existing engine formulas and source currency/ratio semantics apply to each table metric's own source. Shared chart slots determine columns, never chart values. Monthly P&L table rows retain gaps beyond their own source availability.
+
+Under a hybrid P&L chart, BS table cells select the same slot-ending month's last stock observation under the existing seven-day/month restriction; quarter-labelled BS cells are end-quarter stocks, never sums of weekly/monthly stocks. Their change measurement remains explicit MoM (not invented QoQ). P&L tables under hybrid P&L charts use their independently selected monthly/cumulative hybrid rules and align by period endpoint. Different source dates do not trigger currency conversion or zero filling. Quarter ratio restrictions apply only to hybrid P&L series, not BS ratios sampled in a table. Workbook schema/IDs and dashboard calculations were reviewed unchanged.
