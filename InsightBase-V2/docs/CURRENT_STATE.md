@@ -67,3 +67,13 @@ Independent table source (Bilanço/P&L) and table P&L basis are implemented loca
 ## Release authorization — 2026-10-22
 
 User explicitly authorized publishing the current application and latest working v13 presentation. The local independent-table follow-up and v11–v13 narrative/table updates are included in this release, superseding their local-only status. Source and Windows three/five-file distributions are rebuilt together. Current release is identified by commit title `Publish independent table sources and context-reviewed v13 deck`; preceding verified app/documentation commits remain recorded above. Approved presentation path stays presentations/Sektor-Hikayesi.insightbase.json, now schema 3. Fifty tests pass. PDF/PPTX, Excel and private outputs stay excluded; future versions require fresh authorization.
+
+
+## Local commentary layout — 2026-10-22
+
+Slide commentary is immediately below the main title in preview/PDF/editable PPTX. Widget content follows it and the source footer stays at the bottom. Financial formulas, saved definitions and schemas are unchanged. Fifty automated tests pass; three-slide real-workbook browser layout and PPTX/PDF checks passed. No Windows rebuild or publication for this follow-up.
+
+
+## Commentary layout release — 2026-10-22
+
+User authorized GitHub publication of the commentary layout. This supersedes the local-only status above. Release commit title: `Move slide commentary below the title`. Canonical source, three-file Windows app and five-file Live wrapper were rebuilt together. The approved v13 presentation definition is unchanged and uses the new layout when opened in the updated app. Fifty tests and source browser/PDF/PPTX checks passed; packaged JavaScript syntax checked. Private Excel and QA exports remain excluded.

@@ -310,3 +310,8 @@ Sunum oluştur → Grafik → Dönem görünümü exposes Aylık and Tam çeyrek
 Sunum oluştur → Tablo → Tablo veri kaynağı chooses Bilanço or P&L independently of the chart. Each table uses one source at a time. P&L tables additionally expose their own Aylık/Kümülatif selector; picker labels, measurement/unit controls and pairing use that table source/basis. Switching table source clears its selected metrics, row modes/formats and search; chart selections are untouched. Changing table P&L basis remaps only table metric identities and row settings. Explicit table source/basis selections survive chart source/basis changes and duplication.
 
 Shared source/group/unit captions identify a different table source. Values follow the chart's period columns; a BS table beneath a hybrid P&L chart uses period-ending stock observations and says Dönem sonu. Wide table headers use smaller/wrapping period labels. Existing versions without table-source fields inherit their original chart source/basis. Local review only.
+
+
+## Commentary below slide title — 2026-10-22
+
+Slide commentary now appears immediately after the main slide title and before widget headings/charts, in preview, PDF and editable PPTX. Empty comments consume no dedicated commentary block. Exports reserve top space for commentary and reuse the former bottom commentary area for charts/tables; source/footer remain at the bottom. Existing saved versions need no migration: text, financial calculations and schema are unchanged. The user authorized publication of this change; canonical source and both Windows distributions are rebuilt together.

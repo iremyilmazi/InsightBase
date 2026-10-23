@@ -503,3 +503,15 @@ Pre-publication checks: remote main inspected at ec3de1645552438a00ce4d79f5895bb
 Rebuilt production bundle also passed the real-Excel/approved-v13 restore check: three slides, eight cumulative P&L periods, requested deposit trio and no configuration/browser page errors. Canonical/Live file counts and bundled JS syntax passed. Physical Windows testing remains unverified.
 
 Publication verified: application/v13 commit 228ed174d2fd4e69f37cf141024a10c513c1b271 is on main. All 22 changed file SHAs match the manifest, unchanged remote files are preserved, and the 57-file tree contains no Excel, PDF/PPTX, screenshots or local-data. Windows Raw JS/CSS and the schema-3 v13 definition match local approved content. This follow-up records verification in documentation only.
+
+
+## 2026-10-22 — Slide commentary below the title (local)
+
+- Moved commentary ahead of widget content in the canonical preview and both export layouts. Reused the old lower commentary area for chart/table space. Empty commentary remains hidden.
+- Reviewed UI, export and current-state documentation. No changes to financial calculations, narrative text, presentation definitions or version schema. Windows packages and GitHub were not updated.
+- Verification: 50 Node tests passed, including preview order and native PPTX commentary-position assertions. Real-workbook browser check restored the approved three-slide definition and verified title/comment/content order and footer clearance on all three pages, with no page errors. PPTX/PDF downloaded successfully; PDF pages rendered and preview/PDF layouts visually reviewed. Native PPTX commentary remained editable and was placed below the title on all three slides. No actual Windows execution claimed. Private QA artifacts remain outside the repository.
+
+
+## 2026-10-22 — Authorized commentary-layout publication
+
+User requested publishing the preceding local commentary change. Built the exact three-file Windows app and separate five-file Live wrapper with the prescribed scripts; packaged JS syntax check passed. Release scope: canonical layout source, regression assertions, affected documentation and rebuilt distribution files/previously tracked app ZIP. Approved v13 definition, financial calculations and schema unchanged. Private Excel, PDF/PPTX and screenshots are excluded. Publication uses the current remote parent and a non-forced expected-head update.

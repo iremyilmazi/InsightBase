@@ -69,3 +69,6 @@ The 2026-10-21 release explicitly includes only presentations/Sektor-Hikayesi.in
 Local 2026-10-22 table-source extension uses schema 3 for independent source/basis; published schema-2 v10 remains compatible and unchanged. Browser regression covers BS tables under quarterly/cumulative P&L charts, table-only P&L remapping and schema-3 restore/export.
 
 2026-10-22 release: the specifically approved presentation path now contains v13 (schema 3); independent table-source/basis support is included in rebuilt production files. No other saved versions or PDF/PPTX are authorized for publication.
+
+
+2026-10-22 commentary layout publication: user authorized publishing the title/comment/content order. Both Windows distributions rebuilt using the prescribed builders; package JavaScript syntax passed. Approved v13 definition and schema remain unchanged.

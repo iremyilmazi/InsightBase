@@ -222,3 +222,8 @@ A definition with a different table source/basis requires schema 3. Readers acce
 ## Schema-3/v13 publication authorized — 2026-10-22
 
 User authorized releasing independent table source/basis and the current v13 definition. The schema-3 feature is included in production source/Windows output for this release; earlier local-only statements are historical. Only presentations/Sektor-Hikayesi.insightbase.json is published, replacing approved v10 with v13; no workbook/PDF/PPTX or private checks.
+
+
+## Commentary below slide title — 2026-10-22
+
+Slide commentary now appears immediately after the main slide title and before widget headings/charts, in preview, PDF and editable PPTX. Empty comments consume no dedicated commentary block. Exports reserve top space for commentary and reuse the former bottom commentary area for charts/tables; source/footer remain at the bottom. Existing saved versions need no migration: text, financial calculations and schema are unchanged. The user authorized publication of this change; canonical source and both Windows distributions are rebuilt together.
